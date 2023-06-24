@@ -35,19 +35,6 @@ async def client_session_error_handler(_, e: ClientSessionNotInitialized):
     print(e)
     return JSONResponse({"error": "Internal Error"}, status_code=500)
 
-# @router.get(
-#         "/",
-#         dependencies=[Depends(discord.requires_authorization)],
-#         response_class=HTMLResponse)
-# async def index(request: Request):
-#     print("---------")
-#     # if await discord.isAuthenticated(token):
-#     return "<h1>Hello, World!</h1>"
-#     # else:
-#     #     auth_url = discord.get_authorize_url()
-#     #     return f'<a href="{auth_url}">Login with Discord</a>'
-
-
 @app.get(
     "/guilds",
     dependencies=[Depends(discord.requires_authorization)],
@@ -66,7 +53,26 @@ async def get_guild(guild_id: str, request: Request) -> List[Guild]:
     
     return await discord.request(route, token)
 
+@app.get(
+    "/sitrep",
+)
+async def get_sitrep(request: Request):
+    discord_token = discord.get_token(request)
+    if not discord.isAuthenticated(discord_token):
+        raise Unauthorized
 
+    sitrep = {
+        "theater": 'caucasus',
+        "airfields": [{
+            'kobuleti': {
+                "coalition": 'red'
+            }
+        }], 
+        "farps": [{
+            "position": { "x": 1, y: 2 }
+        }]
+    }
+    return sitrep
 
 if __name__ == "__main__":
     import uvicorn
