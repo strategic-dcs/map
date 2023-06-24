@@ -15,7 +15,7 @@ router = APIRouter()
 discord = DiscordOAuthClient(
     client_id=settings.DISCORD_OAUTH_CLIENT_ID,
     client_secret=settings.DISCORD_OAUTH_SECRET,
-    redirect_uri="http://dev.local:8000/auth/callback",
+    redirect_uri="http://localhost:3000/auth/callback",
     scopes=["identify", "guilds", "guilds.members.read"]
 )
 
@@ -27,10 +27,12 @@ async def on_startup():
 async def login():
     return f'<a href="{discord.oauth_login_url}">Login with Discord</a>'
 
-@router.get("/auth/callback")
+@router.get("/callback")
 async def callback(code: str, request: Request, response: Response):
+    print(f"Callback method.... code: {code} - {discord.client_id} - {discord.client_secret}")
     token, refresh_token = await discord.get_access_token(code)
 
+    print("Setting token to cookie")
     response.set_cookie(key="oauth2_token", value=token)
 
-    return {"access_token": token, "refresh_token": refresh_token, "cookie": "set"}
+    return { "access_token": token, "refresh_token": refresh_token }
