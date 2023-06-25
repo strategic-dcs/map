@@ -94,7 +94,7 @@ function App() {
 
         let options = {
           color: `rgba(${zone.state.line_color})`,
-          fillColor: `rgba(${zone.state.line_color})`,
+          fillColor: `rgba(${zone.state.fill_color})`,
           weight: 1,
           dashArray: lineStyle === 'dashed' ? '5, 5' : null
         }

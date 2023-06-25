@@ -511,7 +511,7 @@
     }
   ],
   "grid": {
-    "time": 1687687116,
+    "time": 1687689226,
     "zones": [
       {
         "name": "C13",
@@ -531,34 +531,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -582,34 +582,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -633,12 +633,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -649,12 +649,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -686,32 +686,32 @@
           "red": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
+              1,
               0,
-              0,
-              0
+              0.2
             ],
             "zone_type": "BUILDABLE"
           },
           "blue": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
+              1,
               0,
-              0,
-              0
+              0.2
             ],
             "zone_type": "BUILDABLE"
           }
@@ -735,12 +735,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -751,12 +751,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -786,34 +786,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -837,12 +837,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -853,12 +853,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -939,12 +939,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -955,12 +955,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -990,34 +990,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -1041,34 +1041,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -1092,12 +1092,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -1110,10 +1110,10 @@
           "blue": {
             "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -1143,12 +1143,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -1161,10 +1161,10 @@
           "blue": {
             "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -1194,34 +1194,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
             "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -1245,12 +1245,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -1261,12 +1261,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -1349,32 +1349,32 @@
           "red": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
+              1,
               0,
-              0,
-              0
+              0.2
             ],
             "zone_type": "BUILDABLE"
           },
           "blue": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
+              1,
               0,
-              0,
-              0
+              0.2
             ],
             "zone_type": "BUILDABLE"
           }
@@ -1398,12 +1398,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -1414,12 +1414,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -1449,34 +1449,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -1500,12 +1500,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -1516,12 +1516,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -1551,12 +1551,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -1567,12 +1567,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -1602,34 +1602,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -1653,12 +1653,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -1669,12 +1669,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -1755,34 +1755,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -1806,34 +1806,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -1857,34 +1857,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -1908,12 +1908,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -1924,12 +1924,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -1959,34 +1959,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -2010,34 +2010,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -2061,12 +2061,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -2077,12 +2077,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -2163,34 +2163,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -2214,12 +2214,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -2230,12 +2230,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -2267,32 +2267,32 @@
           "red": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
+              1,
               0,
-              0,
-              0
+              0.2
             ],
             "zone_type": "BUILDABLE"
           },
           "blue": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
+              1,
               0,
-              0,
-              0
+              0.2
             ],
             "zone_type": "BUILDABLE"
           }
@@ -2318,10 +2318,10 @@
           "red": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -2334,10 +2334,10 @@
           "blue": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -2418,34 +2418,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -2469,12 +2469,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -2485,12 +2485,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -2522,10 +2522,10 @@
           "red": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -2538,10 +2538,10 @@
           "blue": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -2673,34 +2673,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -2724,12 +2724,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -2740,12 +2740,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -2775,34 +2775,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -2826,34 +2826,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -2877,12 +2877,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -2893,12 +2893,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -2928,12 +2928,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -2944,12 +2944,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -2979,34 +2979,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -3030,12 +3030,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -3046,12 +3046,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -3234,12 +3234,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -3250,12 +3250,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -3285,12 +3285,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -3301,12 +3301,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -3336,12 +3336,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -3352,12 +3352,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -3387,34 +3387,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -3438,12 +3438,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -3454,12 +3454,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -3489,34 +3489,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -3540,12 +3540,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -3556,12 +3556,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -3591,12 +3591,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -3607,12 +3607,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -3642,12 +3642,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
-              1,
-              1,
-              1,
-              0.6
+              0,
+              0,
+              0,
+              1
             ],
             "fill_color": [
               0,
@@ -3658,12 +3658,12 @@
             "zone_type": "SECURE_CONTESTED"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
-              1,
-              1,
-              1,
-              0.6
+              0,
+              0,
+              0,
+              1
             ],
             "fill_color": [
               0,
@@ -3693,34 +3693,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -3744,12 +3744,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -3760,12 +3760,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -3948,34 +3948,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -3999,12 +3999,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -4015,12 +4015,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -4052,10 +4052,10 @@
           "red": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -4068,10 +4068,10 @@
           "blue": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -4154,10 +4154,10 @@
           "red": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -4170,10 +4170,10 @@
           "blue": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -4256,10 +4256,10 @@
           "red": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -4272,10 +4272,10 @@
           "blue": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -4307,10 +4307,10 @@
           "red": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -4323,10 +4323,10 @@
           "blue": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -4664,10 +4664,10 @@
           "red": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -4680,10 +4680,10 @@
           "blue": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -4715,10 +4715,10 @@
           "red": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -4731,10 +4731,10 @@
           "blue": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -4764,12 +4764,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
               1,
-              1,
-              1,
-              0.6
+              0,
+              0,
+              1
             ],
             "fill_color": [
               0,
@@ -4780,12 +4780,12 @@
             "zone_type": "SECURE_HOSTILE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
               1,
-              1,
-              1,
-              0.6
+              0,
+              0,
+              1
             ],
             "fill_color": [
               0,
@@ -4815,34 +4815,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
               1,
-              1,
-              1,
-              0.6
+              0,
+              0,
+              1
             ],
             "fill_color": [
+              1,
               0,
               0,
-              0,
-              0
+              0.2
             ],
             "zone_type": "BUILT_HOSTILE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
               1,
-              1,
-              1,
-              0.6
+              0,
+              0,
+              1
             ],
             "fill_color": [
+              1,
               0,
               0,
-              0,
-              0
+              0.2
             ],
             "zone_type": "BUILT_HOSTILE"
           }
@@ -5634,9 +5634,9 @@
             "line_style": "DASHED",
             "line_color": [
               1,
-              1,
-              1,
-              0.6
+              0,
+              0,
+              1
             ],
             "fill_color": [
               0,
@@ -5650,9 +5650,9 @@
             "line_style": "DASHED",
             "line_color": [
               1,
-              1,
-              1,
-              0.6
+              0,
+              0,
+              1
             ],
             "fill_color": [
               0,
@@ -8385,34 +8385,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -8487,34 +8487,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -8538,12 +8538,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -8554,12 +8554,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -8589,12 +8589,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -8605,12 +8605,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -8640,34 +8640,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -8846,10 +8846,10 @@
           "red": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -8862,10 +8862,10 @@
           "blue": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -8897,10 +8897,10 @@
           "red": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -8913,10 +8913,10 @@
           "blue": {
             "line_style": "DASHED",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -9048,34 +9048,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -9099,12 +9099,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -9115,12 +9115,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -9150,34 +9150,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -9201,12 +9201,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -9217,12 +9217,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -9303,12 +9303,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -9319,12 +9319,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -9354,34 +9354,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -9405,12 +9405,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -9421,12 +9421,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -9507,34 +9507,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -9609,34 +9609,34 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
               0,
-              0,
-              0
+              1,
+              0.2
             ],
             "zone_type": "BUILT"
           }
@@ -9660,12 +9660,12 @@
         ],
         "state": {
           "red": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
@@ -9676,12 +9676,12 @@
             "zone_type": "SECURE"
           },
           "blue": {
-            "line_style": "DASHED",
+            "line_style": "SOLID",
             "line_color": [
+              0,
+              0,
               1,
-              1,
-              1,
-              0.6
+              1
             ],
             "fill_color": [
               0,
