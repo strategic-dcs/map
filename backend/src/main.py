@@ -58,11 +58,9 @@ async def get_guild(guild_id: str, request: Request) -> List[Guild]:
     "/api/sitrep",
 )
 async def get_sitrep(request: Request):
-    # print(request.headers)
-
-    # discord_token = discord.get_token(request)
-    # if not await discord.isAuthenticated(discord_token):
-    #     raise Unauthorized
+    discord_token = discord.get_token(request)
+    if not await discord.isAuthenticated(discord_token):
+        raise Unauthorized
 
     coalition = 'blue' # TODO: get from request
     response = json.loads( open("data/database.json", 'r').read() )
