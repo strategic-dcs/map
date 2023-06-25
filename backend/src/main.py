@@ -1,19 +1,16 @@
 from typing import List
 
-from fastapi import Request, FastAPI, Depends
-from fastapi.staticfiles import StaticFiles
+from fastapi import Request, FastAPI
 from fastapi.responses import JSONResponse
 from starlette.middleware.cors import CORSMiddleware
 from config import settings
 from fastapi_discord import Unauthorized
 from fastapi_discord.exceptions import ClientSessionNotInitialized
-from fastapi_discord.models import GuildPreview, Guild
 
 from auth.discord import router as auth_router, discord
 import json
 
 app = FastAPI()
-# app.mount("/static", StaticFiles(directory="/../static"), name="static")
 
 app.add_middleware(
     CORSMiddleware,
@@ -35,24 +32,6 @@ async def unauthorized_error_handler(_, __):
 async def client_session_error_handler(_, e: ClientSessionNotInitialized):
     print(e)
     return JSONResponse({"error": "Internal Error"}, status_code=500)
-
-@app.get(
-    "/api/guilds",
-    dependencies=[Depends(discord.requires_authorization)],
-    response_model=List[GuildPreview],
-)
-async def get_guilds(guilds: List = Depends(discord.guilds)):
-    return guilds
-
-@app.get(
-    "/api/guilds/{guild_id}",
-    dependencies=[Depends(discord.requires_authorization)]
-)
-async def get_guild(guild_id: str, request: Request) -> List[Guild]:
-    route = f"/users/@me/guilds/{guild_id}/member"
-    token = discord.get_token(request)
-
-    return await discord.request(route, token)
 
 @app.get(
     "/api/sitrep",
