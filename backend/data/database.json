@@ -8,443 +8,165 @@
     {
       "name": "Abu al-Duhur",
       "position": [
-        35.73,
-        37.09
+        35.732778,
+        37.101667
       ],
       "coalition": "neutral"
     },
     {
       "name": "Adana Sakirpasa",
       "position": [
-        36.98,
-        35.28
+        36.981944,
+        35.280278
       ],
       "coalition": "neutral"
     },
     {
       "name": "Al Qusayr",
       "position": [
-        34.51,
-        36.58
+        34.5690994,
+         36.5727997
       ],
       "coalition": "neutral"
     },
     {
       "name": "An Nasiriyah",
       "position": [
-        31.05,
-        46.27
+        33.9189987,
+        36.8666
       ],
       "coalition": "neutral"
     },
     {
       "name": "Tha'lah",
       "position": [
-        32.94,
-        36.63
+        32.705278,
+        36.412778
       ],
       "coalition": "neutral"
     },
     {
       "name": "Beirut-Rafic Hariri",
       "position": [
-        33.82,
-        35.49
+        33.821111,
+        35.488333
       ],
       "coalition": "neutral"
     },
     {
-      "name": "Damascus",
-      "position": [
-        33.41,
-        36.51
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Marj as Sultan",
-      "position": [
-        33.51,
-        36.48
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Al-Dumayr",
-      "position": [
-        33.61,
-        36.75
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Eyn Shemer",
-      "position": [
-        32.27,
-        35.01
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Gaziantep",
-      "position": [
-        36.94,
-        37.48
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "H4",
-      "position": [
-        32.54,
-        38.18
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Haifa",
-      "position": [
-        32.81,
-        35.04
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Hama",
-      "position": [
-        35.13,
-        36.75
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Hatay",
-      "position": [
-        36.36,
-        36.30
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Incirlik",
-      "position": [
-        37.00,
-        35.42
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Jirah",
-      "position": [
-        36.10,
-        37.95
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Khalkhalah",
-      "position": [
-        32.83,
-        36.53
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "King Hussein Air College",
-      "position": [
-        32.35,
-        37.58
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Kiryat Shmona",
-      "position": [
-        33.21,
-        35.59
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Bassel Al-Assad",
-      "position": [
-        35.40,
-        35.95
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Marj Ruhayyil",
-      "position": [
-        33.33,
-        36.47
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Megiddo",
-      "position": [
-        32.59,
-        35.18
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Mezzeh",
-      "position": [
-        33.47,
-        36.23
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Minakh",
-      "position": [
-        36.52,
-        37.04
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Aleppo",
-      "position": [
-        36.18,
-        37.23
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Palmyra",
-      "position": [
-        34.55,
-        38.32
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Ramat David",
-      "position": [
-        32.66,
-        35.18
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Kuweires",
-      "position": [
-        36.18,
-        37.59
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Rayak",
-      "position": [
-        33.85,
-        36.0
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Rene Mouawad",
-      "position": [
-        34.42,
-        36.15
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Rosh Pina",
-      "position": [
-        32.98,
-        35.57
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Sayqal",
-      "position": [
-        33.68,
-        36.57
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Shayrat",
-      "position": [
-        34.50,
-        36.90
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Tabqa",
-      "position": [
-        35.75,
-        38.57
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Taftanaz",
-      "position": [
-        35.97,
-        36.78
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Tiyas",
-      "position": [
-        34.52,
-        37.63
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Wujah Al Hajar",
-      "position": [
-        34.72,
-        36.07
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Gazipasa",
-      "position": [
-        36.30,
-        32.30
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Deir ez-Zor",
-      "position": [
-        35.28,
-        40.17
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Nicosia",
-      "position": [
-        35.17,
-        33.37
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Akrotiri",
-      "position": [
-        34.59,
-        32.99
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Paphos",
-      "position": [
-        34.72,
-        32.49
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Larnaca",
-      "position": [
-        34.88,
-        33.63
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Lakatamia",
-      "position": [
-        35.14,
-        33.38
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Ercan",
-      "position": [
-        35.15,
-        33.50
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Gecitkale",
-      "position": [
-        35.24,
-        33.73
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Pinarbashi",
-      "position": [
-        36.69,
-        32.46
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Naqoura",
-      "position": [
-        33.11,
-        35.12
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Ruwayshid",
-      "position": [
-        32.48,
-        38.20
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Sanliurfa",
-      "position": [
-        37.16,
-        38.85
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Kharab Ishk",
-      "position": [
-        36.89,
-        38.65
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Tal Siman",
-      "position": [
-        36.33,
-        37.80
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "Raj al Issa East",
-      "position": [
-        35.00,
-        38.55
-      ],
-      "coalition": "neutral"
-    },
-    {
-      "name": "At Tanf",
-      "position": [
-        33.35,
-        38.85
-      ],
-      "coalition": "neutral"
-    }
+    "name": "Damascus",
+    "position": [33.411389,
+      36.515556],
+    "coalition": "neutral"
+  },
+  {
+    "name": "Al-Dumayr",
+    "position": [33.609722,
+      36.748889],
+    "coalition": "neutral"
+  },
+  {
+    "name": "Eyn Shemer",
+    "position": [32.436917,
+      35.000597],
+    "coalition": "neutral"
+  },
+  {
+    "name": "Gaziantep",
+    "position": [36.947778,
+      37.478889],
+    "coalition": "neutral"
+  },
+  {
+    "name": "Haifa",
+    "position": [32.809444,
+      35.043056],
+    "coalition": "neutral"
+  },
+  {
+    "name": "Hama",
+    "position": [35.118156,
+      36.711186],
+    "coalition": "neutral"
+  },
+  {
+    "name": "Hatay",
+    "position": [36.362778,
+      36.282222],
+    "coalition": "neutral"
+  },
+  {
+    "name": "Incirlik",
+    "position": [37.001944,
+      35.425833],
+    "coalition": "neutral"
+  },
+  {
+    "name": "Jirah",
+    "position": [36.0975,
+      37.940278],
+    "coalition": "neutral"
+  },
+  {
+    "name": "Khalkhalah",
+    "position": [33.077301, 36.5582085],
+    "coalition": "neutral"
+  },
+  {
+    "name": "King Hussein Air College",
+    "position": [32.356389,
+      36.259167],
+    "coalition": "neutral"
+  },
+  {
+    "name": "Kiryat Shmona",
+    "position": [33.216667,
+      35.596667],
+    "coalition": "neutral"
+  },
+  {
+    "name": "Bassel Al-Assad",
+    "position": [35.400833,
+      35.948611],
+    "coalition": "neutral"
+  },
+  {
+    "name": "Marj Ruhayyil",
+    "position": [33.286499, 36.4574013],
+    "coalition": "neutral"
+  },
+  {
+    "name": "Megiddo",
+    "position": [32.597292,
+      35.228789],
+    "coalition": "neutral"
+  },
+  {
+    "name": "Mezzeh",
+    "position": [33.477778,
+      36.223333],
+    "coalition": "neutral"
+  },
+  {
+    "name": "Minakh",
+    "position": [36.521944,
+      37.041111],
+    "coalition": "neutral"
+  },
+  {
+    "name": "Aleppo",
+    "position": [36.180556,
+      37.224167],
+    "coalition": "neutral"
+  },
+  {
+    "name": "Wujah Al Hajar",
+    "position": [
+      34.283333,
+      35.7
+    ],
+    "coalition": "neutral"
+  }
   ],
   "farps": [
     {
