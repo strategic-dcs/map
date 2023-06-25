@@ -1,0 +1,161 @@
+{
+  "theater_name": "Caucasus",
+  "theater_center": [
+    43.05,
+    39.40
+  ],
+  "airfields": [
+    {
+      "name": "Kobuleti",
+      "coalition": "neutral",
+      "position": [
+        41.93,
+        41.86444
+      ]
+    },
+    {
+      "name": "Kutaisi",
+      "coalition": "neutral",
+      "position": [
+        42.17639,
+        42.48222
+      ]
+    },
+    {
+      "name": "Batumi",
+      "coalition": "neutral",
+      "position": [
+        41.61028,
+        41.59917
+      ]
+    },
+    {
+      "name": "Beslan",
+      "coalition": "neutral",
+      "position": [
+        43.20528,
+        44.60639
+      ]
+    },
+    {
+      "name": "Gudauta",
+      "coalition": "neutral",
+      "position": [
+        43.11111,
+        40.57778
+      ]
+    },
+    {
+      "name": "Krasnodar-Center",
+      "coalition": "neutral",
+      "position": [
+        45.03472,
+        39.17083
+      ]
+    },
+    {
+      "name": "Sukhumi",
+      "coalition": "neutral",
+      "position": [
+        42.85833,
+        41.12861
+      ]
+    },
+    {
+      "name": "Vody",
+      "coalition": "neutral",
+      "position": [
+        44.225,
+        43.08194
+      ]
+    },
+    {
+      "name": "Anapa",
+      "coalition": "neutral",
+      "position": [
+        44.99528,
+        37.34722
+      ]
+    },
+    {
+      "name": "Gelendzhik",
+      "coalition": "neutral",
+      "position": [
+        44.56667,
+        38.01667
+      ]
+    },
+    {
+      "name": "Mozdok",
+      "coalition": "neutral",
+      "position": [
+        43.79167,
+        44.60306
+      ]
+    },
+    {
+      "name": "Nalchik",
+      "coalition": "neutral",
+      "position": [
+        43.51389,
+        43.63611
+      ]
+    },
+    {
+      "name": "Sochi",
+      "coalition": "neutral",
+      "position": [
+        43.45,
+        39.95694
+      ]
+    },
+    {
+      "name": "Senaki-Kolkhi",
+      "coalition": "neutral",
+      "position": [
+        42.25,
+        42.03333
+      ]
+    },
+    {
+      "name": "Novorossiysk",
+      "coalition": "neutral",
+      "position": [
+        44.68333,
+        37.76667
+      ]
+    },
+    {
+      "name": "Vaziani",
+      "coalition": "neutral",
+      "position": [
+        41.62222,
+        45.03194
+      ]
+    },
+    {
+      "name": "Maykop",
+      "coalition": "neutral",
+      "position": [
+        44.66667,
+        40.1
+      ]
+    },
+    {
+      "name": "Krimsk",
+      "coalition": "neutral",
+      "position": [
+        44.92934,
+        37.99117
+      ]
+    }
+  ],
+  "farps": [
+    {
+      "position": [
+        42.5,
+        41.5
+      ]
+    }
+  ]
+}
