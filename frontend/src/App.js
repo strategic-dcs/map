@@ -43,7 +43,6 @@ async function sitRepFetch(setSitRep, setIsSitRepLoaded, setIsLoggedIn) {
     logout();
     setIsLoggedIn(false)
   } else {
-    console.log(response.data)
     setSitRep(response.data);
     setIsSitRepLoaded(true);
   }
@@ -92,9 +91,33 @@ function App() {
       for (let zone of sitRep.grid.zones) {
         let lineStyle = zone.state.line_style.toLowerCase()
 
+        let line_color = [
+          zone.state.line_color[0],
+          zone.state.line_color[1],
+          zone.state.line_color[2],
+          zone.state.line_color[3],
+        ]
+
+        line_color[0] = line_color[0] * 210;
+        line_color[1] = line_color[1] * 210;
+        line_color[2] = line_color[2] * 210;
+        line_color[3] = line_color[3] * 255;
+
+        let fill_color = [
+          zone.state.fill_color[0],
+          zone.state.fill_color[1],
+          zone.state.fill_color[2],
+          zone.state.fill_color[3],
+        ]
+
+        fill_color[0] = fill_color[0] * 255;
+        fill_color[1] = fill_color[1] * 255;
+        fill_color[2] = fill_color[2] * 255;
+        fill_color[3] = fill_color[3] * 5;
+
         let options = {
-          color: `rgba(${zone.state.line_color})`,
-          fillColor: `rgba(${zone.state.fill_color})`,
+          color: `rgba(${line_color})`,
+          fillColor: `rgba(${fill_color})`,
           weight: 1,
           dashArray: lineStyle === 'dashed' ? '5, 5' : null
         }
@@ -109,8 +132,8 @@ function App() {
       }
 
       return <div>
-        <MapContainer center={sitRep.theater_center}
-              zoom={7}
+        <MapContainer id="map" center={sitRep.theater_center}
+              zoom={7.8}
               // maxZoom={12}
               // minZoom={7.5}
 
@@ -119,14 +142,19 @@ function App() {
               wheelPxPerZoomLevel={220}>
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            // accessToken="pk.eyJ1IjoiY2Vsc29kYW50YXMiLCJhIjoiY2tnNWk4ZWlpMGcyZzJ5bDdjZTU5c2IwdCJ9.1dK2LqeGzVzILLxUToadzg"
             accessToken="pk.eyJ1IjoiY2Vsc29kYW50YXMiLCJhIjoiY2tnNWk4ZWlpMGcyZzJ5bDdjZTU5c2IwdCJ9.1dK2LqeGzVzILLxUToadzg"
-            id={'celsodantas/ckgxw7aad1m1519msfaop1316'}
+            // id={'celsodantas/cljb9vfy5002i01nr1vxkffwl'}
+            // id={'celsodantas/cljb9vfy5002i01nr1vxkffwl/draft'}
+            id={"celsodantas/cljbgm8oe008h01o049ln1xht/draft"}
             // default light
-            url='https://api.mapbox.com/styles/v1/mapbox/light-v11/tiles/{z}/{x}/{y}?access_token={accessToken}'
+            //url='https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token={accessToken}'
+            url='https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}'
           />
 
-          {airportsMarkers}
+
           {gridPolygons}
+          {airportsMarkers}
         </MapContainer>
       </div>
     } else {
