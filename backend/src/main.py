@@ -64,7 +64,12 @@ async def get_sitrep(request: Request):
     # if not await discord.isAuthenticated(discord_token):
     #     raise Unauthorized
 
-    return open("data/database.json", 'r').read()
+    coalition = 'blue' # TODO: get from request
+    response = json.loads( open("data/database.json", 'r').read() )
+    for zone in response['grid']['zones']:
+        zone['state'] = zone['state'][coalition]
+
+    return response
 
 if __name__ == "__main__":
     import uvicorn
