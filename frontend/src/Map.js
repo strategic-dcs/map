@@ -1,4 +1,4 @@
-import { ImageOverlay, MapContainer, TileLayer, Marker, Polygon,  } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Polygon,  } from 'react-leaflet'
 import L from 'leaflet'
 
 function Map(props) {
