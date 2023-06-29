@@ -15,7 +15,7 @@ router = APIRouter()
 discord = DiscordOAuthClient(
     client_id=settings.DISCORD_OAUTH_CLIENT_ID,
     client_secret=settings.DISCORD_OAUTH_SECRET,
-    redirect_uri="http://localhost:3000/auth/callback",
+    redirect_uri=settings.DISCORD_OAUTH_REDIRECT_URI,
     scopes=["identify"]
 )
 
