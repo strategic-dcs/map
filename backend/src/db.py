@@ -16,6 +16,7 @@ class DB(metaclass=SingletonMeta):
             host=settings.DB_HOST,
             user=settings.DB_USER,
             password=settings.DB_PASSWORD,
+            port=settings.DB_PORT,
             database='sdcs'
         )
 
