@@ -205,9 +205,9 @@
               1
             ],
             "fill_color": [
-              0,
-              0,
               1,
+              0,
+              0,
               0.2
             ],
             "zone_type": "BUILT"
@@ -221,9 +221,9 @@
               1
             ],
             "fill_color": [
-              0,
-              0,
               1,
+              0,
+              0,
               0.2
             ],
             "zone_type": "BUILT"
@@ -250,15 +250,15 @@
           "red": {
             "line_style": "SOLID",
             "line_color": [
-              0,
-              0,
               1,
+              0,
+              0,
               1
             ],
             "fill_color": [
               0,
               0,
-              1,
+              0,
               0.2
             ],
             "zone_type": "BUILT"
@@ -403,9 +403,9 @@
           "red": {
             "line_style": "SOLID",
             "line_color": [
-              0,
-              0,
               1,
+              0,
+              0,
               1
             ],
             "fill_color": [
@@ -419,9 +419,9 @@
           "blue": {
             "line_style": "SOLID",
             "line_color": [
-              0,
-              0,
               1,
+              0,
+              0,
               1
             ],
             "fill_color": [
@@ -454,9 +454,9 @@
           "red": {
             "line_style": "SOLID",
             "line_color": [
-              0,
-              0,
               1,
+              0,
+              0,
               1
             ],
             "fill_color": [
@@ -470,9 +470,9 @@
           "blue": {
             "line_style": "SOLID",
             "line_color": [
-              0,
-              0,
               1,
+              0,
+              0,
               1
             ],
             "fill_color": [
@@ -505,9 +505,9 @@
           "red": {
             "line_style": "SOLID",
             "line_color": [
-              0,
-              0,
               1,
+              0,
+              0,
               1
             ],
             "fill_color": [
@@ -607,9 +607,9 @@
           "red": {
             "line_style": "SOLID",
             "line_color": [
-              0,
-              0,
               1,
+              0,
+              0,
               1
             ],
             "fill_color": [
@@ -658,9 +658,9 @@
           "red": {
             "line_style": "SOLID",
             "line_color": [
-              0,
-              0,
               1,
+              0,
+              0,
               1
             ],
             "fill_color": [
@@ -709,9 +709,9 @@
           "red": {
             "line_style": "SOLID",
             "line_color": [
-              0,
-              0,
               1,
+              0,
+              0,
               1
             ],
             "fill_color": [

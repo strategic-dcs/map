@@ -11,11 +11,19 @@ class Config(BaseSettings):
     DISCORD_OAUTH_CLIENT_ID: str
     DISCORD_OAUTH_SECRET: str
 
+    DB_HOST: str
+    DB_USER: str
+    DB_PASSWORD: str
+
 settings = Config(
     CORS_ORIGINS=["localhost:8000", "http://localhost:3000"],
     CORS_ORIGINS_REGEX="localhost",
     CORS_HEADERS=["*"],
 
     DISCORD_OAUTH_CLIENT_ID=os.getenv('DISCORD_OAUTH_CLIENT_ID'),
-    DISCORD_OAUTH_SECRET=os.getenv('DISCORD_OAUTH_SECRET')
+    DISCORD_OAUTH_SECRET=os.getenv('DISCORD_OAUTH_SECRET'),
+
+    DB_HOST=os.getenv('DB_HOST'),
+    DB_USER=os.getenv('DB_USER'),
+    DB_PASSWORD=os.getenv('DB_PASSWORD'),
 )

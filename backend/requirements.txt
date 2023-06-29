@@ -21,3 +21,4 @@ starlette==0.20.4
 typing_extensions==4.6.3
 uvicorn==0.22.0
 yarl==1.9.2
+mysql-connector-python==8.0.33
