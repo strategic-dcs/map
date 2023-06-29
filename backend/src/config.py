@@ -32,9 +32,9 @@ settings = Config(
     DISCORD_OAUTH_SECRET=os.getenv('DISCORD_OAUTH_SECRET'),
     DISCORD_OAUTH_REDIRECT_URI=os.getenv('DISCORD_OAUTH_REDIRECT_URI') or f"http://{host}:3000/auth/callback",
 
-    DB_HOST=os.getenv('DB_HOST'),
-    DB_USER=os.getenv('DB_USER'),
-    DB_PASSWORD=os.getenv('DB_PASSWORD'),
+    DB_HOST=os.getenv('DB_HOST') or "db",
+    DB_USER=os.getenv('DB_USER') or "root",
+    DB_PASSWORD=os.getenv('DB_PASSWORD') or "password",
     DB_PORT=os.getenv('DB_PORT') or 3306,
 
 )
