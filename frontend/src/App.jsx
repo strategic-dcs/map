@@ -2,11 +2,11 @@ import './App.css';
 
 import axios from 'axios';
 
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie';
 
-import LoginPrompt from './LoginPrompt.js'
-import Map from './Map.js'
+import LoginPrompt from './LoginPrompt.jsx'
+import Map from './Map.jsx'
 
 function getAccessToken() {
   return Cookies.get('access_token')
@@ -16,10 +16,11 @@ function logout() {
   Cookies.remove('access_token');
 }
 
-function sitRepFetch(onSuccess) {
+function sitRepFetch() {
   console.log('fetching SitRep')
 
   const token = getAccessToken();
+  // Load URL from .env or something else
   let req = axios.get('http://localhost:8000/api/sitrep', {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -61,12 +62,11 @@ function App() {
 
   if (sitRep) {
     return <div>
-      </div>
       <Map sitRep={sitRep}></Map>
     </div>
   } else {
     return <div>
-      loading...
+      Loading...
     </div>
   }
 }

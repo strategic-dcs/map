@@ -39,3 +39,17 @@ code {
   height: 15px;
   width: 15px
 }
+
+.stats-container {
+  background-color: white;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 300px;
+  height: 300px;
+  z-index: 10000;
+}
+
+.stats-container.stats {
+  padding-left: 10px;
+}
