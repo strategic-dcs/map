@@ -18,6 +18,8 @@
 --
 -- Table structure for table `airbase`
 --
+CREATE DATABASE IF NOT EXISTS sdcs;
+USE sdcs;
 
 DROP TABLE IF EXISTS `airbase`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

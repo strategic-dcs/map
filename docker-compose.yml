@@ -6,13 +6,18 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./backend:/app
-    ports:
-      - 8000:8000
+    expose:
+      - 8000
     depends_on:
       - db
     environment:
-      - DATABASE_URL=mysql://root:password@db:3306/mydb
+      - DATABASE_URL=mysql://root:password@db:3306/sdcs
+      - VIRTUAL_HOST=localhost
+      - VIRTUAL_PATH=/api
+      - VIRTUAL_PORT=8000
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload --reload-dir src --app-dir src
+    networks:
+      - nginx-proxy
 
   frontend:
     build:
@@ -21,15 +26,30 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
-    ports:
-      - 3000:3000
+    expose:
+      - 3000
+    environment:
+      - VIRTUAL_HOST=localhost
+      - VIRTUAL_PATH=/
+      - VIRTUAL_PORT=3000
+    networks:
+      - nginx-proxy
 
   db:
     image: mysql:latest
-    ports:
-      - 3306:3306
+    expose:
+      - 3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./backend/data:/dev-data
+    networks:
+      - nginx-proxy
 
 volumes:
   mysql_data:
+
+networks:
+  nginx-proxy:
+    external: true

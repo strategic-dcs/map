@@ -15,7 +15,7 @@ class Config(BaseSettings):
     DISCORD_OAUTH_SECRET: str
     DISCORD_OAUTH_REDIRECT_URI: str
 
-    DB_URL: str
+    DATABASE_URL: str
 
 host = os.getenv('HOST') or "localhost"
 
@@ -30,5 +30,5 @@ settings = Config(
     DISCORD_OAUTH_SECRET=os.getenv('DISCORD_OAUTH_SECRET'),
     DISCORD_OAUTH_REDIRECT_URI=os.getenv('DISCORD_OAUTH_REDIRECT_URI') or f"http://{host}:3000/auth/callback",
 
-    DB_URL=os.getenv('DB_URL') or f"mysql+pymysql://root:password@db:3306/sdcs",
+    DATABASE_URL="mysql+pymysql://root:password@db:3306/sdcs",
 )
