@@ -6,12 +6,10 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./backend:/app
-    expose:
-      - 8000
     depends_on:
       - db
     environment:
-      - DATABASE_URL=mysql://root:password@db:3306/sdcs
+      - DATABASE_URL=mysql+mysqlconnector://root:password@db:3306/sdcs
       - VIRTUAL_HOST=localhost
       - VIRTUAL_PATH=/api
       - VIRTUAL_PORT=8000
@@ -26,8 +24,6 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
-    expose:
-      - 3000
     environment:
       - VIRTUAL_HOST=localhost
       - VIRTUAL_PATH=/
@@ -37,8 +33,6 @@ services:
 
   db:
     image: mysql:latest
-    expose:
-      - 3306
     environment:
       - MYSQL_ROOT_PASSWORD=password
     volumes:

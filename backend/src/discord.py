@@ -15,17 +15,13 @@ router = APIRouter()
 discord = DiscordOAuthClient(
     client_id=settings.DISCORD_OAUTH_CLIENT_ID,
     client_secret=settings.DISCORD_OAUTH_SECRET,
-    redirect_uri=settings.DISCORD_OAUTH_REDIRECT_URI,
+    redirect_uri="http://not-in-use.com",
     scopes=["identify"]
 )
 
 @router.on_event("startup")
 async def on_startup():
     await discord.init()
-
-@router.get("/login", response_class=HTMLResponse)
-async def login():
-    return f'<a href="{discord.oauth_login_url}">Login with Discord</a>'
 
 @router.get("/callback")
 async def callback(code: str, request: Request, response: Response):

@@ -1,5 +1,4 @@
 import { MapContainer, TileLayer, Marker, Polygon,  } from 'react-leaflet'
-import L from 'leaflet'
 import airportIcon from '/airport-circle.svg'
 
 function Map(props) {

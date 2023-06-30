@@ -1,7 +1,5 @@
 from fastapi import Request, FastAPI
 from fastapi.responses import JSONResponse
-from starlette.middleware.cors import CORSMiddleware
-from config import settings
 from fastapi_discord import Unauthorized
 from fastapi_discord.exceptions import ClientSessionNotInitialized
 
@@ -11,16 +9,6 @@ import json
 from db import DB
 
 app = FastAPI()
-
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS,
-    allow_origin_regex=settings.CORS_ORIGINS_REGEX,
-    allow_credentials=True,
-    allow_methods=("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"),
-    allow_headers=settings.CORS_HEADERS,
-)
 
 app.include_router(discord_router, prefix="/api/auth", tags=["Auth"])
 

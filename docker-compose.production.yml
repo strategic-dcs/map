@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/app
+    environment:
+      DATABASE_URL: mysql+mysqlconnector://root:password@db:3306/sdcs
+      VIRTUAL_HOST: strategic-dcs.com,www.strategic-dcs.com
+      LETSENCRYPT_HOST: strategic-dcs.com
+      VIRTUAL_PATH: /web/api
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --app-dir src
+    networks:
+      - nginx-proxy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    environment:
+      VIRTUAL_HOST: strategic-dcs.com,www.strategic-dcs.com
+      LETSENCRYPT_HOST: strategic-dcs.com
+      VIRTUAL_PATH: /web
+    networks:
+      - nginx-proxy
+
+networks:
+  nginx-proxy:
+    external: true
