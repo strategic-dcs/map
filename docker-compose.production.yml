@@ -7,7 +7,6 @@ services:
     volumes:
       - ./backend:/app
     environment:
-      DATABASE_URL: mysql+mysqlconnector://root:password@db:3306/sdcs
       VIRTUAL_HOST: strategic-dcs.com,www.strategic-dcs.com
       LETSENCRYPT_HOST: strategic-dcs.com
       VIRTUAL_PATH: /web/api
