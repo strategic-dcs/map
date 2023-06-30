@@ -5,7 +5,8 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     volumes:
-      - ./backend:/app
+      # TODO: add the correct path for the data folder.
+      - ./backend/data:/app/data
     environment:
       VIRTUAL_HOST: strategic-dcs.com,www.strategic-dcs.com
       LETSENCRYPT_HOST: strategic-dcs.com
