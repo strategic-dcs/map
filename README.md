@@ -13,17 +13,22 @@ In development the app runs on a docker-composer that will create a few containe
  - Frontend (ReactJS/Node)
  - Database (MySQL)
 
-To start development, on the root of the repository run:
+First, to start development, on the root of the repository run:
 
-`docker-compose build .`
+`docker-compose up -d`
 
-`TODO`: Need to direct on how to get the DISCORD-ID.
+Second, you'll need your discord_id to test the app. Here's how to find it:
 
-Run this once you have your DISCORD_ID:
+- On Discord, go to Settings > Advanced
+- Scroll down and make sure that Developer Mode is on
+- Exit your settings and type a message in any channel on any server
+- Right-click your profile picture and click 'Copy ID'
+
+Now run the following on our terminal:
 
 `docker-compose run -e TEST_DISCORD_USER_ID=<DISCORD-ID> --rm backend python scripts/db_setup.py`
 
-This will setup the DB with Syria an a single user on `blue` side.
+This will setup the DB with Syria an a single user (your user) on `blue` side.
 
 You can now visit: http://localhost:3000/ to see the application.
 
