@@ -1,7 +1,6 @@
 FROM python:3.9-alpine
 WORKDIR /app
 COPY ./requirements.txt /app/requirements.txt
-COPY ./.env /app/.env
 RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
 EXPOSE 8000
