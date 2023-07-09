@@ -26,14 +26,19 @@ docker network create nginx-proxy
 # 2. start the nginx proxy
 docker run -d -p 80:80 --name nginx-proxy --network=nginx-proxy -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
 
-# 3. build the images and start the containers
+# 3. Copy the .env.example and rename it to .env 
+cp .env.example .env
+
+# now replace its contents.
+
+# 4. build the images and start the containers
 docker-compose up -d --build
 
-# 4. Creates the tables
-docker-compose exec db sh -c "mysql -u root -p password < dev-data/schema.sql"
+# 5. Creates the tables (password is `password`)
+docker-compose exec db sh -c "mysql -u root < dev-data/schema.sql"
 
-# 5. Seed the DB with sample data
-docker-compose exec db sh -c "mysql -u root -p password sdcs < dev-data/seed.sql"
+# 6. Seed the DB with sample data
+docker-compose exec db sh -c "mysql -u root sdcs < dev-data/seed.sql"
 ```
 
 Next, you'll need your DISCORD_ID, here's how to get it:
@@ -47,7 +52,8 @@ Then execute:
 
 ```
 # Updates the seeded user with your discord ID
-docker-compose exec db sh -c "mysql -u root -p password sdcs -e 'UPDATE user SET discord_id=<REPLACE-WITH-DISCORD-ID>' WHERE id=1"
+# WARNING: this will set all users with the same discord_id. Include your ID to the query if you know your users ID.
+docker-compose exec db sh -c "mysql -u root sdcs -e 'UPDATE user SET discord_id=<REPLACE-WITH-DISCORD-ID>'"
 ```
 
 You can now visit: http://localhost/ to see the application.

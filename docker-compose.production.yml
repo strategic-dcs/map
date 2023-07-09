@@ -7,6 +7,8 @@ services:
     volumes:
       # TODO: add the correct path for the data folder.
       - ./backend/data:/app/data
+    env_file:
+      - .env
     environment:
       VIRTUAL_HOST: strategic-dcs.com,www.strategic-dcs.com
       LETSENCRYPT_HOST: strategic-dcs.com
@@ -23,6 +25,8 @@ services:
       VIRTUAL_HOST: strategic-dcs.com,www.strategic-dcs.com
       LETSENCRYPT_HOST: strategic-dcs.com
       VIRTUAL_PATH: /web
+      VITE_FQDN: ${FQDN}
+      VITE_DISCORD_CLIENT_ID: ${DISCORD_OAUTH_CLIENT_ID}
     networks:
       - nginx-proxy
 

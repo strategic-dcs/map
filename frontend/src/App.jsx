@@ -20,9 +20,9 @@ function sitRepFetch() {
   console.log('fetching SitRep')
 
   const token = getAccessToken();
-  const host = import.meta.env.VITE_CALLBACK_HOST
+  const fqdn = import.meta.env.VITE_FQDN
 
-  let req = axios.get(`http://${host}/api/sitrep`, {
+  let req = axios.get(`${fqdn}/api/sitrep`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

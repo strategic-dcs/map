@@ -15,7 +15,7 @@ router = APIRouter()
 discord = DiscordOAuthClient(
     client_id=settings.DISCORD_OAUTH_CLIENT_ID,
     client_secret=settings.DISCORD_OAUTH_SECRET,
-    redirect_uri="http://not-in-use.com",
+    redirect_uri=settings.FQDN + "/auth/callback",
     scopes=["identify"]
 )
 
@@ -25,7 +25,7 @@ async def on_startup():
 
 @router.get("/callback")
 async def callback(code: str, request: Request, response: Response):
-    print(f"Callback method.... code: {code} - {discord.client_id} - {discord.client_secret}")
+    print(f"[Callback method] Callback Code: {code}, Discord ClientID: {discord.client_id}, Discord Client Secret: {discord.client_secret}")
     print(f"""
           #####
             DISCORD_CLIENT_ID={discord.client_id}

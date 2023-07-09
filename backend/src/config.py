@@ -5,20 +5,16 @@ import os
 load_dotenv()
 
 class Config(BaseSettings):
-    HOST: str
-
     DISCORD_OAUTH_CLIENT_ID: str
     DISCORD_OAUTH_SECRET: str
+    FQDN: str
 
     DATABASE_URL: str
 
-host = os.getenv('HOST') or "localhost"
-
 settings = Config(
-    HOST=host,
-
     DISCORD_OAUTH_CLIENT_ID=os.getenv('DISCORD_OAUTH_CLIENT_ID'),
     DISCORD_OAUTH_SECRET=os.getenv('DISCORD_OAUTH_SECRET'),
+    FQDN=os.getenv('FQDN'),
 
     DATABASE_URL=os.getenv('DATABASE_URL') or "mysql+mysqlconnector://root:password@db:3306/sdcs",
 )
