@@ -30,8 +30,6 @@ services:
     environment:
       VIRTUAL_HOST: localhost
       VIRTUAL_PATH: /
-      VITE_FQDN: ${FQDN}
-      VITE_DISCORD_CLIENT_ID: ${DISCORD_OAUTH_CLIENT_ID}
     networks:
       - nginx-proxy
 

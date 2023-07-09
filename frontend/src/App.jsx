@@ -17,12 +17,10 @@ function logout() {
 }
 
 function sitRepFetch() {
-  console.log('fetching SitRep')
+  console.log('fetching SitRep.')
 
   const token = getAccessToken();
-  const fqdn = import.meta.env.VITE_FQDN
-
-  let req = axios.get(`${fqdn}/api/sitrep`, {
+  let req = axios.get("/api/sitrep", {
     headers: {
       Authorization: `Bearer ${token}`,
     },

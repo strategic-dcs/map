@@ -60,4 +60,19 @@ You can now visit: http://localhost/ to see the application.
 
 ## Deployment
 
-`TODO`
+```
+# If you already have the proxy in place with the name nginx-proxy, skip to step 3
+# 1. creates the network
+docker network create nginx-proxy
+
+# 2. start the nginx proxy
+docker run -d -p 80:80 --name nginx-proxy --network=nginx-proxy -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
+
+# 3. Copy the .env.example and rename it to .env 
+cp .env.example .env
+
+# 4. Build + Start
+docker-compose -f docker-compose.production.yml up --build -d
+```
+
+

@@ -4,29 +4,33 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    restart: always
     volumes:
       # TODO: add the correct path for the data folder.
       - ./backend/data:/app/data
     env_file:
       - .env
     environment:
-      VIRTUAL_HOST: strategic-dcs.com,www.strategic-dcs.com
-      LETSENCRYPT_HOST: strategic-dcs.com
-      VIRTUAL_PATH: /web/api
+      # VIRTUAL_HOST: strategic-dcs.com,www.strategic-dcs.com
+      VIRTUAL_HOST: localhost
+      # LETSENCRYPT_HOST: strategic-dcs.com
+      VIRTUAL_PATH: /api
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --app-dir src
     networks:
       - nginx-proxy
 
   frontend:
+    env_file:
+      - .env
     build:
       context: ./frontend
       dockerfile: Dockerfile.prod
+    restart: always
     environment:
-      VIRTUAL_HOST: strategic-dcs.com,www.strategic-dcs.com
-      LETSENCRYPT_HOST: strategic-dcs.com
-      VIRTUAL_PATH: /web
-      VITE_FQDN: ${FQDN}
-      VITE_DISCORD_CLIENT_ID: ${DISCORD_OAUTH_CLIENT_ID}
+      # VIRTUAL_HOST: strategic-dcs.com,www.strategic-dcs.com
+      VIRTUAL_HOST: localhost
+      # LETSENCRYPT_HOST: strategic-dcs.com
+      VIRTUAL_PATH: /
     networks:
       - nginx-proxy
 
