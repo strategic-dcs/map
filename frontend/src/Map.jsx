@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Marker, Polygon,  } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Polygon, Popup } from 'react-leaflet'
 import blueAirportIcon from '/blue-airfield.svg'
 import redAirportIcon from '/red-airfield.svg'
 import neutralAirportIcon from '/neutral-airfield.svg'
@@ -31,12 +31,13 @@ function Map(props) {
       </div>
       `
     let icon = new L.DivIcon({className: 'airportIcon', html: iconHtml})
+
     markers.push(<Marker key={airfield.name} position={[airfield.position.lat, airfield.position.lon]} icon={icon}/>)
   }
 
   for (let unit of sitRep.units) {
     let iconHtml = `
-        <div class="groundUnit" style="transform:rotate(${unit.heading}rad)"></div>
+        <div class="groundUnitIcon" style="transform:rotate(${unit.heading}rad)"></div>
       `
     let icon = new L.DivIcon({className: 'unitIcon', html: iconHtml})
     markers.push(<Marker key={unit.name} position={[unit.position.lat, unit.position.lon]} icon={icon} />)
@@ -83,16 +84,27 @@ function Map(props) {
       [zone.points[1].lat, zone.points[1].lon],
       [zone.points[2].lat, zone.points[2].lon],
     ]
-    // TODO: replace random with correct key
-    gridPolygons.push(<Polygon key={zone.name} pathOptions={options} positions={pos}/>);
+
+    const polygon = <Polygon key={zone.name} pathOptions={options} positions={pos}>
+      <Popup>
+        <div>{zone.state.zone_type}</div>
+      </Popup>
+    </Polygon>;
+    gridPolygons.push(polygon);
+
+    // Adding zone name markers
+    const latSum = pos.reduce((sum, point) => sum + point[0], 0);
+    const lonSum = pos.reduce((sum, point) => sum + point[1], 0);
+    const centerLat = latSum / pos.length;
+    const centerLon = lonSum / pos.length;
+
+    const icon = new L.DivIcon({className: 'zoneNameIcon', html: `<div>${zone.name}</div>`})
+    markers.push(<Marker key={`${zone.name}-icon`} position={[centerLat, centerLon]} icon={icon} />)
   }
 
   return <MapContainer id="map" center={theatres[sitRep.theatre].centre}
           zoom={7.8}
-          // maxZoom={12}
-          // minZoom={7.5}
-
-          zoomDelta={0.25}
+          zoomDelta={0.8}
           zoomSnap={0}
           wheelPxPerZoomLevel={220}>
 
