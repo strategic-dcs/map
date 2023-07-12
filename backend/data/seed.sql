@@ -1,5 +1,5 @@
 INSERT IGNORE INTO campaign (theatre, start)
- VALUES ('Syria', '2021-01-01 00:00:00');
+ VALUES ('Caucasus', '2021-01-01 00:00:00');
 
 INSERT IGNORE INTO user (discord_id)
   VALUES ('FAKE');

@@ -34,7 +34,7 @@ async def get_sitrep(request: Request):
         return JSONResponse({"error": "User not found"}, status_code=404)
 
     response = json.loads( open("data/database.json", 'r').read() )
-    for zone in response['grid']['zones']:
+    for zone in response['zones']:
         zone['state'] = zone['state'][coalition.lower()]
 
     return response
