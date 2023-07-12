@@ -1,89 +1,82 @@
 import { MapContainer, TileLayer, Marker, Polygon,  } from 'react-leaflet'
-import airportIcon from '/airport-circle.svg'
+import blueAirportIcon from '/blue-airfield.svg'
+import redAirportIcon from '/red-airfield.svg'
+import neutralAirportIcon from '/neutral-airfield.svg'
 
 const theatres = {
-  Caucacus: {
+  Caucasus: {
     centre: [43.529, 39.449]
-  }  
-}
-
-function getTheaterByName(name) {
-  if (name === "Caucasus") {
-    return theatres.Caucacus
-  } else {
-    return theatres.Caucacus
   }
 }
 
 function Map(props) {
-
-  let airportsMarkers = []
+  let markers = []
   let sitRep = props.sitRep
 
   for(let airfield of sitRep.airfields) {
+    let airfieldImg = ""
+
+    if (airfield.coalition === "RED") {
+      airfieldImg = redAirportIcon
+    } else if (airfield.coalition === "BLUE") {
+      airfieldImg = blueAirportIcon
+    } else {
+      airfieldImg = neutralAirportIcon
+    }
+
     let iconHtml = `
       <div class="airportMarker">
-          <img class="icon" src="${airportIcon}">
+          <img class="icon" src="${airfieldImg}">
           <div class="name">${airfield.name}</div>
       </div>
       `
     let icon = new L.DivIcon({className: 'airportIcon', html: iconHtml})
-    airportsMarkers.push(<Marker key={airfield.name} position={[airfield.position.lat, airfield.position.lon]} icon={icon}></Marker>)
+    markers.push(<Marker key={airfield.name} position={[airfield.position.lat, airfield.position.lon]} icon={icon}/>)
+  }
+
+  for (let unit of sitRep.units) {
+    let iconHtml = `
+        <div class="groundUnit" style="transform:rotate(${unit.heading}rad)"></div>
+      `
+    let icon = new L.DivIcon({className: 'unitIcon', html: iconHtml})
+    markers.push(<Marker key={unit.name} position={[unit.position.lat, unit.position.lon]} icon={icon} />)
   }
 
   let gridPolygons = []
 
   for (let zone of sitRep.zones) {
     const lineStyle = zone.state.line_style.toLowerCase()
-    const zoneType= zone.state.zone_type.toUpperCase()
 
-    let options = {}
+    let line_color = [
+      zone.state.line_color[0],
+      zone.state.line_color[1],
+      zone.state.line_color[2],
+      zone.state.line_color[3],
+    ]
 
-    if (zoneType === "UNKNOWN") {
-      options = {
-        color: `rgba(255,255,255, 1)`,
-        fillColor: `rgba(0,0,0,0)`,
-        weight: 1,
-        dashArray: '5, 5'
-      }
-    } else if (zoneType === "BUILT" ) {
-      options = {
-        color: `rgba(0,0,255, 1)`,
-        fillColor: `rgba(0,0,255,0.5)`,
-        weight: 1,
-      }
+    line_color[0] = line_color[0] * 210;
+    line_color[1] = line_color[1] * 210;
+    line_color[2] = line_color[2] * 210;
+    line_color[3] = line_color[3] * 255;
+
+    let fill_color = [
+      zone.state.fill_color[0],
+      zone.state.fill_color[1],
+      zone.state.fill_color[2],
+      zone.state.fill_color[3],
+    ]
+
+    fill_color[0] = fill_color[0] * 255;
+    fill_color[1] = fill_color[1] * 255;
+    fill_color[2] = fill_color[2] * 255;
+    fill_color[3] = fill_color[3] * 5;
+
+    let options = {
+      color: `rgba(${line_color})`,
+      fillColor: `rgba(${fill_color})`,
+      weight: 1,
+      dashArray: lineStyle === 'dashed' ? '5, 5' : null
     }
-
-    // let line_color = [
-    //   zone.state.line_color[0],
-    //   zone.state.line_color[1],
-    //   zone.state.line_color[2],
-    //   zone.state.line_color[3],
-    // ]
-
-    // line_color[0] = line_color[0] * 210;
-    // line_color[1] = line_color[1] * 210;
-    // line_color[2] = line_color[2] * 210;
-    // line_color[3] = line_color[3] * 255;
-
-    // let fill_color = [
-    //   zone.state.fill_color[0],
-    //   zone.state.fill_color[1],
-    //   zone.state.fill_color[2],
-    //   zone.state.fill_color[3],
-    // ]
-
-    // fill_color[0] = fill_color[0] * 255;
-    // fill_color[1] = fill_color[1] * 255;
-    // fill_color[2] = fill_color[2] * 255;
-    // fill_color[3] = fill_color[3] * 5;
-
-    // let options = {
-    //   color: `rgba(${line_color})`,
-    //   fillColor: `rgba(${fill_color})`,
-    //   weight: 1,
-    //   dashArray: lineStyle === 'dashed' ? '5, 5' : null
-    // }
 
     let pos = [
       [zone.points[0].lat, zone.points[0].lon],
@@ -93,8 +86,8 @@ function Map(props) {
     // TODO: replace random with correct key
     gridPolygons.push(<Polygon key={zone.name} pathOptions={options} positions={pos}/>);
   }
-  
-  return <MapContainer id="map" center={getTheaterByName(sitRep.theatre).centre}
+
+  return <MapContainer id="map" center={theatres[sitRep.theatre].centre}
           zoom={7.8}
           // maxZoom={12}
           // minZoom={7.5}
@@ -116,7 +109,7 @@ function Map(props) {
       />
 
       {gridPolygons}
-      {airportsMarkers}
+      {markers}
     </MapContainer>
 
 }

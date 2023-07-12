@@ -54,6 +54,13 @@ function App() {
       sitRepFetch().then((req) => {
         setSitRep(req.data)
       })
+
+      // Updating the data every 10 seconds
+      setInterval(() => {
+        sitRepFetch().then((req) => {
+          setSitRep(req.data)
+        })
+      }, 10 * 1000);
     }
   }, [isLoggedIn])
 

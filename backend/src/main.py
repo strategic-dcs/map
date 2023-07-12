@@ -33,8 +33,18 @@ async def get_sitrep(request: Request):
     if coalition is None:
         return JSONResponse({"error": "User not found"}, status_code=404)
 
-    response = json.loads( open("data/database.json", 'r').read() )
-    for zone in response['zones']:
-        zone['state'] = zone['state'][coalition.lower()]
+    data = json.loads( open("shared_data/website_data.json", 'r').read() )
+
+    response = {
+        "time": data['time'],
+        "theatre": data['theatre'],
+        "zones": [{ "name": z['name'], "points": z["points"], "state": z["state"][coalition.lower()] } for z in data['zones']],
+        "airfields": data['airfields'],
+    }
+
+    if coalition == "RED":
+        response['units'] = data['red_units']
+    else:
+        response['units'] = data['blue_units']
 
     return response

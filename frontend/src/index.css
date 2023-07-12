@@ -53,3 +53,10 @@ code {
 .stats-container.stats {
   padding-left: 10px;
 }
+
+.groundUnit {
+  width: 4px;
+  height: 7px;
+  border: 1px solid black;
+  background-color: rgb(50, 135, 239);
+}

@@ -6,12 +6,10 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./backend:/app
-    depends_on:
-      - db
+      - ../../strategic-dcs/engine/shared_data:/app/shared_data
     env_file:
       - .env
     environment:
-      DATABASE_URL: mysql+mysqlconnector://root:@db:3306/sdcs
       VIRTUAL_HOST: localhost
       VIRTUAL_PATH: /api
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload --reload-dir src --app-dir src
@@ -32,19 +30,6 @@ services:
       VIRTUAL_PATH: /
     networks:
       - nginx-proxy
-
-  db:
-    image: mysql:latest
-    environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: 1
-    volumes:
-      - mysql_data:/var/lib/mysql
-      - ./backend/data:/dev-data
-    networks:
-      - nginx-proxy
-
-volumes:
-  mysql_data:
 
 networks:
   nginx-proxy:
