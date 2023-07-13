@@ -24,10 +24,14 @@ function Map(props) {
       airfieldImg = neutralAirportIcon
     }
 
+    // Some airfields have a dash in their name, we only want the first part
+    // ex. Sochi-Adler -> Sochi - Too long of a name makes the UI ugly.
+    const airfield_name = airfield.name.match(/^[^-]+/)[0]
+
     let iconHtml = `
       <div class="airportMarker">
           <img class="icon" src="${airfieldImg}">
-          <div class="name">${airfield.name}</div>
+          <div class="name">${airfield_name}</div>
       </div>
       `
     let icon = new L.DivIcon({className: 'airportIcon', html: iconHtml})
@@ -35,13 +39,14 @@ function Map(props) {
     markers.push(<Marker key={airfield.name} position={[airfield.position.lat, airfield.position.lon]} icon={icon}/>)
   }
 
-  for (let unit of sitRep.units) {
-    let iconHtml = `
-        <div class="groundUnitIcon" style="transform:rotate(${unit.heading}rad)"></div>
-      `
-    let icon = new L.DivIcon({className: 'unitIcon', html: iconHtml})
-    markers.push(<Marker key={unit.name} position={[unit.position.lat, unit.position.lon]} icon={icon} />)
-  }
+  // No including for now
+  // for (let unit of sitRep.units) {
+  //   let iconHtml = `
+  //       <div class="groundUnitIcon" style="transform:rotate(${unit.heading}rad)"></div>
+  //     `
+  //   let icon = new L.DivIcon({className: 'unitIcon', html: iconHtml})
+  //   markers.push(<Marker key={unit.name} position={[unit.position.lat, unit.position.lon]} icon={icon} />)
+  // }
 
   let gridPolygons = []
 
@@ -99,7 +104,7 @@ function Map(props) {
     const centerLon = lonSum / pos.length;
 
     const icon = new L.DivIcon({className: 'zoneNameIcon', html: `<div>${zone.name}</div>`})
-    markers.push(<Marker key={`${zone.name}-icon`} position={[centerLat, centerLon]} icon={icon} />)
+    markers.push(<Marker key={`${zone.name}-icon`} position={[centerLat, centerLon]} icon={icon} interactive={false}/>)
   }
 
   return <MapContainer id="map" center={theatres[sitRep.theatre].centre}

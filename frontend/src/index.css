@@ -29,8 +29,10 @@ code {
 .airportMarker .name {
   text-align: center;
   margin-top: -2px;
-  font-family: Arial, Helvetica, sans-serif;
-  color: rgb(248, 248, 248);
+  /* font-family: Arial, Helvetica, sans-serif; */
+  /* font-family: 'Josefin Sans', sans-serif; */
+  font-family: 'Courier New', Courier, monospace;
+  color: rgb(255, 255, 255);
   font-size: 10px;
   text-transform: capitalize;
 }
@@ -66,7 +68,7 @@ code {
   font-family: 'Josefin Sans', sans-serif;
   font-weight: 500;
   opacity: 0.2;
-  color: aliceblue;
+  color: rgb(220, 239, 255);
 }
 
 /* Leaftlet popup */
@@ -88,8 +90,86 @@ code {
 }
 
 .leaflet-popup-tip {
-    background: #2c3e50;
-  /* background: transparent;
-  border: none;
-  box-shadow: none; */
+  background: #2c3e50;
+}
+
+.serverInfoContainer {
+  position: absolute;
+  background-color: rgba(45, 62, 80, 255);
+  bottom: 10px;
+  left: 10px;
+  min-width: 230px;
+  min-height: 80px;
+  z-index: 10000;
+
+  padding-left: 25px;
+  padding-right: 25px;
+
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: #4d4d4d 0px 0px 3px 0px;
+  color:#b8bec6;
+}
+.serverInfoContainer .header {
+  font-weight: 900;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 12px;
+}
+
+.serverInfoContainer .total {
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  padding:0;
+}
+
+.serverInfoContainer .header .blue {
+  padding-right: 5px;
+}
+
+.serverInfoContainer .header .red {
+  padding-left: 5px;
+}
+
+.serverInfoContainer .blue {
+  color: #65c8dd;
+}
+
+.serverInfoContainer .red {
+  color:#dd6565;
+}
+
+.serverInfoContainer .list .blue {
+  margin: 0px;
+  padding-top: 0px;
+  margin-top: 4px;
+}
+
+.serverInfoContainer .list .red {
+  margin: 0px;
+  padding-top: 0px;
+  margin-top: 7px;
+}
+
+.serverInfoContainer .list ul{
+  font-size: 13px;
+  list-style: square;
+  padding-left: 10px;
+}
+
+.serverInfoContainer .serverStats {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+  font-size: 12px;
+  padding-bottom: 20px;
+}
+
+.serverInfoContainer .line {
+  border-top: 1px solid #bbbbbb;
+  margin-top: 10px;
 }

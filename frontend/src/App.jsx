@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 
 import LoginPrompt from './LoginPrompt.jsx'
 import Map from './Map.jsx'
+import { ServerInfo } from './ServerInfo';
 
 function getAccessToken() {
   return Cookies.get('access_token')
@@ -68,7 +69,12 @@ function App() {
 
   if (sitRep) {
     return <div>
-      <Map sitRep={sitRep}></Map>
+      <Map sitRep={sitRep}>
+
+      </Map>
+      <ServerInfo
+        online_users={sitRep.online_users}
+        seconds_left_until_restart={sitRep.seconds_left_until_restart}></ServerInfo>
     </div>
   } else {
     return <div>

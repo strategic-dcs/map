@@ -35,11 +35,16 @@ async def get_sitrep(request: Request):
 
     data = json.loads( open("shared_data/website_data.json", 'r').read() )
 
+    online_users = await DB().get_online_users()
+    data = json.loads( open("shared_data/website_data.json", 'r').read() )
+
     response = {
         "time": data['time'],
         "theatre": data['theatre'],
         "zones": [{ "name": z['name'], "points": z["points"], "state": z["state"][coalition.lower()] } for z in data['zones']],
         "airfields": data['airfields'],
+        "online_users": online_users,
+        "seconds_left_until_restart": data['seconds_left_until_restart'],
     }
 
     if coalition == "RED":
