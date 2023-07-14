@@ -1,7 +1,7 @@
 import './Map.css';
 
 import { MapContainer, TileLayer, Marker, Polygon, Popup } from 'react-leaflet'
-import { useMapEvent } from 'react-leaflet/hooks'
+import { useMapEvents } from 'react-leaflet/hooks'
 import blueAirportIcon from '/blue-airfield.svg'
 import redAirportIcon from '/red-airfield.svg'
 import neutralAirportIcon from '/neutral-airfield.svg'
@@ -24,8 +24,15 @@ function MapComponents(props) {
     setSelection(airfield)
   }
 
-  const map = useMapEvent('click', () => {
-    setSelection({})
+  const map = useMapEvents({
+    'click': () => {
+      setSelection({}) // clear selection on map click
+    },
+    'mouseup': () => {
+      // Update the URL hash with the current map center
+      // that way, on page reload, we can restore the map to the same position
+      location.hash = map.getCenter().lat.toFixed(3) + "/" + map.getCenter().lng.toFixed(3)
+    }
   })
 
   for(let airfield of sitRep.airfields_friendly) {
@@ -160,7 +167,16 @@ function MapComponents(props) {
 function Map(props) {
   let sitRep = props.sitRep
 
-  return <MapContainer id="map" center={theatres[sitRep.theatre].centre}
+  const map_center = theatres[sitRep.theatre].centre
+  if (location.hash) {
+    const hash = location.hash.slice(1).split('/')
+    if (hash.length == 2) {
+      map_center[0] = parseFloat(hash[0])
+      map_center[1] = parseFloat(hash[1])
+    }
+  }
+
+  return <MapContainer id="map" center={map_center}
           zoom={7.8}
           zoomDelta={0.8}
           zoomSnap={0}
