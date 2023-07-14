@@ -8,9 +8,13 @@ import neutralAirportIcon from '/neutral-airfield.svg'
 import { useSelectionContext } from './SelectionProvider';
 
 const theatres = {
-  Caucasus: {
+  caucasus: {
     centre: [43.529, 39.449],
     bounds: [[47.953,33.190], [39.522,50.256]],
+  },
+  syria: {
+    centre: [34.058, 35.101],
+    bounds: [[38.341, 30.157], [28.141, 42.100]],
   }
 }
 
@@ -171,7 +175,7 @@ function MapComponents(props) {
 function Map(props) {
   let sitRep = props.sitRep
 
-  const map_center = theatres[sitRep.theatre].centre
+  const map_center = theatres[sitRep.theatre.toLowerCase()].centre
   if (location.hash) {
     const hash = location.hash.slice(1).split('/')
     if (hash.length == 2) {
@@ -185,7 +189,7 @@ function Map(props) {
           zoomDelta={0.8}
           zoomSnap={0}
           wheelPxPerZoomLevel={70}
-          maxBounds={theatres[sitRep.theatre].bounds}
+          maxBounds={theatres[sitRep.theatre.toLowerCase()].bounds}
           maxBoundsViscosity={0.8}
           eventHandlers={{ click: () =>{ console.log("aaaa") } }}
           attributionControl={false}
