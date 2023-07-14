@@ -7,7 +7,7 @@ function convertSecondsToFormatedTime(seconds) {
   return formattedTime;
 }
 
-export function ServerInfo(props) {
+export default function ServerInfo(props) {
   const online_users = props.online_users
   const seconds_left_until_restart = props.seconds_left_until_restart
 

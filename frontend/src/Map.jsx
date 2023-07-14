@@ -1,52 +1,96 @@
+import './Map.css';
+
 import { MapContainer, TileLayer, Marker, Polygon, Popup } from 'react-leaflet'
+import { useMapEvent } from 'react-leaflet/hooks'
 import blueAirportIcon from '/blue-airfield.svg'
 import redAirportIcon from '/red-airfield.svg'
 import neutralAirportIcon from '/neutral-airfield.svg'
+import { useSelectionContext } from './SelectionProvider';
 
 const theatres = {
   Caucasus: {
-    centre: [43.529, 39.449]
+    centre: [43.529, 39.449],
+    bounds: [[47.953,33.190], [39.522,50.256]],
   }
 }
 
-function Map(props) {
+function MapComponents(props) {
   let markers = []
   let sitRep = props.sitRep
 
-  for(let airfield of sitRep.airfields) {
-    let airfieldImg = ""
+  const { setSelection } = useSelectionContext()
 
-    if (airfield.coalition === "RED") {
-      airfieldImg = redAirportIcon
-    } else if (airfield.coalition === "BLUE") {
-      airfieldImg = blueAirportIcon
-    } else {
-      airfieldImg = neutralAirportIcon
-    }
+  function handleAirfieldClick(airfield) {
+    setSelection(airfield)
+  }
 
+  const map = useMapEvent('click', () => {
+    setSelection({})
+  })
+
+  for(let airfield of sitRep.airfields_friendly) {
     // Some airfields have a dash in their name, we only want the first part
     // ex. Sochi-Adler -> Sochi - Too long of a name makes the UI ugly.
     const airfield_name = airfield.name.match(/^[^-]+/)[0]
 
     let iconHtml = `
       <div class="airportMarker">
-          <img class="icon" src="${airfieldImg}">
+          <div>
+            <div class="airfieldIcon ${airfield.coalition.toLowerCase()}">
+              <span class="level">${airfield.level}</span>
+            </div>
+          </div>
           <div class="name">${airfield_name}</div>
       </div>
       `
     let icon = new L.DivIcon({className: 'airportIcon', html: iconHtml})
 
-    markers.push(<Marker key={airfield.name} position={[airfield.position.lat, airfield.position.lon]} icon={icon}/>)
+    markers.push(<Marker key={airfield.name} position={[airfield.position.lat, airfield.position.lon]}
+      data={airfield}
+      eventHandlers={{ click: (e) => { handleAirfieldClick(e.target.options.data) }}}
+      icon={icon}/>)
   }
 
-  // No including for now
-  // for (let unit of sitRep.units) {
-  //   let iconHtml = `
-  //       <div class="groundUnitIcon" style="transform:rotate(${unit.heading}rad)"></div>
-  //     `
-  //   let icon = new L.DivIcon({className: 'unitIcon', html: iconHtml})
-  //   markers.push(<Marker key={unit.name} position={[unit.position.lat, unit.position.lon]} icon={icon} />)
-  // }
+  for(let farp of sitRep.farps) {
+        let iconHtml = `
+      <div class="airportMarker">
+        <div>
+          <div class="farpIcon ${farp.coalition.toLowerCase()}">
+            <span class="level">${farp.level}</span>
+          </div>
+        </div>
+        <div class="name">${farp.name}</div>
+      </div>
+      `
+    let icon = new L.DivIcon({className: 'airportIcon', html: iconHtml})
+
+    markers.push(<Marker key={farp.name} position={[farp.position.lat, farp.position.lon]}
+      data={farp}
+      eventHandlers={{ click: (e) => { handleAirfieldClick(e.target.options.data) }}}
+      icon={icon}/>)
+  }
+
+  for(let airfield of sitRep.airfields_enemy) {
+    // Some airfields have a dash in their name, we only want the first part
+    // ex. Sochi-Adler -> Sochi - Too long of a name makes the UI ugly.
+    const airfield_name = airfield.name.match(/^[^-]+/)[0]
+
+    let iconHtml = `
+      <div class="airportMarker">
+          <div>
+            <div class="airfieldIcon ${airfield.coalition.toLowerCase()}">
+            </div>
+          </div>
+          <div class="name">${airfield_name}</div>
+      </div>
+      `
+    let icon = new L.DivIcon({ className: 'airportIcon', html: iconHtml })
+
+    markers.push(<Marker key={airfield.name} position={[airfield.position.lat, airfield.position.lon]}
+      data={airfield}
+      eventHandlers={{ click: (e) => { handleAirfieldClick(e.target.options.data) }}}
+      icon={icon}/>)
+  }
 
   let gridPolygons = []
 
@@ -107,26 +151,34 @@ function Map(props) {
     markers.push(<Marker key={`${zone.name}-icon`} position={[centerLat, centerLon]} icon={icon} interactive={false}/>)
   }
 
+  return <div>
+    {gridPolygons}
+    {markers}
+  </div>
+}
+
+function Map(props) {
+  let sitRep = props.sitRep
+
   return <MapContainer id="map" center={theatres[sitRep.theatre].centre}
           zoom={7.8}
           zoomDelta={0.8}
           zoomSnap={0}
-          wheelPxPerZoomLevel={220}>
+          wheelPxPerZoomLevel={70}
+          maxBounds={theatres[sitRep.theatre].bounds}
+          maxBoundsViscosity={0.8}
+           eventHandlers={{ click: () =>{ console.log("aaaa") } }}
+          >
 
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        // accessToken="pk.eyJ1IjoiY2Vsc29kYW50YXMiLCJhIjoiY2tnNWk4ZWlpMGcyZzJ5bDdjZTU5c2IwdCJ9.1dK2LqeGzVzILLxUToadzg"
         accessToken="pk.eyJ1IjoiY2Vsc29kYW50YXMiLCJhIjoiY2tnNWk4ZWlpMGcyZzJ5bDdjZTU5c2IwdCJ9.1dK2LqeGzVzILLxUToadzg"
-        // id={'celsodantas/cljb9vfy5002i01nr1vxkffwl'}
-        // id={'celsodantas/cljb9vfy5002i01nr1vxkffwl/draft'}
         id={"celsodantas/cljbgm8oe008h01o049ln1xht/draft"}
-        // default light
-        //url='https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token={accessToken}'
         url='https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}'
+
       />
 
-      {gridPolygons}
-      {markers}
+      <MapComponents sitRep={sitRep} />
     </MapContainer>
 
 }

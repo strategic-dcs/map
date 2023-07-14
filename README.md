@@ -41,3 +41,9 @@ You can now visit: http://localhost/ to see the application.
 `TODO`
 
 1. Backend: Create a .env file with the same values found on .env.example.
+
+## TODO
+
+- Add Strategic DCS logo
+- Add FARPs
+- Add Info panel that shows info on the Airfield/FARP.

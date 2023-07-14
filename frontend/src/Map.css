@@ -1,0 +1,119 @@
+.leaflet-container {
+  width: 100%;
+  height: 100vh;
+}
+
+.airportMarker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.airportMarker .name {
+  text-align: center;
+  margin-top: -2px;
+  font-family: 'Courier New', Courier, monospace;
+  color: rgb(255, 255, 255);
+  font-size: 10px;
+  text-transform: capitalize;
+  text-shadow: 0.1em 0.07em black;
+}
+
+.airportMarker .icon {
+  height: 15px;
+  width: 15px
+}
+
+.zoneNameIcon {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 800;
+  color: rgb(57, 57, 57, 0.24);
+}
+
+/* Leaftlet popup */
+.leaflet-popup-content-wrapper {
+  background: #2c3e50;
+  color: #fff;
+  font-size: 12px;
+  line-height: 24px;
+  border-radius: 5px;
+}
+
+.leaflet-popup-content-wrapper a {
+  color: rgba(255, 255, 255, 0.1);
+}
+
+.leaflet-popup-tip-container {
+  width: 30px;
+  height: 15px;
+}
+
+.leaflet-popup-tip {
+  background: #2c3e50;
+}
+
+.airfieldIcon {
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border: 0.15em solid rgba(0, 0, 0, 0.68);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.airfieldIcon.red {
+  background-color: #dd6565;
+}
+
+.airfieldIcon .level {
+    font-weight: 500;
+    color: black;
+    font-size: 10px;
+}
+
+.airfieldIcon.blue {
+  background-color: #4191d7;
+}
+
+.farpIcon.blue {
+  --farp-color: #4191d7;
+  background-color: var(--farp-color);
+}
+
+.farpIcon {
+  width: 11px;
+  height: 11px;
+  border: 0.16em solid rgba(0, 0, 0, 0.58);
+  border-radius: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Experiment in making the farp icon a triangle */
+  /* --icon-size-side: 8px;
+  --icon-size-top: 13px;
+
+  width: 0;
+  height: 0;
+  border-left: var(--icon-size-side) solid transparent;
+  border-right: var(--icon-size-side) solid transparent;
+
+  border-bottom: var(--icon-size-top) solid var(--farp-color); */
+}
+
+.farpIcon .level {
+  font-weight: 500;
+  color: black;
+  font-size: 10px;
+}
+
+.farpIcon.red {
+  background-color: #f98d8d;
+}
+
+.number {
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+  font-size: 10px;
+}
