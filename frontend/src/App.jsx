@@ -73,6 +73,10 @@ function App() {
   if (sitRep) {
     return <div>
       <SelectionProvider>
+        <div className="banner">
+          <img className="sdcslogo" src="/sdcs-logo.png"></img>
+          <div className="serverName">Strategic DCS</div>
+        </div>
         <Map sitRep={sitRep}>
         </Map>
         <ServerInfo

@@ -1,4 +1,4 @@
-import logo from "/sdcs-logo.png";
+
 import "./ServerInfo.css";
 
 function convertSecondsToFormatedTime(seconds) {
@@ -28,11 +28,6 @@ export default function ServerInfo(props) {
   })
 
   return <div className="serverInfoContainer">
-      <div className="banner">
-        <img className="sdcslogo" src={logo}></img>
-        <div className="serverName">Strategic DCS</div>
-      </div>
-
       <div className="content">
         <div className="header">
           <div className="blue">{blue_users.length}</div> vs <div className="red">{red_users.length}</div>

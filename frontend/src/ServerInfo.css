@@ -85,23 +85,24 @@
   margin-top: 10px;
 }
 
-.serverInfoContainer .banner {
+.banner {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   margin: 0;
   padding: 0;
-  height: 45px;
-  background-color: #65c8dd;
+  height: 40px;
+  background-color: rgba(45, 62, 80, 255);
   color: white;
   font-size: 16px;
   font-weight: 700;
-  background-image: url('/banner-background.png');
+  padding-left: 15px;
+  /* background-image: url('/banner-background.png'); */
 }
 
-.serverInfoContainer .sdcslogo {
-  --image-size: 32px;
+.sdcslogo {
+  --image-size: 25px;
   width: var(--image-size);
   height: var(--image-size);
   padding-right: 13px;
