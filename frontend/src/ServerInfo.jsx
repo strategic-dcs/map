@@ -1,4 +1,5 @@
-
+import logo from "/sdcs-logo.png";
+import "./ServerInfo.css";
 
 function convertSecondsToFormatedTime(seconds) {
   const hours = Math.floor(seconds / 3600);
@@ -11,8 +12,8 @@ export default function ServerInfo(props) {
   const online_users = props.online_users
   const seconds_left_until_restart = props.seconds_left_until_restart
 
-  const red_users = online_users.filter((user) => { return user.coalition === "RED" })
-  const blue_users = online_users.filter((user) => { return user.coalition === "BLUE" })
+  const red_users = online_users.filter((user) => { return user.coalition.toUpperCase() === "RED" })
+  const blue_users = online_users.filter((user) => { return user.coalition.toUpperCase() === "BLUE" })
 
   const red_list = red_users
     .sort((user) => { return user.name })
@@ -27,22 +28,29 @@ export default function ServerInfo(props) {
   })
 
   return <div className="serverInfoContainer">
-      <div className="header">
-        <div className="blue">{blue_users.length}</div> vs <div className="red">{red_users.length}</div>
+      <div className="banner">
+        <img className="sdcslogo" src={logo}></img>
+        <div className="serverName">Strategic DCS</div>
       </div>
-      <div className="total">({blue_users.length + red_users.length} Pilots)</div>
 
-      <div className="list">
-        <ul className="blue">
-          {blue_list}
-        </ul>
-        <ul className="red">
-          {red_list}
-        </ul>
-      </div>
-      <div className="line"></div>
-      <div className="serverStats">
-        <div>Server Restart in: {convertSecondsToFormatedTime(seconds_left_until_restart)}</div>
+      <div className="content">
+        <div className="header">
+          <div className="blue">{blue_users.length}</div> vs <div className="red">{red_users.length}</div>
+        </div>
+        <div className="total">({blue_users.length + red_users.length} Pilots)</div>
+
+        <div className="list">
+          <ul className="blue">
+            {blue_list}
+          </ul>
+          <ul className="red">
+            {red_list}
+          </ul>
+        </div>
+        <div className="line"></div>
+        <div className="serverStats">
+          <div>Server Restart in: {convertSecondsToFormatedTime(seconds_left_until_restart)}</div>
+        </div>
       </div>
   </div>
 }

@@ -3,7 +3,7 @@ import './InfoPanel.css';
 import { useSelectionContext } from './SelectionProvider';
 
 function AirbaseInfo(props) {
-  const airfield = props.airbase
+  const airbase = props.airbase
 
   const level_0_restrictions = ["Guns Only"]
   const level_1_restrictions = ["Guns", "Dumb bombs", "Unguided Rockets"]
@@ -11,31 +11,31 @@ function AirbaseInfo(props) {
   const level_3_restrictions = ["No restrictions"]
 
   let restrictions = []
-  const restrictionsListHtml = []
+  const restrictions_list_html = []
 
-  if (airfield.level === 0) {
+  if (airbase.level === 0) {
     restrictions = level_0_restrictions
-  } else if (airfield.level === 1) {
+  } else if (airbase.level === 1) {
     restrictions = level_1_restrictions
-  } else if (airfield.level === 2) {
+  } else if (airbase.level === 2) {
     restrictions = level_2_restrictions
-  } else if (airfield.level === 3) {
+  } else if (airbase.level === 3) {
     restrictions = level_3_restrictions
-  } else if (airfield.level === undefined) {
+  } else if (airbase.level === undefined) {
     restrictions = ["UNKNOWN"]
   }
 
   for (let restriction of restrictions) {
-    restrictionsListHtml.push(<li key={restriction}>{restriction}</li>)
+    restrictions_list_html.push(<li key={restriction}>{restriction}</li>)
   }
 
   return <div className="content">
-    <h1>{airfield.name}</h1>
-    <span className="subheader">Level: {airfield.level ? airfield.level : "UNKNOWN"}</span>
+    <h1>{airbase.name}</h1>
+    <span className="subheader">Level: {airbase.level ? airbase.level : "UNKNOWN"}</span>
     <div>
       <h3>Restrictions:</h3>
       <ul>
-        {restrictionsListHtml}
+        {restrictions_list_html}
       </ul>
     </div>
   </div>
@@ -55,13 +55,13 @@ export default function InfoPanel() {
 
   let content = undefined
 
-  if (selection.name === undefined) {
+  if (selection.type === undefined) {
     content = <NoSelectionInfo/>
   } else {
-    content = <AirbaseInfo airbase={selection}/>
+    content = <AirbaseInfo airbase={selection.value}/>
   }
 
-  return <div className="infoPanelContainer" key={selection.name}>
+  return <div className="infoPanelContainer">
     <div className="content">
       {content}
     </div>

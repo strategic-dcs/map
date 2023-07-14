@@ -11,7 +11,6 @@ import ServerInfo from './ServerInfo';
 import InfoPanel from './InfoPanel';
 import { SelectionProvider } from './SelectionProvider';
 
-import logo from "/sdcs-logo.png";
 
 function getAccessToken() {
   return Cookies.get('access_token')
@@ -60,12 +59,12 @@ function App() {
         setSitRep(req.data)
       })
 
-      // Updating the data every 10 seconds
+      // in dev mode, refresh every 10 seconds.
       setInterval(() => {
         sitRepFetch().then((req) => {
           setSitRep(req.data)
         })
-      }, 10 * 1000);
+      }, (import.meta.env.DEV ? 10 : 30) * 1000);
     }
   }, [isLoggedIn])
 
@@ -76,7 +75,6 @@ function App() {
       <SelectionProvider>
         <Map sitRep={sitRep}>
         </Map>
-        <img className="sdcslogo" src={logo}></img>
         <ServerInfo
           online_users={sitRep.online_users}
           seconds_left_until_restart={sitRep.seconds_left_until_restart}/>

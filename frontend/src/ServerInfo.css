@@ -1,0 +1,109 @@
+.serverInfoContainer {
+  position: absolute;
+  background-color: rgba(45, 62, 80, 255);
+  bottom: 10px;
+  left: 10px;
+  min-width: 230px;
+  min-height: 80px;
+  z-index: 10000;
+
+
+  box-shadow: #4d4d4d 0px 0px 3px 0px;
+  color: #b8bec6;
+}
+
+.serverInfoContainer .content {
+  font-family: 'Courier New', Courier, monospace;
+
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 11px;
+}
+
+.serverInfoContainer .header {
+  font-weight: 900;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.serverInfoContainer .total {
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  padding-bottom: 5px;
+}
+
+.serverInfoContainer .header .blue {
+  padding-right: 5px;
+}
+
+.serverInfoContainer .header .red {
+  padding-left: 5px;
+}
+
+.serverInfoContainer .blue {
+  color: #65c8dd;
+}
+
+.serverInfoContainer .red {
+  color: #dd6565;
+}
+
+.serverInfoContainer .list .blue {
+  margin: 0px;
+  padding-top: 0px;
+  margin-top: 4px;
+}
+
+.serverInfoContainer .list .red {
+  margin: 0px;
+  padding-top: 0px;
+  margin-top: 7px;
+}
+
+.serverInfoContainer .list ul {
+  font-size: 13px;
+  list-style: square;
+  padding-left: 10px;
+}
+
+.serverInfoContainer .serverStats {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+  font-size: 12px;
+}
+
+.serverInfoContainer .line {
+  border-top: 1px solid #bbbbbb;
+  margin-top: 10px;
+}
+
+.serverInfoContainer .banner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 45px;
+  background-color: #65c8dd;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  background-image: url('/banner-background.png');
+}
+
+.serverInfoContainer .sdcslogo {
+  --image-size: 32px;
+  width: var(--image-size);
+  height: var(--image-size);
+  padding-right: 13px;
+
+}

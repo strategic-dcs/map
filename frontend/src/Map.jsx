@@ -1,6 +1,6 @@
 import './Map.css';
 
-import { MapContainer, TileLayer, Marker, Polygon, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Polygon, Popup, AttributionControl } from 'react-leaflet'
 import { useMapEvents } from 'react-leaflet/hooks'
 import blueAirportIcon from '/blue-airfield.svg'
 import redAirportIcon from '/red-airfield.svg'
@@ -18,10 +18,10 @@ function MapComponents(props) {
   let markers = []
   let sitRep = props.sitRep
 
-  const { setSelection } = useSelectionContext()
+  const { selection, setSelection } = useSelectionContext()
 
   function handleAirfieldClick(airfield) {
-    setSelection(airfield)
+    setSelection({ value: airfield, type: 'airfield' })
   }
 
   const map = useMapEvents({
@@ -39,11 +39,12 @@ function MapComponents(props) {
     // Some airfields have a dash in their name, we only want the first part
     // ex. Sochi-Adler -> Sochi - Too long of a name makes the UI ugly.
     const airfield_name = airfield.name.match(/^[^-]+/)[0]
+    const selected = selection.type === 'airfield' && selection.value.name === airfield.name
 
     let iconHtml = `
       <div class="airportMarker">
           <div>
-            <div class="airfieldIcon ${airfield.coalition.toLowerCase()}">
+            <div class="airfieldIcon ${airfield.coalition.toLowerCase()} ${selected ? 'selected' : ''}">
               <span class="level">${airfield.level}</span>
             </div>
           </div>
@@ -59,10 +60,12 @@ function MapComponents(props) {
   }
 
   for(let farp of sitRep.farps) {
-        let iconHtml = `
+    const selected = selection.type === 'farp' && selection.value.name === airfield.name
+
+    let iconHtml = `
       <div class="airportMarker">
         <div>
-          <div class="farpIcon ${farp.coalition.toLowerCase()}">
+          <div class="farpIcon ${farp.coalition.toLowerCase()} ${selected ? 'selected' : ''}">
             <span class="level">${farp.level}</span>
           </div>
         </div>
@@ -81,11 +84,12 @@ function MapComponents(props) {
     // Some airfields have a dash in their name, we only want the first part
     // ex. Sochi-Adler -> Sochi - Too long of a name makes the UI ugly.
     const airfield_name = airfield.name.match(/^[^-]+/)[0]
+    const selected = selection.type === 'airfield' && selection.value.name === airfield.name
 
     let iconHtml = `
       <div class="airportMarker">
           <div>
-            <div class="airfieldIcon ${airfield.coalition.toLowerCase()}">
+            <div class="airfieldIcon ${airfield.coalition.toLowerCase()} ${selected ? 'selected' : ''}">
             </div>
           </div>
           <div class="name">${airfield_name}</div>
@@ -183,17 +187,18 @@ function Map(props) {
           wheelPxPerZoomLevel={70}
           maxBounds={theatres[sitRep.theatre].bounds}
           maxBoundsViscosity={0.8}
-           eventHandlers={{ click: () =>{ console.log("aaaa") } }}
+          eventHandlers={{ click: () =>{ console.log("aaaa") } }}
+          attributionControl={false}
           >
 
       <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        attribution='&copy; mapbox'
         accessToken="pk.eyJ1IjoiY2Vsc29kYW50YXMiLCJhIjoiY2tnNWk4ZWlpMGcyZzJ5bDdjZTU5c2IwdCJ9.1dK2LqeGzVzILLxUToadzg"
         id={"celsodantas/cljbgm8oe008h01o049ln1xht/draft"}
         url='https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}'
 
       />
-
+      <AttributionControl position="topright"/>
       <MapComponents sitRep={sitRep} />
     </MapContainer>
 
