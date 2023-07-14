@@ -12,9 +12,6 @@ services:
     env_file:
       - .env
     environment:
-      # VIRTUAL_HOST: strategic-dcs.com,www.strategic-dcs.com
-      VIRTUAL_HOST: localhost
-      # LETSENCRYPT_HOST: strategic-dcs.com
       VIRTUAL_PATH: /api
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --app-dir src
     networks:
@@ -28,9 +25,6 @@ services:
       dockerfile: Dockerfile.prod
     restart: always
     environment:
-      # VIRTUAL_HOST: strategic-dcs.com,www.strategic-dcs.com
-      VIRTUAL_HOST: localhost
-      # LETSENCRYPT_HOST: strategic-dcs.com
       VIRTUAL_PATH: /
     networks:
       - nginx-proxy

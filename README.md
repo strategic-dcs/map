@@ -38,12 +38,11 @@ You can now visit: http://localhost/ to see the application.
 
 ## Deployment
 
-`TODO`
-
-1. Backend: Create a .env file with the same values found on .env.example.
+1. Create a .env file with the same values found on .env.example.
+1. `docker network create nginx-proxy`
+1. `docker run -d -p 80:80 --name nginx-proxy --network=nginx-proxy -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy`
+1. `docker-compose -f docker-compose.production.yml up -d --build`
 
 ## TODO
 
-- Add Strategic DCS logo
-- Add FARPs
-- Add Info panel that shows info on the Airfield/FARP.
+- ?
