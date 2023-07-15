@@ -76,6 +76,12 @@ function App() {
         <div className="banner">
           <img className="sdcslogo" src="/sdcs-logo.png"></img>
           <div className="serverName">Strategic DCS</div>
+
+          <div className='links'>
+            <a href="https://strategic-dcs.com/">Wiki</a>
+            -
+            <a href="https://stats.strategic-dcs.com/">Stats</a>
+          </div>
         </div>
         <Map sitRep={sitRep}>
         </Map>

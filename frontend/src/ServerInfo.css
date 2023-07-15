@@ -84,27 +84,3 @@
   border-top: 1px solid #bbbbbb;
   margin-top: 10px;
 }
-
-.banner {
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  height: 40px;
-  background-color: rgba(45, 62, 80, 255);
-  color: white;
-  font-size: 16px;
-  font-weight: 700;
-  padding-left: 15px;
-  /* background-image: url('/banner-background.png'); */
-}
-
-.sdcslogo {
-  --image-size: 25px;
-  width: var(--image-size);
-  height: var(--image-size);
-  padding-right: 13px;
-
-}
