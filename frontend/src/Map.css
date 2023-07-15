@@ -62,10 +62,6 @@
   align-items: center;
 }
 
-.airfieldIcon.selected {
-  border: 0.15em solid rgba(255, 255, 255, 0.68);
-}
-
 .airfieldIcon.red {
   background-color: #dd6565;
 }
@@ -93,17 +89,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* Experiment in making the farp icon a triangle */
-  /* --icon-size-side: 8px;
-  --icon-size-top: 13px;
-
-  width: 0;
-  height: 0;
-  border-left: var(--icon-size-side) solid transparent;
-  border-right: var(--icon-size-side) solid transparent;
-
-  border-bottom: var(--icon-size-top) solid var(--farp-color); */
 }
 
 .farpIcon .level {
@@ -120,4 +105,8 @@
   font-family: 'Courier New', Courier, monospace;
   color: white;
   font-size: 10px;
+}
+
+.selected {
+  border: 0.15em solid rgba(255, 255, 255, 0.68);
 }

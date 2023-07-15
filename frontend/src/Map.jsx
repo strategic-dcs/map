@@ -24,8 +24,8 @@ function MapComponents(props) {
 
   const { selection, setSelection } = useSelectionContext()
 
-  function handleAirfieldClick(airfield) {
-    setSelection({ value: airfield, type: 'airfield' })
+  function handleAirfieldClick(airfield, type='airfield') {
+    setSelection({ value: airfield, type: type })
   }
 
   const map = useMapEvents({
@@ -64,7 +64,8 @@ function MapComponents(props) {
   }
 
   for(let farp of sitRep.farps) {
-    const selected = selection.type === 'farp' && selection.value.name === airfield.name
+    console.log(selection)
+    const selected = selection.type === 'farp' && selection.value.name === farp.name
 
     let iconHtml = `
       <div class="airportMarker">
@@ -80,7 +81,7 @@ function MapComponents(props) {
 
     markers.push(<Marker key={farp.name} position={[farp.position.lat, farp.position.lon]}
       data={farp}
-      eventHandlers={{ click: (e) => { handleAirfieldClick(e.target.options.data) }}}
+      eventHandlers={{ click: (e) => { handleAirfieldClick(e.target.options.data, 'farp') }}}
       icon={icon}/>)
   }
 
