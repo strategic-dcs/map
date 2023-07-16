@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import './InfoPanel.css';
-import { useSelectionContext } from './SelectionProvider';
+import { useSelectionContext } from './SelectionContext';
 
 function AirbaseInfo(props) {
   const airbase = props.airbase

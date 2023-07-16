@@ -5,7 +5,7 @@ import { useMapEvents } from 'react-leaflet/hooks'
 import blueAirportIcon from '/blue-airfield.svg'
 import redAirportIcon from '/red-airfield.svg'
 import neutralAirportIcon from '/neutral-airfield.svg'
-import { useSelectionContext } from './SelectionProvider';
+import { useSelectionContext } from './SelectionContext';
 
 const theatres = {
   caucasus: {
@@ -64,7 +64,6 @@ function MapComponents(props) {
   }
 
   for(let farp of sitRep.farps) {
-    console.log(selection)
     const selected = selection.type === 'farp' && selection.value.name === farp.name
 
     let iconHtml = `

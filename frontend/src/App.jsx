@@ -9,8 +9,7 @@ import LoginPrompt from './LoginPrompt.jsx'
 import Map from './Map.jsx'
 import ServerInfo from './ServerInfo';
 import InfoPanel from './InfoPanel';
-import { SelectionProvider } from './SelectionProvider';
-
+import { SelectionProvider } from './SelectionContext';
 
 function getAccessToken() {
   return Cookies.get('access_token')
@@ -62,7 +61,16 @@ function App() {
       // in dev mode, refresh every 10 seconds.
       setInterval(() => {
         sitRepFetch().then((req) => {
-          setSitRep(req.data)
+
+          // Only updating sitRep if the payload SHA has changed.
+          // Otherwise, it would cause the whole app to reload and rebuild.
+          setSitRep((prevSitRep) => {
+            if (prevSitRep?.sha != req.data.sha) {
+              return req.data
+            } else {
+              return prevSitRep
+            }
+          })
         })
       }, (import.meta.env.DEV ? 10 : 30) * 1000);
     }
