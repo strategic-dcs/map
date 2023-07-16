@@ -52,30 +52,30 @@ function App() {
 
   useEffect(() => {
     Cookies.get('access_token') ? setIsLoggedIn(true) : setIsLoggedIn(false);
+    if (!isLoggedIn) { return }
 
-    if (isLoggedIn) {
+    sitRepFetch().then((req) => {
+      setSitRep(req.data)
+    })
+
+    // in dev mode, refresh every 10 seconds.
+    const internal = setInterval(() => {
       sitRepFetch().then((req) => {
-        setSitRep(req.data)
-      })
 
-      // in dev mode, refresh every 10 seconds.
-      const internal = setInterval(() => {
-        sitRepFetch().then((req) => {
-
-          // Only updating sitRep if the payload SHA has changed.
-          // Otherwise, it would cause the whole app to reload and rebuild.
-          setSitRep((prevSitRep) => {
-            if (prevSitRep?.sha != req.data.sha) {
-              return req.data
-            } else {
-              return prevSitRep
-            }
-          })
+        // Only updating sitRep if the payload SHA has changed.
+        // Otherwise, it would cause the whole app to reload and rebuild.
+        setSitRep((prevSitRep) => {
+          if (prevSitRep?.sha != req.data.sha) {
+            return req.data
+          } else {
+            return prevSitRep
+          }
         })
-      }, (import.meta.env.DEV ? 10 : 30) * 1000);
+      })
+    }, (import.meta.env.DEV ? 10 : 30) * 1000);
 
-      return () => { clearInterval(internal) }
-    }
+    return () => { clearInterval(internal) }
+
   }, [isLoggedIn])
 
   if (!isLoggedIn) { return <LoginPrompt /> }
