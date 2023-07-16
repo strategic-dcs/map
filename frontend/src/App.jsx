@@ -59,7 +59,7 @@ function App() {
       })
 
       // in dev mode, refresh every 10 seconds.
-      setInterval(() => {
+      const internal = setInterval(() => {
         sitRepFetch().then((req) => {
 
           // Only updating sitRep if the payload SHA has changed.
@@ -73,6 +73,8 @@ function App() {
           })
         })
       }, (import.meta.env.DEV ? 10 : 30) * 1000);
+
+      return () => { clearInterval(internal) }
     }
   }, [isLoggedIn])
 
