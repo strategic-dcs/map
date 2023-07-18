@@ -32,7 +32,7 @@ You need MySQL running along with the SDCS Engine.
 
 If you don't already have MySQL running, you can do:
 
-`docker run -d -p 3306:3306 --name sdcs-mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=1 -v sdcs-mysql-data:/var/lib/mysql mysql:8.0.33`
+`docker run -d -p 3306:3306 --name sdcs-mysql --network=nginx-proxy -e MYSQL_ALLOW_EMPTY_PASSWORD=1 -v sdcs-mysql-data:/var/lib/mysql mysql:8.0.33`
 
 You can now visit: http://localhost/ to see the application.
 
