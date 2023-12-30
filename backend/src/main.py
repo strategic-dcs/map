@@ -23,10 +23,15 @@ async def client_session_error_handler(_, e: ClientSessionNotInitialized):
 
 @app.get("/api/sitrep")
 async def get_sitrep(request: Request):
-    discordUser = await discord.user(request) # will raise Unauthorized if not logged in
-    print(f"Loading For Discord User ID: {discordUser.id}")
+    coalition = "NEUTRAL"
+    try:
+        discordUser = await discord.user(request) # will raise Unauthorized if not logged in
 
-    coalition = await DB().get_user_coalition_by_discord_id(discordUser.id)
+        print(f"Loading For Discord User ID: {discordUser.id}")
+        coalition = await DB().get_user_coalition_by_discord_id(discordUser.id)
+    except Unauthorized:
+        pass
+
     print(f"Loading For Coalition: {coalition}")
 
     if coalition is None:

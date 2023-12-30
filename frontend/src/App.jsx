@@ -78,7 +78,7 @@ function App() {
 
   }, [isLoggedIn])
 
-  if (!isLoggedIn) { return <LoginPrompt /> }
+  //if (!isLoggedIn) { return <LoginPrompt /> }
 
   if (sitRep) {
     return <div>
@@ -88,7 +88,7 @@ function App() {
           <div className="serverName">Strategic DCS</div>
 
           <div className='links'>
-            <a href="https://strategic-dcs.com/">Wiki</a>
+            <a href="https://wiki.strategic-dcs.com/">Wiki</a>
             -
             <a href="https://stats.strategic-dcs.com/">Stats</a>
           </div>
