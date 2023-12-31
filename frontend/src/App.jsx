@@ -52,7 +52,6 @@ function App() {
 
   useEffect(() => {
     Cookies.get('access_token') ? setIsLoggedIn(true) : setIsLoggedIn(false);
-    if (!isLoggedIn) { return }
 
     sitRepFetch().then((req) => {
       setSitRep(req.data)
@@ -76,7 +75,7 @@ function App() {
 
     return () => { clearInterval(internal) }
 
-  }, [isLoggedIn])
+  }, [])
 
   //if (!isLoggedIn) { return <LoginPrompt /> }
 

@@ -6,8 +6,6 @@ from fastapi_discord.exceptions import ClientSessionNotInitialized
 from discord import router as discord_router, discord
 import json
 
-from db import DB
-
 app = FastAPI()
 
 app.include_router(discord_router, prefix="/api/auth", tags=["Auth"])
@@ -24,23 +22,18 @@ async def client_session_error_handler(_, e: ClientSessionNotInitialized):
 @app.get("/api/sitrep")
 async def get_sitrep(request: Request):
     coalition = "NEUTRAL"
-    try:
-        discordUser = await discord.user(request) # will raise Unauthorized if not logged in
-
-        print(f"Loading For Discord User ID: {discordUser.id}")
-        coalition = await DB().get_user_coalition_by_discord_id(discordUser.id)
-    except Unauthorized:
-        pass
 
     print(f"Loading For Coalition: {coalition}")
 
-    if coalition is None:
-        return JSONResponse({"error": "User not found"}, status_code=404)
-
     data = json.loads( open("shared_data/website_data.json", 'r').read() )
 
-    online_users = await DB().get_online_users()
-    data = json.loads( open("shared_data/website_data.json", 'r').read() )
+    # default state
+    default_state = {
+        "line_style": "DASHED",
+        "line_color": [1,1,1,0.6],
+        "fill_color": [0,0,0,0],
+        "zone_type": "UNKNOWN"
+    }
 
     # filter airfield for coalition
     airfields_friendly = []
@@ -76,11 +69,11 @@ async def get_sitrep(request: Request):
         "time": data['time'],
         "current_coalition": coalition.lower(),
         "theatre": data['theatre'],
-        "zones": [{ "name": z['name'], "points": z["points"], "state": z["state"][coalition.lower()] } for z in data['zones']],
+        "zones": [{ "name": z['name'], "points": z["points"], "state": z["state"].get(coalition.lower(), default_state) } for z in data['zones']],
         "airfields_friendly": airfields_friendly,
         "airfields_enemy": airfields_enemy,
         "farps": farps,
-        "online_users": online_users,
+        "online_users": data.get("players", []),
         "seconds_left_until_restart": data['seconds_left_until_restart'],
     }
 

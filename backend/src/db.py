@@ -3,10 +3,10 @@ from config import settings
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker, Session
 
-print(f"Connection to database: {settings.DATABASE_URL}")
-engine = create_engine(settings.DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-session = SessionLocal()
+#print(f"Connection to database: {settings.DATABASE_URL}")
+#engine = create_engine(settings.DATABASE_URL)
+#SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+#session = SessionLocal()
 
 class DB():
     async def get_user_coalition_by_discord_id(self, discord_id: int):

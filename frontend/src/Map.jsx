@@ -15,7 +15,11 @@ const theatres = {
   syria: {
     centre: [34.058, 35.101],
     bounds: [[38.341, 30.157], [28.141, 42.100]],
-  }
+  },
+  pgsouth: {
+    centre: [25, 55.7],
+    bounds: [[27.93, 58.81], [23.37, 52.80]],
+  },
 }
 
 function MapComponents(props) {

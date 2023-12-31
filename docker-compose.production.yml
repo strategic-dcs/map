@@ -8,7 +8,7 @@ services:
     volumes:
       # TODO: add the correct path for the data folder.
       - ./backend/data:/app/data
-      - ../../strategic-dcs/engine/shared_data:/app/shared_data
+      - /data/sdcs/shared_data:/app/shared_data
     env_file:
       - .env
     environment:
