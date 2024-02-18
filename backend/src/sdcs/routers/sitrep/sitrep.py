@@ -1,25 +1,9 @@
-from fastapi import Request, FastAPI
-from fastapi.responses import JSONResponse
-from fastapi_discord import Unauthorized
-from fastapi_discord.exceptions import ClientSessionNotInitialized
-
-from discord import router as discord_router, discord
 import json
 
-app = FastAPI()
+from fastapi import Request
+from . import router
 
-app.include_router(discord_router, prefix="/api/auth", tags=["Auth"])
-
-@app.exception_handler(Unauthorized)
-async def unauthorized_error_handler(_, __):
-    return JSONResponse({"error": "Unauthorized"}, status_code=401)
-
-@app.exception_handler(ClientSessionNotInitialized)
-async def client_session_error_handler(_, e: ClientSessionNotInitialized):
-    print(e)
-    return JSONResponse({"error": "Internal Error"}, status_code=500)
-
-@app.get("/api/sitrep")
+@router.get("")
 async def get_sitrep(request: Request):
     coalition = "NEUTRAL"
 
@@ -41,7 +25,7 @@ async def get_sitrep(request: Request):
         if air['coalition'].lower() == coalition.lower():
             airfields_friendly.append({
                 "name": air['name'],
-                "level": air['level'],
+                #"level": air['level'],
                 "position": air['position'],
                 "coalition": air['coalition'],
             })

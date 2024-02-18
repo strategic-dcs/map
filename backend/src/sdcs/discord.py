@@ -6,7 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi_discord import DiscordOAuthClient, Unauthorized, User
 from fastapi_discord.models import GuildPreview, Guild
 
-from config import settings
+from .config import settings
 
 from fastapi import APIRouter
 

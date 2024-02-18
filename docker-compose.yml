@@ -9,12 +9,25 @@ services:
       - ../../strategic-dcs/engine/shared_data:/app/shared_data
     env_file:
       - .env
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload --reload-dir src --app-dir src
+    networks:
+      - internal
+
+  varnish:
+    image: varnish
+    env_file:
+      - .env
+    volumes:
+      - ./cache/default.vcl:/etc/varnish/default.vcl:ro
+      - type: tmpfs
+        target: /var/lib/varnish/varnishd
     environment:
       VIRTUAL_HOST: localhost
       VIRTUAL_PATH: /api
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload --reload-dir src --app-dir src
+      VARNISH_SIZE: 2G
     networks:
       - nginx-proxy
+      - internal
 
   frontend:
     build:
@@ -29,8 +42,9 @@ services:
       VIRTUAL_HOST: localhost
       VIRTUAL_PATH: /
     networks:
-      - nginx-proxy
+      - internal
 
 networks:
+  internal:
   nginx-proxy:
     external: true

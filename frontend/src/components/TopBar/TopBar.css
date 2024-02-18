@@ -1,0 +1,31 @@
+.banner {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    height: 45px;
+    background-color: rgba(45, 62, 80, 255);
+    color: white;
+    font-size: 16px;
+    padding-left: 15px;
+    /* background-image: url('/banner-background.png'); */
+}
+
+.serverName {
+    font-family: "Saira", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    font-variation-settings:
+      "wdth" 100;
+}
+
+.sdcslogo {
+    --image-size: 36px;
+    width: var(--image-size);
+    height: var(--image-size);
+    padding-right: 13px;
+}

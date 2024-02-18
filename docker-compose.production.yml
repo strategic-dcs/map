@@ -11,11 +11,24 @@ services:
       - /data/sdcs/shared_data:/app/shared_data
     env_file:
       - .env
-    environment:
-      VIRTUAL_PATH: /api
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --app-dir src
     networks:
+      - internal
+
+  varnish:
+    image: varnish
+    env_file:
+      - .env
+    volumes:
+      - ./cache/default.vcl:/etc/varnish/default.vcl:ro
+      - type: tmpfs
+        target: /var/lib/varnish/varnishd
+    environment:
+      VIRTUAL_PATH: /api
+      VARNISH_SIZE: 2G
+    networks:
       - nginx-proxy
+      - internal
 
   frontend:
     env_file:
@@ -30,5 +43,6 @@ services:
       - nginx-proxy
 
 networks:
+  internal:
   nginx-proxy:
     external: true

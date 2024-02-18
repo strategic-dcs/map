@@ -5,7 +5,10 @@ import { useMapEvents } from 'react-leaflet/hooks'
 import blueAirportIcon from '/blue-airfield.svg'
 import redAirportIcon from '/red-airfield.svg'
 import neutralAirportIcon from '/neutral-airfield.svg'
-import { useSelectionContext } from './SelectionContext';
+import ServerInfo from './ServerInfo';
+import { useSelectionContext } from '../../contexts/SelectionContext';
+import { useContext, useEffect, useState } from 'react';
+import { AxiosContext } from '../../contexts/AxiosContext';
 
 const theatres = {
   caucasus: {
@@ -57,7 +60,6 @@ function MapComponents(props) {
       <div class="airportMarker">
           <div>
             <div class="airfieldIcon ${airfield.coalition.toLowerCase()} ${selected ? 'selected' : ''}">
-              <span class="level">${airfield.level}</span>
             </div>
           </div>
           <div class="name">${airfield_name}</div>
@@ -180,8 +182,42 @@ function MapComponents(props) {
   </div>
 }
 
-function Map(props) {
-  let sitRep = props.sitRep
+function Map() {
+
+  const [sitRep, setSitRep] = useState(null);
+  const axios = useContext(AxiosContext)
+
+  useEffect(() => {
+    // Cookies.get('access_token') ? setIsLoggedIn(true) : setIsLoggedIn(false);
+
+    axios.get(`/api/sitrep`).then((res) => {
+      if (!res) return
+      setSitRep(res.data)
+    })
+
+    // in dev mode, refresh every 10 seconds.
+    const internal = setInterval(() => {
+      axios.get(`/api/sitrep`).then((res) => {
+        if (!res) return
+
+        // Only updating sitRep if the payload SHA has changed.
+        // Otherwise, it would cause the whole app to reload and rebuild.
+        setSitRep((prevSitRep) => {
+          if (prevSitRep?.sha != res.data.sha) {
+            return res.data
+          } else {
+            return prevSitRep
+          }
+        })
+
+      })
+    }, (import.meta.env.DEV ? 10 : 30) * 1000);
+
+    return () => { clearInterval(internal) }
+
+  }, [])
+
+  if (!sitRep) return (<div>Loading</div>)
 
   const map_center = theatres[sitRep.theatre.toLowerCase()].centre
   if (location.hash) {
@@ -192,27 +228,33 @@ function Map(props) {
     }
   }
 
-  return <MapContainer id="map" center={map_center}
-          zoom={7.8}
-          zoomDelta={0.8}
-          zoomSnap={0}
-          wheelPxPerZoomLevel={70}
-          maxBounds={theatres[sitRep.theatre.toLowerCase()].bounds}
-          maxBoundsViscosity={0.8}
-          eventHandlers={{ click: () =>{ console.log("aaaa") } }}
-          attributionControl={false}
-          >
+  return (
+    <div>
+      <MapContainer id="map" center={map_center}
+            zoom={7.8}
+            zoomDelta={0.8}
+            zoomSnap={0}
+            wheelPxPerZoomLevel={70}
+            maxBounds={theatres[sitRep.theatre.toLowerCase()].bounds}
+            maxBoundsViscosity={0.8}
+            eventHandlers={{ click: () =>{ console.log("aaaa") } }}
+            attributionControl={false}
+            >
 
-      <TileLayer
-        attribution='&copy; mapbox'
-        accessToken="pk.eyJ1IjoiY2Vsc29kYW50YXMiLCJhIjoiY2tnNWk4ZWlpMGcyZzJ5bDdjZTU5c2IwdCJ9.1dK2LqeGzVzILLxUToadzg"
-        id={"celsodantas/cljbgm8oe008h01o049ln1xht/draft"}
-        url='https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}'
+        <TileLayer
+          attribution='&copy; mapbox'
+          accessToken="pk.eyJ1IjoiY2Vsc29kYW50YXMiLCJhIjoiY2tnNWk4ZWlpMGcyZzJ5bDdjZTU5c2IwdCJ9.1dK2LqeGzVzILLxUToadzg"
+          id={"celsodantas/cljbgm8oe008h01o049ln1xht/draft"}
+          url='https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}'
 
-      />
-      <AttributionControl position="topright"/>
-      <MapComponents sitRep={sitRep} />
-    </MapContainer>
+        />
+        <AttributionControl position="topright"/>
+        <MapComponents sitRep={sitRep} />
+      </MapContainer>
+      <ServerInfo
+        online_users={sitRep.online_users}
+        seconds_left_until_restart={sitRep.seconds_left_until_restart}/>
+    </div>)
 
 }
 
