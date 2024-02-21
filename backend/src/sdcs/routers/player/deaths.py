@@ -12,14 +12,13 @@ def get_player_info(player_id: int, campaign_id: int = None, db: Session = Depen
     q = (
         db.query(models.WeaponKill)
             .join(models.Weapon)
-            .join(models.UserFlightLegs)
-            .join(models.UserFlights)
+            .join(models.Unit, models.Weapon.unit_id == models.Unit.id)
             .filter(
                 models.WeaponKill.target_player_id == player_id,
             )
     )
 
     if campaign_id is not None:
-        q = q.filter(models.UserFlights.campaign_id == campaign_id)
+        q = q.filter(models.Unit.campaign_id == campaign_id)
 
     return q.order_by(models.WeaponKill.id.desc()).all()
