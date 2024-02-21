@@ -1,5 +1,6 @@
 import json
 
+from hashlib import sha1
 from fastapi import Request
 from . import router
 
@@ -9,7 +10,10 @@ async def get_sitrep(request: Request):
 
     print(f"Loading For Coalition: {coalition}")
 
-    data = json.loads( open("shared_data/website_data.json", 'r').read() )
+    with open("shared_data/website_data.json", 'rb') as fh:
+        content = fh.read()
+        sha = sha1(content).hexdigest()
+        data = json.loads(content)
 
     # default state
     default_state = {
@@ -59,6 +63,7 @@ async def get_sitrep(request: Request):
         "farps": farps,
         "online_users": data.get("players", []),
         "seconds_left_until_restart": data['seconds_left_until_restart'],
+        "sha": sha,
     }
 
     if coalition == "RED":
