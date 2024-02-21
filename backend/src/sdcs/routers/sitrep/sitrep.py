@@ -29,7 +29,6 @@ async def get_sitrep(request: Request):
         if air['coalition'].lower() == coalition.lower():
             airfields_friendly.append({
                 "name": air['name'],
-                #"level": air['level'],
                 "position": air['position'],
                 "coalition": air['coalition'],
             })
@@ -48,7 +47,6 @@ async def get_sitrep(request: Request):
         if farp['coalition'].lower() == coalition.lower():
             farps.append({
                 "name": farp['name'],
-                "level": farp['level'],
                 "position": farp['position'],
                 "coalition": farp['coalition'],
             })
