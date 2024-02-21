@@ -15,6 +15,7 @@ def get_player_info(player_id: int, campaign_id: int = None, db: Session = Depen
             .join(models.Unit, models.Weapon.unit_id == models.Unit.id)
             .filter(
                 models.WeaponKill.target_player_id == player_id,
+                models.WeaponKill.superceded == False,
             )
     )
 
