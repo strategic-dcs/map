@@ -1,5 +1,18 @@
 version: "3.8"
 services:
+
+  database:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: aij8Eith
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - "./pgdata:/var/lib/postgresql/data:rw"
+    ports:
+      - "5432:5432/tcp"
+    networks:
+      - database
+
   backend:
     build:
       context: ./backend
@@ -13,7 +26,8 @@ services:
       - .env
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --app-dir src
     networks:
-      - internal
+      - backend
+      - database
 
   varnish:
     image: varnish
@@ -28,7 +42,7 @@ services:
       VARNISH_SIZE: 2G
     networks:
       - nginx-proxy
-      - internal
+      - backend
 
   frontend:
     env_file:

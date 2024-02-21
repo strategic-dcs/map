@@ -11,23 +11,18 @@ services:
       - .env
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload --reload-dir src --app-dir src
     networks:
-      - internal
-
-  varnish:
-    image: varnish
-    env_file:
-      - .env
-    volumes:
-      - ./cache/default.vcl:/etc/varnish/default.vcl:ro
-      - type: tmpfs
-        target: /var/lib/varnish/varnishd
-    environment:
-      VIRTUAL_HOST: localhost
-      VIRTUAL_PATH: /api
-      VARNISH_SIZE: 2G
-    networks:
       - nginx-proxy
-      - internal
+      - database
+
+  database:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: aij8Eith
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - "/data/sdcs/pgdata:/var/lib/postgresql/data:rw"
+    ports:
+      - "5432:5432/tcp"
 
   frontend:
     build:
@@ -42,9 +37,9 @@ services:
       VIRTUAL_HOST: localhost
       VIRTUAL_PATH: /
     networks:
-      - internal
+      - nginx-proxy
 
 networks:
-  internal:
+  database:
   nginx-proxy:
     external: true
