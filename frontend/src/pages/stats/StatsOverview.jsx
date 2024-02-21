@@ -14,12 +14,12 @@ export default function StatsOverview() {
                 <Grid item xs={3}>
                     <KillsTable
                         title='Top 10 A/A Kills'
-                        target={`/api/campaign/${params.campaign_id !== "all" ? params.campaign_id : ''}/summary/top10/aa`}
+                        target={`/api/campaign/${params.campaign_id !== "all" ? `${params.campaign_id}/` : ''}summary/top10/aa`}
                     />
                     <KillsTable
                         pilot_title='Commander'
                         title='Top 10 G/G Kills'
-                        target={`/api/campaign/${params.campaign_id !== "all" ? params.campaign_id : ''}/summary/top10/gg`}
+                        target={`/api/campaign/${params.campaign_id !== "all" ? `${params.campaign_id}/` : ''}summary/top10/gg`}
                     />
                 </Grid>
                 <Grid item xs={6}>
@@ -28,12 +28,12 @@ export default function StatsOverview() {
                 <Grid item xs={3}>
                     <KillsTable
                         title='Top 10 A/G Kills'
-                        target={`/api/campaign/${params.campaign_id !== "all" ? params.campaign_id : ''}/summary/top10/ag`}
+                        target={`/api/campaign/${params.campaign_id !== "all" ? `${params.campaign_id}/` : ''}summary/top10/ag`}
                     />
                     <KillsTable
                         pilot_title='Commander'
                         title='Top 10 G/A Kills'
-                        target={`/api/campaign/${params.campaign_id !== "all" ? params.campaign_id : ''}/summary/top10/ga`}
+                        target={`/api/campaign/${params.campaign_id !== "all" ? `${params.campaign_id}/` : ''}summary/top10/ga`}
                     />
                 </Grid>
             </Grid>
