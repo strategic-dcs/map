@@ -63,7 +63,9 @@ export default function PlayerFlights() {
     // Reload our kills table
     useEffect(() => {
         axios.get(`/api/player/${params.user_id}/flights`, {
-            campaign_id: params.campaign_id != "all" ? params.campaign_id : null
+            params: {
+                campaign_id: params.campaign_id !== "all" ? params.campaign_id : null
+            }
         }).then((res) => {
             if (!res) return
             setRows(res.data.map((v, idx) => { return {"id": idx+1, ...v} }))
