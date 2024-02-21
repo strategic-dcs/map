@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { StripedDataGrid } from "../../../components/grid/StripedDataGrid"
 import { AxiosContext } from "../../../contexts/AxiosContext"
 import { secondsToText } from "../../../utils"
+import { GridToolbar } from "@mui/x-data-grid"
 
 const columns = [
     {
@@ -93,14 +94,29 @@ export default function PlayerSummary() {
                     initialState={{
                         pagination: { paginationModel: { pageSize: 15 } },
                     }}
+                    sx={{
+                      '.MuiDataGrid-toolbarContainer > .MuiBox-root': {
+                        display: "none"
+                      }
+                    }}
                     key="grid"
                     columns={columns}
                     rows={rows}
                     pageSizeOptions={[15]}
-                    disableColumnMenu
                     autoHeight
                     pagination={true}
                     onRowClick={handleRowClick}
+                    disableColumnFilter
+                    disableColumnSelector
+                    disableDensitySelector
+                    slots={{ toolbar: GridToolbar }}
+                    slotProps={{
+                      toolbar: {
+                        printOptions: { disableToolbarButton: true },
+                        csvOptions: { disableToolbarButton: true },
+                        showQuickFilter: true,
+                      },
+                    }}
                 />
             </Box>
         </Box>
