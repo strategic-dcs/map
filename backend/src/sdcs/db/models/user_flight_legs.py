@@ -1,8 +1,8 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, Text, Enum, DateTime
+from sqlalchemy import Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
 from sdcs.db import SQLBase
-from .coalition import Coalition
+from .common import DateTimeUTC
 
 class UserFlightLegs(SQLBase):
 
@@ -11,5 +11,5 @@ class UserFlightLegs(SQLBase):
     flight_id = Column(Integer, ForeignKey('user_flights.id'))
     flight = relationship('UserFlights')
 
-    start_time = Column(DateTime)
-    end_time = Column(DateTime, nullable=True)
+    start_time = Column(DateTimeUTC)
+    end_time = Column(DateTimeUTC, nullable=True)

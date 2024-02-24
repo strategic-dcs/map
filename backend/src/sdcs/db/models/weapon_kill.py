@@ -4,7 +4,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, Text, DateT
 from sqlalchemy.orm import relationship
 
 from sdcs.db import SQLBase
-
+from .common import DateTimeUTC
 
 class KillAssociationMethod(str, Enum):
     UNKNOWN = "UNKNOWN"
@@ -25,7 +25,7 @@ class KillAssociationMethod(str, Enum):
 class WeaponKill(SQLBase):
     id = Column(Integer, primary_key=True)
 
-    kill_at = Column(DateTime)
+    kill_at = Column(DateTimeUTC)
 
     weapon_id = Column(Integer, ForeignKey('weapon.id'))
     weapon = relationship('Weapon')

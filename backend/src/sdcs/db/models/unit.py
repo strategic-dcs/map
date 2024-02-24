@@ -1,8 +1,9 @@
-from sqlalchemy import Column, Integer, DateTime, ForeignKey, Boolean, Text, Enum
+from sqlalchemy import Column, Integer, ForeignKey, Boolean, Text, Enum
 from sqlalchemy.orm import relationship
 
 from sdcs.db import SQLBase
 from .coalition import Coalition
+from .common import DateTimeUTC
 
 class Unit(SQLBase):
     id = Column(Integer, primary_key=True)
@@ -24,7 +25,7 @@ class Unit(SQLBase):
 
     player_can_drive = Column(Boolean)
 
-    removed_at = Column(DateTime, nullable=True)
+    removed_at = Column(DateTimeUTC, nullable=True)
     removed_reason = Column(Text, nullable=True)
 
     unit_type_id = Column(Integer, ForeignKey('unit_type.id'))

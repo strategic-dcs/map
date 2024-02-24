@@ -1,8 +1,9 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, Text, Enum, DateTime
+from sqlalchemy import Column, Integer, ForeignKey, Text, Enum
 from sqlalchemy.orm import relationship
 
 from sdcs.db import SQLBase
 from .coalition import Coalition
+from .common import DateTimeUTC
 
 class UserFlights(SQLBase):
 
@@ -18,11 +19,11 @@ class UserFlights(SQLBase):
     unit = relationship('Unit')
 
     side = Column(Enum(Coalition))
-    start = Column(DateTime)
+    start = Column(DateTimeUTC)
 
     leg_count = Column(Integer)
     distance = Column(Integer)
     distance_abs = Column(Integer)
 
-    end = Column(DateTime, nullable=True)
+    end = Column(DateTimeUTC, nullable=True)
     end_event = Column(Text, nullable=True)
