@@ -36,6 +36,11 @@ const columns = [
         flex: 1,
     },
     {
+      headerName: 'Method',
+      field: 'assoc_method',
+      flex: 1,
+    },
+    {
       headerName: 'Ground Kill',
       align: 'right',
       headerAlign: 'right',

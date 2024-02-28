@@ -173,7 +173,11 @@ def get_player_kills(db: Session, player_id: int, campaign_id: int = None):
         'id', 'kill_at',
         'weapon_name',
         'killer_unit_type',
-        'target_unit_type', 'target_on_ground', 'target_player_name')
+        'target_unit_type',
+        'target_on_ground',
+        'target_player_name',
+        'assoc_method'
+    )
 
     query = (
         db
@@ -185,6 +189,7 @@ def get_player_kills(db: Session, player_id: int, campaign_id: int = None):
                 unitTypeT.type_name,
                 models.WeaponKill.on_ground,
                 userT.name,
+                models.WeaponKill.assoc_method,
             )
             .select_from(models.WeaponKill)
             .join(models.Weapon, models.WeaponKill.weapon_id == models.Weapon.id)

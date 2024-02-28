@@ -42,6 +42,11 @@ const columns = [
         flex: 1,
         valueGetter: (params) => params.row.weapon.unit.unit_type.type_name
     },
+    {
+      headerName: 'Method',
+      field: 'assoc_method',
+      flex: 1,
+    },
 ]
 
 export default function PlayerDeaths() {

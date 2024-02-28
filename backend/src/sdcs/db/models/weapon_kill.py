@@ -1,12 +1,12 @@
-from enum import Enum
+import enum
 
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, Text, DateTime
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, Text, DateTime, Enum
 from sqlalchemy.orm import relationship
 
 from sdcs.db import SQLBase
 from .common import DateTimeUTC
 
-class KillAssociationMethod(str, Enum):
+class KillAssociationMethod(str, enum.Enum):
     UNKNOWN = "UNKNOWN"
     KILL = "KILL"
     HIT = "HIT"
@@ -40,5 +40,5 @@ class WeaponKill(SQLBase):
     kill_player = relationship('User', foreign_keys=[kill_player_id])
 
     superceded = Column(Boolean)
-    #assoc_method = Column(Enum(KillAssociationMethod), nullable=True)
+    assoc_method = Column(Enum(KillAssociationMethod), nullable=True)
     on_ground = Column(Boolean)

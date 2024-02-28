@@ -6,6 +6,7 @@ from .core import SDCSBaseModel
 from .player import PlayerInfo
 from .unit import Unit
 from .weapon import Weapon
+from sdcs.db.models.weapon_kill import KillAssociationMethod
 
 class WeaponKill(SDCSBaseModel):
     id: int = Field(description="Weapon Kill")
@@ -14,3 +15,4 @@ class WeaponKill(SDCSBaseModel):
     target_player: Optional[PlayerInfo] = Field(description="Target Player")
     target_unit: Unit = Field(description="Weapon Kill")
     weapon: Weapon = Field(description="weapon that caused the kill")
+    assoc_method: KillAssociationMethod = Field(description="Method used to determine Kill")
