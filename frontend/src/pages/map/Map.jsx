@@ -10,20 +10,6 @@ import { useSelectionContext } from '../../contexts/SelectionContext';
 import { useContext, useEffect, useState } from 'react';
 import { AxiosContext } from '../../contexts/AxiosContext';
 
-const theatres = {
-  caucasus: {
-    centre: [43.529, 39.449],
-    bounds: [[47.953,33.190], [39.522,50.256]],
-  },
-  syria: {
-    centre: [34.058, 35.101],
-    bounds: [[38.341, 30.157], [28.141, 42.100]],
-  },
-  persiangulf: {
-    centre: [25, 55.7],
-    bounds: [[27.93, 58.81], [23.37, 52.80]],
-  },
-}
 
 function MapComponents(props) {
   let markers = []
@@ -215,7 +201,7 @@ function Map() {
 
   if (!sitRep) return (<div>Loading</div>)
 
-  const map_center = theatres[sitRep.theatre.toLowerCase()].centre
+  const map_center = [sitRep.center.lat, sitRep.center.lon]
   if (location.hash) {
     const hash = location.hash.slice(1).split('/')
     if (hash.length == 2) {
@@ -231,7 +217,7 @@ function Map() {
             zoomDelta={0.8}
             zoomSnap={0}
             wheelPxPerZoomLevel={70}
-            maxBounds={theatres[sitRep.theatre.toLowerCase()].bounds}
+            maxBounds={[[sitRep.bounds.min.lat, sitRep.bounds.min.lon],[sitRep.bounds.max.lat, sitRep.bounds.max.lon]]}
             maxBoundsViscosity={0.8}
             eventHandlers={{ click: () =>{ console.log("aaaa") } }}
             attributionControl={false}
