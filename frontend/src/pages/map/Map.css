@@ -28,8 +28,8 @@
 
 .zoneNameIcon {
   font-family: 'Josefin Sans', sans-serif;
-  font-weight: 800;
-  color: rgb(57, 57, 57, 0.24);
+  font-weight: 600;
+  color: rgb(222, 222, 222, .5);
 }
 
 /* Leaftlet popup */

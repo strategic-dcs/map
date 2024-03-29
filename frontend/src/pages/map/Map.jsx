@@ -224,10 +224,8 @@ function Map() {
             >
 
         <TileLayer
-          attribution='&copy; mapbox'
-          accessToken="pk.eyJ1IjoiY2Vsc29kYW50YXMiLCJhIjoiY2tnNWk4ZWlpMGcyZzJ5bDdjZTU5c2IwdCJ9.1dK2LqeGzVzILLxUToadzg"
-          id={"celsodantas/cljbgm8oe008h01o049ln1xht/draft"}
-          url='https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}'
+          attribution='Esri, HERE, Garmin, &copy; OpenStreetMap contributors, and the GIS user community'
+          url='http://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}'
 
         />
         <AttributionControl position="topright"/>
