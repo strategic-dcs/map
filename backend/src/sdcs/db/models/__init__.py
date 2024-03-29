@@ -2,7 +2,7 @@ from .coalition import Coalition
 from .mission import Mission
 from .campaign import Campaign
 from .unit_class import UnitClass
-from .unit_type import UnitType
+from .unit_type import UnitType, DcsUnitType
 from .unit_group import UnitGroup
 from .unit import Unit
 from .weapon import Weapon

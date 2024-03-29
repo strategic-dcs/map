@@ -165,9 +165,11 @@ def get_player_kills(db: Session, player_id: int, campaign_id: int = None):
 
     unitK = aliased(models.Unit)
     unitTypeK = aliased(models.UnitType)
+    dcsUnitTypeK = aliased(models.DcsUnitType)
 
     unitT = aliased(models.Unit)
     unitTypeT = aliased(models.UnitType)
+    dcsUnitTypeT = aliased(models.DcsUnitType)
 
     fields = (
         'id', 'kill_at',
@@ -185,7 +187,7 @@ def get_player_kills(db: Session, player_id: int, campaign_id: int = None):
                 models.WeaponKill.id,
                 models.WeaponKill.kill_at,
                 models.Weapon.weapon_name,
-                unitTypeK.unit_type,
+                dcsUnitTypeK.name,
                 unitTypeT.type_name,
                 models.WeaponKill.on_ground,
                 userT.name,
@@ -198,6 +200,7 @@ def get_player_kills(db: Session, player_id: int, campaign_id: int = None):
             .join(userT, models.WeaponKill.target_player_id == userT.id, isouter=True)
             .join(unitK, models.UserFlights.unit_id == unitK.id)
             .join(unitTypeK, unitK.unit_type_id == unitTypeK.id)
+            .join(dcsUnitTypeK, unitTypeK.dcs_type_id == dcsUnitTypeK.id)
             .join(unitT, models.WeaponKill.target_unit_id == unitT.id)
             .join(unitTypeT, unitT.unit_type_id == unitTypeT.id)
             .filter(
