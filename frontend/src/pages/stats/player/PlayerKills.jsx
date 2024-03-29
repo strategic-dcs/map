@@ -58,7 +58,11 @@ export default function PlayerKills() {
 
     // Reload our kills table
     useEffect(() => {
-        axios.get(`/api/campaign/${params.campaign_id !== "all" ? `${params.campaign_id}/` : ''}players/${params.user_id}/kills`).then((res) => {
+        axios.get(`/api/player/${params.user_id}/kills`, {
+            params: {
+                campaign_id: params.campaign_id === "all" ? undefined : params.campaign_id
+            }
+        }).then((res) => {
             if (!res) return
             setRows(res.data.map((v, idx) => { return {"id": idx+1, ...v} }))
         })

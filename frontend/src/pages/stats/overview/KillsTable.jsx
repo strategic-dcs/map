@@ -11,16 +11,21 @@ export default function KillsTable({
     pilot_title,
 }) {
 
+    const params = useParams()
     const axios = useContext(AxiosContext)
     const [rows, setRows] = useState([])
 
     // Reload our kills table
     useEffect(() => {
-        axios.get(target).then((res) => {
+        axios.get(target, {
+            params: {
+                campaign_id: params.campaign_id === 'all' ? undefined : params.campaign_id
+            }
+        }).then((res) => {
             if (!res) return
             setRows(res.data.map((v, idx) => { return {"id": idx+1, ...v} }))
         })
-    }, [target])
+    }, [target, params.campaign_id])
 
 
     const columns = useMemo(() => [

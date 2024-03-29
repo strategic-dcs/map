@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, ForeignKey
+from sqlalchemy import Column, Integer, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
 from sdcs.db import SQLBase
@@ -13,3 +13,5 @@ class UserFlightLegs(SQLBase):
 
     start_time = Column(DateTimeUTC)
     end_time = Column(DateTimeUTC, nullable=True)
+
+    committed = Column(Boolean)

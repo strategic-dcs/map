@@ -21,6 +21,7 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - "/data/sdcs/pgdata:/var/lib/postgresql/data:rw"
+      - "backend/dev_data/development_data.sql:/docker-entrypoint-initdb.d/development_data.sql
     ports:
       - "5432:5432/tcp"
 

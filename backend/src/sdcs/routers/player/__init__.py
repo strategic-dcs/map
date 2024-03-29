@@ -6,7 +6,9 @@ router = APIRouter(
     redirect_slashes=False,
 )
 
-from .summary import *
-from .info import *
+from .root import *
 from .flights import *
 from .deaths import *
+from .kills import *
+from .modules import *
+from .info import *

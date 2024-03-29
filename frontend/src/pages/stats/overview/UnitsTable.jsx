@@ -72,7 +72,11 @@ export default function UnitsTable() {
 
     // Reload our kills table
     useEffect(() => {
-        axios.get(`/api/campaign/${params.campaign_id !== "all" ? `${params.campaign_id}/` : ''}summary/top10/units`).then((res) => {
+        axios.get('/api/campaign/summary/top10/units', {
+          params: {
+            campaign_id: params.campaign_id === 'all' ? undefined : params.campaign_id
+          }
+        }).then((res) => {
             if (!res) return
             setRows(res.data.map((v, idx) => { return {"id": idx+1, ...v} }))
         })

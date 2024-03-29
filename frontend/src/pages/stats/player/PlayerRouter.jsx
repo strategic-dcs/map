@@ -7,7 +7,7 @@ export default function PlayerRouter() {
     return (
         <div>
             <Routes>
-                <Route path="/:user_id" element={<PlayerPortal />} />
+                <Route path="/:user_id/*" element={<PlayerPortal />} />
                 <Route path="/" element={<PlayerSummary />} />
             </Routes>
         </div>

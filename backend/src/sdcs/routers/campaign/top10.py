@@ -11,7 +11,8 @@ from sdcs.schemas.unit import UnitSummary
 from sdcs.db import models, get_db, Session
 
 
-def get_top10_aa_kills(db: Session, campaign_id: int = None):
+@router.get("/summary/top10/aa", response_model=list[Kills], summary="Returns top 10 AA")
+def get_top10_aa_kills_global(campaign_id: int = None, db: Session = Depends(get_db)):
 
     unitK = aliased(models.Unit)
     unitTypeK = aliased(models.UnitType)
@@ -59,7 +60,8 @@ def get_top10_aa_kills(db: Session, campaign_id: int = None):
     return [dict(zip(rows, row)) for row in query.all()]
 
 
-def get_top10_ag_kills(db: Session, campaign_id: int = None):
+@router.get("/summary/top10/ag", response_model=list[Kills], summary="Returns top 10 AG kills of all time")
+def get_top10_ag_kills_global(campaign_id: int = None, db: Session = Depends(get_db)):
 
     unitK = aliased(models.Unit)
     unitTypeK = aliased(models.UnitType)
@@ -106,7 +108,8 @@ def get_top10_ag_kills(db: Session, campaign_id: int = None):
     return [dict(zip(rows, row)) for row in query.all()]
 
 
-def get_top10_gg_kills(db: Session, campaign_id: int = None):
+@router.get("/summary/top10/gg", response_model=list[Kills], summary="Returns top 10 GG kills of all time")
+def get_top10_agg_kills_global(campaign_id: int = None, db: Session = Depends(get_db)):
 
     unitK = aliased(models.Unit)
     unitTypeK = aliased(models.UnitType)
@@ -153,7 +156,8 @@ def get_top10_gg_kills(db: Session, campaign_id: int = None):
     return [dict(zip(rows, row)) for row in query.all()]
 
 
-def get_top10_ga_kills(db: Session, campaign_id: int = None):
+@router.get("/summary/top10/ga", response_model=list[Kills], summary="Returns top 10 GA kills of all time")
+def get_top10_agg_kills_global(campaign_id: int = None, db: Session = Depends(get_db)):
 
     unitK = aliased(models.Unit)
     unitTypeK = aliased(models.UnitType)
@@ -201,7 +205,8 @@ def get_top10_ga_kills(db: Session, campaign_id: int = None):
     return [dict(zip(rows, row)) for row in query.all()]
 
 
-def get_top10_units(db: Session, campaign_id: int = None):
+@router.get("/summary/top10/units", response_model=list[UnitSummary], summary="Returns top 10 GA kills of all time")
+def get_top10_units_by_duration(campaign_id: int = None, db: Session = Depends(get_db)):
 
     unitK = aliased(models.Unit)
     unitTypeK = aliased(models.UnitType)
@@ -314,52 +319,3 @@ def get_top10_units(db: Session, campaign_id: int = None):
         target["kills"]["g2g"] += row[5]
 
     return sorted(merge.values(), key=lambda a: a["duration"], reverse=True)
-
-@router.get("/{campaign_id}/summary/top10/aa", response_model=list[Kills], summary="Returns top 10 AA kills for a given campaign_id")
-def get_top10_aa_kills_for_campaign(campaign_id: int, db: Session = Depends(get_db)):
-    return get_top10_aa_kills(db, campaign_id)
-
-
-@router.get("/summary/top10/aa", response_model=list[Kills], summary="Returns top 10 AA kills of all time")
-def get_top10_aa_kills_global(db: Session = Depends(get_db)):
-    return get_top10_aa_kills(db)
-
-
-@router.get("/{campaign_id}/summary/top10/ag", response_model=list[Kills], summary="Returns top 10 AG kills for a given campaign_id")
-def get_top10_ag_kills_for_campaign(campaign_id: int, db: Session = Depends(get_db)):
-    return get_top10_ag_kills(db, campaign_id)
-
-
-@router.get("/summary/top10/ag", response_model=list[Kills], summary="Returns top 10 AG kills of all time")
-def get_top10_ag_kills_global(db: Session = Depends(get_db)):
-    return get_top10_ag_kills(db)
-
-
-@router.get("/{campaign_id}/summary/top10/gg", response_model=list[Kills], summary="Returns top 10 GG kills for a given campaign_id")
-def get_top10_gg_kills_for_campaign(campaign_id: int, db: Session = Depends(get_db)):
-    return get_top10_gg_kills(db, campaign_id)
-
-
-@router.get("/summary/top10/gg", response_model=list[Kills], summary="Returns top 10 GG kills of all time")
-def get_top10_agg_kills_global(db: Session = Depends(get_db)):
-    return get_top10_gg_kills(db)
-
-
-@router.get("/{campaign_id}/summary/top10/ga", response_model=list[Kills], summary="Returns top 10 GA kills for a given campaign_id")
-def get_top10_gg_kills_for_campaign(campaign_id: int, db: Session = Depends(get_db)):
-    return get_top10_ga_kills(db, campaign_id)
-
-
-@router.get("/summary/top10/ga", response_model=list[Kills], summary="Returns top 10 GA kills of all time")
-def get_top10_agg_kills_global(db: Session = Depends(get_db)):
-    return get_top10_ga_kills(db)
-
-
-@router.get("/{campaign_id}/summary/top10/units", response_model=list[UnitSummary], summary="Returns top 10 GA kills for a given campaign_id")
-def get_top10_units_by_duration_for_campaign(campaign_id: int, db: Session = Depends(get_db)):
-    return get_top10_units(db, campaign_id)
-
-
-@router.get("/summary/top10/units", response_model=list[UnitSummary], summary="Returns top 10 GA kills of all time")
-def get_top10_units_by_duration(db: Session = Depends(get_db)):
-    return get_top10_units(db)

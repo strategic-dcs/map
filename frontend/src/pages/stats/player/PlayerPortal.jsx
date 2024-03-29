@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Tab, Tabs } from "@mui/material"
 import { useContext, useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 import { AxiosContext } from "../../../contexts/AxiosContext"
 import PlayerModuleTable from "./PlayerModuleTable"
 import PlayerKills from "./PlayerKills"
@@ -40,8 +40,9 @@ export default function PlayerPortal() {
     const params = useParams()
     const axios = useContext(AxiosContext)
     const navigate = useNavigate()
+    const value = params?.["*"] ?? "flights"
 
-    const [value, setValue] = useState(0);
+    // const [value, setValue] = useState("flights");
     const [playerInfo, setPlayerInfo] = useState(null)
 
     // Reload data
@@ -53,7 +54,7 @@ export default function PlayerPortal() {
     }, [params.user_id])
 
     const handleChange = (event, newValue) => {
-        setValue(newValue);
+        navigate(newValue);
     };
 
     return (
@@ -67,17 +68,17 @@ export default function PlayerPortal() {
                 </Grid>
                 <Grid item xs={9}>
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                        <Tab label="Flights" {...a11yProps(0)} />
-                        <Tab label="Kills" {...a11yProps(1)} />
-                        <Tab label="Deaths" {...a11yProps(2)} />
+                        <Tab label="Flights" value="flights" {...a11yProps("flights")} />
+                        <Tab label="Kills" value="kills" {...a11yProps("kills")} />
+                        <Tab label="Deaths" value="deaths" {...a11yProps("deaths")} />
                     </Tabs>
-                    <TabPanel value={value} index={0}>
+                    <TabPanel value={value} index={"flights"}>
                         <PlayerFlights />
                     </TabPanel>
-                    <TabPanel value={value} index={1}>
+                    <TabPanel value={value} index={"kills"}>
                         <PlayerKills />
                     </TabPanel>
-                    <TabPanel value={value} index={2}>
+                    <TabPanel value={value} index={"deaths"}>
                         <PlayerDeaths />
                     </TabPanel>
 

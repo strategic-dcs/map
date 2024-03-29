@@ -6,6 +6,6 @@ router = APIRouter(
     redirect_slashes=False,
 )
 
-from .player import *
-from .campaign import *
+# from .player import *
 from .top10 import *
+from .campaign import *

@@ -24,8 +24,3 @@ def get_current_campaign(db: Session = Depends(get_db)):
     return db.query(models.Campaign).filter(
         models.Campaign.end == None
     ).order_by(desc(models.Campaign.id)).first()
-
-
-@router.get("/{campaign_id}", response_model=Campaign, summary="Returns campaign by ID")
-def get_campaign_by_id(campaign_id: int, db: Session = Depends(get_db)):
-    return db.query(models.Campaign).get(campaign_id)
