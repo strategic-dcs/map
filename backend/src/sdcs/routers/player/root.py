@@ -102,7 +102,7 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
                             and_(
                                 unitTypeK.unit_class.not_in(["AIR", "AIR_RW", "AIR_INTEL"]),
                                 models.WeaponKill.on_ground.is_(True),
-                                unitT.coalition == unitK.coalition,
+                                unitT.coalition != unitK.coalition,
                             ), 1
                         ),
                         else_=0)
@@ -113,7 +113,7 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
                             and_(
                                 unitTypeK.unit_class.not_in(["AIR", "AIR_RW", "AIR_INTEL"]),
                                 models.WeaponKill.on_ground.is_(True),
-                                unitT.coalition != unitK.coalition,
+                                unitT.coalition == unitK.coalition,
                             ), 1
                         ),
                         else_=0)
