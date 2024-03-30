@@ -36,12 +36,22 @@ export default function KillsTable({
           minWidth: 0,
         },
         {
-          field: 'kills',
-          headerName: 'Kills',
+          field: 'pvp',
+          headerName: 'PVP',
           align: 'right',
           headerAlign: 'right',
           flex: 0.25,
           minWidth: 0,
+          valueGetter: (params) => params.row?.kills?.pvp || ""
+        },
+        {
+          field: 'ai',
+          headerName: 'AI',
+          align: 'right',
+          headerAlign: 'right',
+          flex: 0.25,
+          minWidth: 0,
+          valueGetter: (params) => params.row?.kills?.ai || ""
         }
     ], [pilot_title])
 
@@ -50,12 +60,16 @@ export default function KillsTable({
             <Box p={2}>
                 <Typography color='primary' sx={{paddingBottom: "10px"}} variant="h6">{title}</Typography>
                 <StripedDataGrid
+                    initialState={{
+                        pagination: { paginationModel: { pageSize: 10 } },
+                    }}
                     columns={columns}
                     rows={rows}
-                    hideFooter={true}
+                    //hideFooter={true}
                     disableColumnMenu
                     autoHeight
                     density="compact"
+                    pageSizeOptions={[10]}
                 />
             </Box>
         </Box>

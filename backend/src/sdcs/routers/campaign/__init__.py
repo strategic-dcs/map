@@ -7,5 +7,5 @@ router = APIRouter(
 )
 
 # from .player import *
-from .top10 import *
+from .summary import *
 from .campaign import *

@@ -18,6 +18,8 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
     unitT = aliased(models.Unit)
     unitTypeT = aliased(models.UnitType)
 
+    rows = ['id', 'name', 'duration', 'aa', 'ag', 'ga', 'gg', 'is_pvp']
+
     query = (
         db
             .query(
@@ -66,6 +68,7 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
                         ),
                         else_=0)
                     ).label('kills_gg'),
+                models.WeaponKill.target_player_id.is_not(None).label('is_pvp'),
             )
             .select_from(models.UserFlights)
             .join(models.User, models.UserFlights.user_id == models.User.id)
@@ -77,7 +80,10 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
             .join(unitT, models.WeaponKill.target_unit_id == unitT.id, isouter=True)
             .join(unitTypeT, unitT.unit_type_id == unitTypeT.id, isouter=True)
             .filter(
-                models.UserFlightLegs.end_time != None
+                models.UserFlightLegs.end_time != None,
+                models.UserFlightLegs.committed.is_(True),
+                models.WeaponKill.superceded.is_(False),
+                unitK.campaign_id > 48,
             ))
 
     if campaign_id is not None:
@@ -90,36 +96,42 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
             .group_by(
                 models.User.id,
                 models.UserFlightLegs.id,
+                'is_pvp',
             )
             .order_by(text('duration DESC'))
-            .with_labels()
     )
 
     # Build into our summary
     merge = {}
     for row in query.all():
-        if row[0] not in merge:
-            merge[row[0]] = {
-                "user_id": row[0],
-                "user_name": row[1],
-                "flights": 1,
-                "duration": row[2].total_seconds(),
-                "kills": {
-                    "a2a": row[3],
-                    "a2g": row[4],
-                    "g2a": row[5],
-                    "g2g": row[6],
-                }
-            }
-            continue
+        row = dict(zip(rows, row))
 
-        target = merge[row[0]]
+        if row['id'] not in merge:
+            merge[row['id']] = {
+                "user_id": row['id'],
+                "user_name": row['name'],
+                "flights": 0,
+                "duration": 0,
+                "kills": {}
+            }
+
+        target = merge[row['id']]
         target["flights"] += 1
-        target["duration"] += row[2].total_seconds()
-        target["kills"]["a2a"] += row[3]
-        target["kills"]["a2g"] += row[4]
-        target["kills"]["g2a"] += row[5]
-        target["kills"]["g2g"] += row[6]
+        target["duration"] += row['duration'].total_seconds()
+
+        kill_target = 'pvp' if row['is_pvp'] else 'ai'
+
+        for kt in ['aa', 'ag', 'ga', 'gg']:
+            if not row[kt]:
+                continue
+
+            if kt not in target["kills"]:
+                target["kills"][kt] = {}
+
+            if kill_target not in target["kills"][kt]:
+                target["kills"][kt][kill_target] = 0
+
+            target["kills"][kt][kill_target] += row[kt]
 
     return sorted(merge.values(), key=lambda a: a["duration"], reverse=True)
 

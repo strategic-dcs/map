@@ -3,13 +3,19 @@ from pydantic import BaseModel, Field
 
 from .core import SDCSBaseModel
 
+class KillTarget(SDCSBaseModel):
+    pvp: Optional[int] = Field(description="Player Kills")
+    ai: Optional[int] = Field(description="AI Kills")
+
+
 class Kills(SDCSBaseModel):
+    id: int = Field(description="Pilot ID")
     pilot: str = Field(description="Pilot Name")
-    kills: int = Field(description="Kills")
+    kills: KillTarget = Field(description="Kills")
 
 
 class KillsByType(SDCSBaseModel):
-    a2a: int = Field(description="Air to Air Kills")
-    a2g: int = Field(description="Air to Ground Kills")
-    g2a: int = Field(description="Ground to Air Kills")
-    g2g: int = Field(description="Ground to Ground Kills")
+    aa: Optional[KillTarget] = Field(description="Air to Air Kills")
+    ag: Optional[KillTarget] = Field(description="Air to Ground Kills")
+    ga: Optional[KillTarget] = Field(description="Ground to Air Kills")
+    gg: Optional[KillTarget] = Field(description="Ground to Ground Kills")

@@ -19,39 +19,68 @@ const columns = [
       width: 100
     },
     {
-      headerName: 'A2A',
+      field: 'aap',
+      headerName: 'AA(P)',
       align: 'right',
       headerAlign: 'right',
-      width: 70,
-      field: 'a2a',
-      valueGetter: (params) => params.row?.kills?.a2a || ""
+      width: 90,
+      valueGetter: (params) => params.row?.kills?.aa?.pvp || ""
     },
     {
-      field: 'A2G',
-      headerName: 'A2G',
+      field: 'aaa',
+      headerName: 'AA(AI)',
       align: 'right',
       headerAlign: 'right',
-      field: 'a2g',
-      width: 70,
-      valueGetter: (params) => params.row?.kills?.a2g || ""
+      width: 95,
+      valueGetter: (params) => params.row?.kills?.aa?.ai || ""
     },
     {
-      field: 'G2A',
-      headerName: 'G2A',
+      field: 'agp',
+      headerName: 'AG(P)',
       align: 'right',
       headerAlign: 'right',
-      field: 'g2a',
-      width: 70,
-      valueGetter: (params) => params.row?.kills?.g2a || ""
+      width: 90,
+      valueGetter: (params) => params.row?.kills?.ag?.pvp || ""
     },
     {
-      field: 'G2G',
-      headerName: 'G2G',
+      field: 'aga',
+      headerName: 'AG(AI)',
       align: 'right',
       headerAlign: 'right',
-      field: 'g2g',
-      width: 70,
-      valueGetter: (params) => params.row?.kills?.g2g || ""
+      width: 95,
+      valueGetter: (params) => params.row?.kills?.ag?.ai || ""
+    },
+    {
+      field: 'gap',
+      headerName: 'GA(P)',
+      align: 'right',
+      headerAlign: 'right',
+      width: 90,
+      valueGetter: (params) => params.row?.kills?.ga?.pvp || ""
+    },
+    {
+      field: 'gaa',
+      headerName: 'GA(AI)',
+      align: 'right',
+      headerAlign: 'right',
+      width: 95,
+      valueGetter: (params) => params.row?.kills?.ga?.ai || ""
+    },
+    {
+      field: 'ggp',
+      headerName: 'GG(P)',
+      align: 'right',
+      headerAlign: 'right',
+      width: 90,
+      valueGetter: (params) => params.row?.kills?.gg?.pvp || ""
+    },
+    {
+      field: 'gga',
+      headerName: 'GG(AI)',
+      align: 'right',
+      headerAlign: 'right',
+      width: 95,
+      valueGetter: (params) => params.row?.kills?.gg?.ai || ""
     },
     {
       headerName: 'Duration',
@@ -72,7 +101,7 @@ export default function UnitsTable() {
 
     // Reload our kills table
     useEffect(() => {
-        axios.get('/api/campaign/summary/top10/units', {
+        axios.get('/api/campaign/summary/units', {
           params: {
             campaign_id: params.campaign_id === 'all' ? undefined : params.campaign_id
           }

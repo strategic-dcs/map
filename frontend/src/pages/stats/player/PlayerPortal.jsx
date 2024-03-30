@@ -40,7 +40,7 @@ export default function PlayerPortal() {
     const params = useParams()
     const axios = useContext(AxiosContext)
     const navigate = useNavigate()
-    const value = params?.["*"] ?? "flights"
+    const value = params?.["*"] || "flights"
 
     // const [value, setValue] = useState("flights");
     const [playerInfo, setPlayerInfo] = useState(null)
