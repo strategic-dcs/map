@@ -10,14 +10,13 @@
 Requirements:
 - Docker
 
-In development the app runs on a docker-composer that will create a few containers:
+In development the app runs on a docker-compose that will create a few containers:
 
  - Backend (Python)
  - Frontend (ReactJS/Node)
- - Database (MySQL)
+ - Database (PostgreSQL)
 
 To setup your dev environment, open your terminal on the root of this project.
-
 
 Copy the `.env.example` to `.env` and fill it with the required fields. Then run:
 
@@ -27,14 +26,6 @@ docker run -d -p 80:80 --name nginx-proxy --network=nginx-proxy -v /var/run/dock
 
 docker-compose up -d --build
 ```
-
-You need MySQL running along with the SDCS Engine.
-
-If you don't already have MySQL running, you can do:
-
-`docker run -d -p 3306:3306 --name sdcs-mysql --network=nginx-proxy -e MYSQL_ALLOW_EMPTY_PASSWORD=1 -v sdcs-mysql-data:/var/lib/mysql mysql:8.0.33`
-
-You can now visit: http://localhost/ to see the application.
 
 ## Deployment
 
