@@ -4,26 +4,34 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    environment:
+      VIRTUAL_PATH: /api/
+      VIRTUAL_DEST: /
     volumes:
       - ./backend:/app
       - ../../strategic-dcs/engine/shared_data:/app/shared_data
     env_file:
       - .env
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload --reload-dir src --app-dir src
+    command: uvicorn sdcs.main:app --host 0.0.0.0 --port 8000 --reload --reload-dir src --app-dir src
     networks:
       - nginx-proxy
+      - database
+    depends_on:
       - database
 
   database:
     image: postgres
     environment:
+      POSTGRES_USER: sdcs
       POSTGRES_PASSWORD: aij8Eith
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - "/data/sdcs/pgdata:/var/lib/postgresql/data:rw"
-      - "backend/dev_data/development_data.sql:/docker-entrypoint-initdb.d/development_data.sql
-    ports:
-      - "5432:5432/tcp"
+      - "/data/sdcs/dev/pgdata:/var/lib/postgresql/data:rw"
+      - "./backend/dev_data/development_data.sql:/docker-entrypoint-initdb.d/development_data.sql"
+    networks:
+      - database
+#   ports:
+#     - "5432:5432/tcp"
 
   frontend:
     build:
@@ -35,7 +43,6 @@ services:
     env_file:
       - .env
     environment:
-      VIRTUAL_HOST: localhost
       VIRTUAL_PATH: /
     networks:
       - nginx-proxy

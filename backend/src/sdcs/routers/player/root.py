@@ -10,7 +10,7 @@ from sdcs.schemas.player import PlayerSummary
 from sdcs.db import models, get_db, Session
 
 
-@router.get("/", response_model=list[PlayerSummary], summary="Returns player summary of all time")
+@router.get("", response_model=list[PlayerSummary], summary="Returns player summary of all time")
 def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
     unitK = aliased(models.Unit)
     unitTypeK = aliased(models.UnitType)
