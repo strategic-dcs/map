@@ -40,6 +40,6 @@ def get_player_modules(player_id: int, campaign_id: int = None, db: Session = De
             .order_by(text('duration DESC'))
     )
 
-    print(query.statement.compile())
+    #print(query.statement.compile())
 
     return [dict(zip(['unit_type', 'duration'], x)) for x in query.all()]

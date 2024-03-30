@@ -27,7 +27,8 @@ def get_player_kills(player_id: int, campaign_id: int = None, db: Session = Depe
         'target_unit_type',
         'target_on_ground',
         'target_player_name',
-        'assoc_method'
+        'assoc_method',
+        'team_kill',
     )
 
     query = (
@@ -41,6 +42,7 @@ def get_player_kills(player_id: int, campaign_id: int = None, db: Session = Depe
                 models.WeaponKill.on_ground,
                 userT.name,
                 models.WeaponKill.assoc_method,
+                (unitT.coalition == unitK.coalition).label('team_kill'),
             )
             .select_from(models.WeaponKill)
             .join(models.Weapon, models.WeaponKill.weapon_id == models.Weapon.id)

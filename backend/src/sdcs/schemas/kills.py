@@ -6,6 +6,7 @@ from .core import SDCSBaseModel
 class KillTarget(SDCSBaseModel):
     pvp: Optional[int] = Field(description="Player Kills")
     ai: Optional[int] = Field(description="AI Kills")
+    tk: Optional[int] = Field(description="Team Kills")
 
 
 class Kills(SDCSBaseModel):

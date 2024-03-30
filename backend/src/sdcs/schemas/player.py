@@ -25,6 +25,7 @@ class PlayerKill(SDCSBaseModel):
     target_on_ground: bool = Field(description="Target on the ground at time of death")
     target_player_name: Optional[str] = Field(description="Target player name")
     assoc_method: KillAssociationMethod = Field(description="Method used to determine Kill")
+    team_kill: bool = Field(description='Team Kill')
 
 
 class PlayerModule(SDCSBaseModel):

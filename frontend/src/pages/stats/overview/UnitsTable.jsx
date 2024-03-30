@@ -23,7 +23,7 @@ const columns = [
       headerName: 'AA(P)',
       align: 'right',
       headerAlign: 'right',
-      width: 90,
+      width: 98,
       valueGetter: (params) => params.row?.kills?.aa?.pvp || ""
     },
     {
@@ -31,8 +31,16 @@ const columns = [
       headerName: 'AA(AI)',
       align: 'right',
       headerAlign: 'right',
-      width: 95,
+      width: 98,
       valueGetter: (params) => params.row?.kills?.aa?.ai || ""
+    },
+    {
+      field: 'aat',
+      headerName: 'AA(TK)',
+      align: 'right',
+      headerAlign: 'right',
+      width: 98,
+      valueGetter: (params) => params.row?.kills?.aa?.tk || ""
     },
     {
       field: 'agp',
@@ -47,8 +55,16 @@ const columns = [
       headerName: 'AG(AI)',
       align: 'right',
       headerAlign: 'right',
-      width: 95,
+      width: 98,
       valueGetter: (params) => params.row?.kills?.ag?.ai || ""
+    },
+    {
+      field: 'agt',
+      headerName: 'AG(TK)',
+      align: 'right',
+      headerAlign: 'right',
+      width: 98,
+      valueGetter: (params) => params.row?.kills?.ag?.tk || ""
     },
     {
       field: 'gap',
@@ -63,7 +79,7 @@ const columns = [
       headerName: 'GA(AI)',
       align: 'right',
       headerAlign: 'right',
-      width: 95,
+      width: 98,
       valueGetter: (params) => params.row?.kills?.ga?.ai || ""
     },
     {
@@ -79,8 +95,16 @@ const columns = [
       headerName: 'GG(AI)',
       align: 'right',
       headerAlign: 'right',
-      width: 95,
+      width: 98,
       valueGetter: (params) => params.row?.kills?.gg?.ai || ""
+    },
+    {
+      field: 'ggt',
+      headerName: 'GG(TK)',
+      align: 'right',
+      headerAlign: 'right',
+      width: 98,
+      valueGetter: (params) => params.row?.kills?.gg?.tk || ""
     },
     {
       headerName: 'Duration',

@@ -48,6 +48,14 @@ const columns = [
       type: 'boolean',
       flex: 1,
     },
+    {
+      headerName: 'Team Kill',
+      align: 'right',
+      headerAlign: 'right',
+      field: 'team_kill',
+      type: 'boolean',
+      flex: 1,
+    },
 ]
 
 export default function PlayerKills() {

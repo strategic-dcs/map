@@ -18,7 +18,7 @@ def get_units_by_duration(campaign_id: int = None, db: Session = Depends(get_db)
     unitT = aliased(models.Unit)
     unitTypeT = aliased(models.UnitType)
 
-    rows = ['type_name', 'duration', 'aa', 'ag', 'ga', 'gg', 'is_pvp']
+    rows = ['type_name', 'duration', 'aa', 'aa_tk', 'ag', 'ag_tk', 'ga', 'ga_tk', 'gg', 'gg_tk', 'is_pvp']
 
     query = (
         db
@@ -32,6 +32,7 @@ def get_units_by_duration(campaign_id: int = None, db: Session = Depends(get_db)
                                 unitTypeK.unit_class.in_(["AIR", "AIR_RW", "AIR_INTEL"]),
                                 unitTypeT.unit_class.in_(["AIR", "AIR_RW", "AIR_INTEL"]),
                                 models.WeaponKill.on_ground.is_(False),
+                                unitT.coalition != unitK.coalition,
                             ), 1
                         ),
                         else_=0)
@@ -41,7 +42,20 @@ def get_units_by_duration(campaign_id: int = None, db: Session = Depends(get_db)
                         (
                             and_(
                                 unitTypeK.unit_class.in_(["AIR", "AIR_RW", "AIR_INTEL"]),
+                                unitTypeT.unit_class.in_(["AIR", "AIR_RW", "AIR_INTEL"]),
+                                models.WeaponKill.on_ground.is_(False),
+                                unitT.coalition == unitK.coalition,
+                            ), 1
+                        ),
+                        else_=0)
+                    ).label('kills_aa_tk'),
+                func.sum(
+                    case(
+                        (
+                            and_(
+                                unitTypeK.unit_class.in_(["AIR", "AIR_RW", "AIR_INTEL"]),
                                 models.WeaponKill.on_ground.is_(True),
+                                unitT.coalition != unitK.coalition,
                             ), 1
                         ),
                         else_=0)
@@ -50,9 +64,21 @@ def get_units_by_duration(campaign_id: int = None, db: Session = Depends(get_db)
                     case(
                         (
                             and_(
+                                unitTypeK.unit_class.in_(["AIR", "AIR_RW", "AIR_INTEL"]),
+                                models.WeaponKill.on_ground.is_(True),
+                                unitT.coalition == unitK.coalition,
+                            ), 1
+                        ),
+                        else_=0)
+                    ).label('kills_ag_tk'),
+                func.sum(
+                    case(
+                        (
+                            and_(
                                 unitTypeK.unit_class.not_in(["AIR", "AIR_RW", "AIR_INTEL"]),
                                 unitTypeT.unit_class.in_(["AIR", "AIR_RW", "AIR_INTEL"]),
                                 models.WeaponKill.on_ground.is_(False),
+                                unitT.coalition != unitK.coalition,
                             ), 1
                         ),
                         else_=0)
@@ -62,11 +88,35 @@ def get_units_by_duration(campaign_id: int = None, db: Session = Depends(get_db)
                         (
                             and_(
                                 unitTypeK.unit_class.not_in(["AIR", "AIR_RW", "AIR_INTEL"]),
+                                unitTypeT.unit_class.in_(["AIR", "AIR_RW", "AIR_INTEL"]),
+                                models.WeaponKill.on_ground.is_(False),
+                                unitT.coalition == unitK.coalition,
+                            ), 1
+                        ),
+                        else_=0)
+                    ).label('kills_ga_tk'),
+                func.sum(
+                    case(
+                        (
+                            and_(
+                                unitTypeK.unit_class.not_in(["AIR", "AIR_RW", "AIR_INTEL"]),
                                 models.WeaponKill.on_ground.is_(True),
+                                unitT.coalition != unitK.coalition,
                             ), 1
                         ),
                         else_=0)
                     ).label('kills_gg'),
+                func.sum(
+                    case(
+                        (
+                            and_(
+                                unitTypeK.unit_class.not_in(["AIR", "AIR_RW", "AIR_INTEL"]),
+                                models.WeaponKill.on_ground.is_(True),
+                                unitT.coalition == unitK.coalition,
+                            ), 1
+                        ),
+                        else_=0)
+                    ).label('kills_gg_tk'),
                 models.WeaponKill.target_player_id.is_not(None).label('is_pvp'),
             )
             .select_from(models.UserFlights)
@@ -123,15 +173,20 @@ def get_units_by_duration(campaign_id: int = None, db: Session = Depends(get_db)
         kill_target = 'pvp' if row['is_pvp'] else 'ai'
 
         for kt in ['aa', 'ag', 'ga', 'gg']:
-            if not row[kt]:
-                continue
+            for tk in ['', '_tk']:
+                field = f"{kt}{tk}"
+                if field not in row or not row[field]:
+                    continue
 
-            if kt not in target["kills"]:
-                target["kills"][kt] = {}
+                if kt not in target["kills"]:
+                    target["kills"][kt] = {}
 
-            if kill_target not in target["kills"][kt]:
-                target["kills"][kt][kill_target] = 0
+                if tk:
+                    kill_target = 'tk'
 
-            target["kills"][kt][kill_target] += row[kt]
+                if kill_target not in target["kills"][kt]:
+                    target["kills"][kt][kill_target] = 0
+
+                target["kills"][kt][kill_target] += row[field]
 
     return sorted(merge.values(), key=lambda a: a["duration"], reverse=True)
