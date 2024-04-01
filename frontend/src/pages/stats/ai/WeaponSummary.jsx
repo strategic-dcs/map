@@ -143,7 +143,7 @@ export default function WeaponSummary() {
                     autoHeight
                     pagination={true}
                     slots={{ toolbar: GridToolbar }}
-                    //disableColumnFilter
+                    disableColumnFilter
                     disableColumnSelector
                     disableDensitySelector
                     onRowClick={handleRowClick}

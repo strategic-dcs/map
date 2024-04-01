@@ -108,6 +108,14 @@ const columns = [
       valueGetter: (params) => params.row?.kills?.gg?.tk || ""
     },
     {
+      field: 'suicides',
+      headerName: 'SELF',
+      align: 'right',
+      headerAlign: 'right',
+      width: 98,
+      valueGetter: (params) => params.row?.kills?.suicide || ""
+    },
+    {
       headerName: 'Duration',
       align: 'right',
       headerAlign: 'right',

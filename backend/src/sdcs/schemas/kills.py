@@ -20,3 +20,4 @@ class KillsByType(SDCSBaseModel):
     ag: Optional[KillTarget] = Field(description="Air to Ground Kills")
     ga: Optional[KillTarget] = Field(description="Ground to Air Kills")
     gg: Optional[KillTarget] = Field(description="Ground to Ground Kills")
+    suicide: Optional[int] = Field(description="Suicide Kills")
