@@ -170,7 +170,7 @@ def get_units_by_duration(campaign_id: int = None, db: Session = Depends(get_db)
         target["flights"] += 1
         target["duration"] += row['duration'].total_seconds()
 
-        kill_target = 'pvp' if row['is_pvp'] else 'ai'
+        kill_target = 'player' if row['is_pvp'] else 'ai'
 
         for kt in ['aa', 'ag', 'ga', 'gg']:
             for tk in ['', '_tk']:

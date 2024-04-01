@@ -6,7 +6,7 @@ from .core import SDCSBaseModel
 from .player import PlayerInfo
 from .unit import Unit
 from .weapon import Weapon
-from sdcs.db.models.weapon_kill import KillAssociationMethod
+from sdcs.db.models.kill_association_method import KillAssociationMethod
 
 class WeaponKill(SDCSBaseModel):
     id: int = Field(description="Weapon Kill")

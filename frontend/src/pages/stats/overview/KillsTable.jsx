@@ -36,13 +36,13 @@ export default function KillsTable({
           minWidth: 0,
         },
         {
-          field: 'pvp',
+          field: 'player',
           headerName: 'PVP',
           align: 'right',
           headerAlign: 'right',
           flex: 0.25,
           minWidth: 0,
-          valueGetter: (params) => params.row?.kills?.pvp || ""
+          valueGetter: (params) => params.row?.kills?.player || ""
         },
         {
           field: 'ai',

@@ -5,6 +5,7 @@ from datetime import datetime
 from .core import SDCSBaseModel
 from .kills import KillsByType
 from .unit import Unit
+from .weapon import WeaponType
 from sdcs.db.models.weapon_kill import KillAssociationMethod
 
 
@@ -19,7 +20,7 @@ class PlayerSummary(SDCSBaseModel):
 class PlayerKill(SDCSBaseModel):
     id: int = Field(description="Weapon Kill DB ID")
     kill_at: datetime = Field(description="Time of Kill (UTC)")
-    weapon_name: str = Field(description="Weapon Name")
+    weapon_type: WeaponType = Field(description="Weapon Type")
     killer_unit_type: str = Field(description="Unit Type")
     target_unit_type: str = Field(description="Unit Type")
     target_on_ground: bool = Field(description="Target on the ground at time of death")

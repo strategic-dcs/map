@@ -21,8 +21,9 @@ def get_player_kills(player_id: int, campaign_id: int = None, db: Session = Depe
     unitTypeT = aliased(models.UnitType)
 
     fields = (
-        'id', 'kill_at',
-        'weapon_name',
+        'id',
+        'kill_at',
+        'weapon_type',
         'killer_unit_type',
         'target_unit_type',
         'target_on_ground',
@@ -36,7 +37,7 @@ def get_player_kills(player_id: int, campaign_id: int = None, db: Session = Depe
             .query(
                 models.WeaponKill.id,
                 models.WeaponKill.kill_at,
-                models.Weapon.weapon_name,
+                models.Weapon.weapon_type_id,
                 dcsUnitTypeK.name,
                 unitTypeT.type_name,
                 models.WeaponKill.on_ground,
@@ -57,7 +58,7 @@ def get_player_kills(player_id: int, campaign_id: int = None, db: Session = Depe
             .filter(
                 models.WeaponKill.kill_player_id == player_id,
                 models.WeaponKill.target_unit_id != None,
-                models.WeaponKill.superceded.is_(False)
+                models.WeaponKill.superceded.is_(False),
             ))
 
     if campaign_id is not None:
@@ -70,5 +71,13 @@ def get_player_kills(player_id: int, campaign_id: int = None, db: Session = Depe
             .order_by(text('kill_at DESC'))
     )
 
-    return [dict(zip(fields, x)) for x in query.all()]
+    output = [dict(zip(fields, x)) for x in query.all()]
+    weapon_cache = {}
+    for row in output:
+        # Replace weapon type with data
+        if row["weapon_type"] not in weapon_cache:
+            weapon_cache[row["weapon_type"]] = db.query(models.WeaponType).get(row["weapon_type"])
+        row["weapon_type"] = weapon_cache[row["weapon_type"]]
+
+    return output
 

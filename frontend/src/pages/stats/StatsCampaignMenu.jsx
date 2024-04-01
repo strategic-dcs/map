@@ -51,6 +51,7 @@ export default function StatsCampaignMenu({campaignList}) {
                 }}
             >
                 <Tab LinkComponent={Link} to="overview" value="overview" label="Overview" />
+                <Tab LinkComponent={Link} to="ai" value="ai" label="AI Units" />
                 <Tab LinkComponent={Link} to="player" value="player" label="Player" />
             </Tabs>
         </div>

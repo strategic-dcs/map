@@ -28,6 +28,7 @@ const columns = [
         headerName: 'Weapon Name',
         minWidth: 200,
         flex: 1,
+        valueGetter: (params) => params.row.weapon_type.display_name || params.row.weapon_type.name
     },
     {
         field: 'target_player_name',

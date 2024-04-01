@@ -24,7 +24,7 @@ const columns = [
       align: 'right',
       headerAlign: 'right',
       width: 98,
-      valueGetter: (params) => params.row?.kills?.aa?.pvp || ""
+      valueGetter: (params) => params.row?.kills?.aa?.player || ""
     },
     {
       field: 'aaa',
@@ -48,7 +48,7 @@ const columns = [
       align: 'right',
       headerAlign: 'right',
       width: 90,
-      valueGetter: (params) => params.row?.kills?.ag?.pvp || ""
+      valueGetter: (params) => params.row?.kills?.ag?.player || ""
     },
     {
       field: 'aga',
@@ -72,7 +72,7 @@ const columns = [
       align: 'right',
       headerAlign: 'right',
       width: 90,
-      valueGetter: (params) => params.row?.kills?.ga?.pvp || ""
+      valueGetter: (params) => params.row?.kills?.ga?.player || ""
     },
     {
       field: 'gaa',
@@ -88,7 +88,7 @@ const columns = [
       align: 'right',
       headerAlign: 'right',
       width: 90,
-      valueGetter: (params) => params.row?.kills?.gg?.pvp || ""
+      valueGetter: (params) => params.row?.kills?.gg?.player || ""
     },
     {
       field: 'gga',

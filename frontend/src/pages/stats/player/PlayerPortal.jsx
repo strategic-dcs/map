@@ -81,8 +81,6 @@ export default function PlayerPortal() {
                     <TabPanel value={value} index={"deaths"}>
                         <PlayerDeaths />
                     </TabPanel>
-
-
                 </Grid>
             </Grid>
         </Box>

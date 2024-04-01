@@ -20,6 +20,18 @@ tags_metadata = [
         "name": "player",
         "description": "Player Information",
     },
+    {
+        "name": "weapon",
+        "description": "Weapon Usage Information",
+    },
+    {
+        "name": "dcs_unit_type",
+        "description": "DCS Unit Type Information",
+    },
+    {
+        "name": "weapon_type",
+        "description": "DCS Weapon Type",
+    },
 ]
 
 app = FastAPI(
@@ -52,7 +64,9 @@ app.include_router(discord_router, prefix="/api/auth", tags=["Auth"])
 app.include_router(routers.sitrep)
 app.include_router(routers.campaign)
 app.include_router(routers.player)
-
+app.include_router(routers.weapon)
+app.include_router(routers.dcs_unit_type)
+app.include_router(routers.weapon_type)
 
 @app.exception_handler(Unauthorized)
 async def unauthorized_error_handler(_, __):

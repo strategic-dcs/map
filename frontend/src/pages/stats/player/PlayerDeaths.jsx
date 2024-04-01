@@ -31,16 +31,16 @@ const columns = [
         valueGetter: (params) => params.row.kill_player?.name ?? "AI"
     },
     {
-        field: 'weapon',
-        headerName: 'Weapon',
-        flex: 1,
-        valueGetter: (params) => params.row.weapon.weapon_name
-    },
-    {
         field: 'killer_unit',
         headerName: 'Unit',
         flex: 1,
         valueGetter: (params) => params.row.weapon.unit.unit_type.type_name
+    },
+    {
+        field: 'weapon',
+        headerName: 'Weapon',
+        flex: 1,
+        valueGetter: (params) => params.row.weapon.weapon_type.display_name || params.row.weapon.weapon_type.name,
     },
     {
       headerName: 'Method',
