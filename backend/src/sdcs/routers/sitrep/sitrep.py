@@ -57,7 +57,7 @@ async def get_sitrep(request: Request):
         "bounds": data['bounds'],
         "current_coalition": coalition.lower(),
         "theatre": data['theatre'],
-        "zones": [{ "name": z['name'], "points": z["points"], "state": z["state"].get(coalition.lower(), default_state) } for z in data['zones']],
+        "zones": data['zones'],
         "airfields_friendly": airfields_friendly,
         "airfields_enemy": airfields_enemy,
         "farps": farps,

@@ -1,6 +1,6 @@
 import './Map.css';
 
-import { MapContainer, TileLayer, Marker, Polygon, Popup, AttributionControl } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Circle, Popup, AttributionControl } from 'react-leaflet'
 import { useMapEvents } from 'react-leaflet/hooks'
 import blueAirportIcon from '/blue-airfield.svg'
 import redAirportIcon from '/red-airfield.svg'
@@ -102,7 +102,6 @@ function MapComponents(props) {
   let gridPolygons = []
 
   for (let zone of sitRep.zones) {
-    const lineStyle = zone.state.line_style.toLowerCase()
 
     let line_color = [
       zone.state.line_color[0],
@@ -132,30 +131,15 @@ function MapComponents(props) {
       color: `rgba(${line_color})`,
       fillColor: `rgba(${fill_color})`,
       weight: 1,
-      dashArray: lineStyle === 'dashed' ? '5, 5' : null
     }
 
-    let pos = [
-      [zone.points[0].lat, zone.points[0].lon],
-      [zone.points[1].lat, zone.points[1].lon],
-      [zone.points[2].lat, zone.points[2].lon],
-    ]
-
-    const polygon = <Polygon key={zone.name} pathOptions={options} positions={pos}>
-      <Popup>
-        <div>{zone.state.zone_type}</div>
-      </Popup>
-    </Polygon>;
+    const pos = [zone.center.lat, zone.center.lon]
+    const polygon = <Circle key={zone.name} pathOptions={options} radius={zone.width} center={pos} />
     gridPolygons.push(polygon);
 
     // Adding zone name markers
-    const latSum = pos.reduce((sum, point) => sum + point[0], 0);
-    const lonSum = pos.reduce((sum, point) => sum + point[1], 0);
-    const centerLat = latSum / pos.length;
-    const centerLon = lonSum / pos.length;
-
     const icon = new L.DivIcon({className: 'zoneNameIcon', html: `<div>${zone.name}</div>`})
-    markers.push(<Marker key={`${zone.name}-icon`} position={[centerLat, centerLon]} icon={icon} interactive={false}/>)
+    markers.push(<Marker key={`${zone.name}-icon`} position={pos} icon={icon} interactive={false}/>)
   }
 
   return <div>
