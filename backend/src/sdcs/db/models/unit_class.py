@@ -22,3 +22,4 @@ class UnitClass(str, Enum):
     UNPACKABLE = "UNPACKABLE"
     FACTORY_BUILD = "FACTORY_BUILD"
     MOBILE_EWR = "MOBILE_EWR"
+    MANPAD = "MANPAD"
