@@ -18,13 +18,13 @@ export default function ServerInfo(props) {
   const red_list = red_users
     .sort((user) => { return user.name })
     .map((user) => {
-    return <li key={user.name}>{user.name} ({user.unit_type})</li>
+    return <li key={user.name}>{user.name}</li>
   })
 
   const blue_list = blue_users
     .sort((user) => { return user.name })
     .map((user) => {
-    return <li key={user.name}>{user.name} ({user.unit_type})</li>
+    return <li key={user.name}>{user.name}</li>
   })
 
   return <div className="serverInfoContainer">
