@@ -10,11 +10,13 @@ class Config(BaseSettings):
     FQDN: str
 
     DATABASE_URL: str
+    FIRST_CAMPAIGN: int
 
 settings = Config(
     DISCORD_OAUTH_CLIENT_ID=os.getenv('DISCORD_OAUTH_CLIENT_ID'),
     DISCORD_OAUTH_SECRET=os.getenv('DISCORD_OAUTH_SECRET'),
     FQDN=os.getenv('FQDN'),
+    FIRST_CAMPAIGN=0,
 
     DATABASE_URL=os.getenv('DATABASE_URL') or "mysql+mysqlconnector://root:password@db:3306/sdcs",
 )
