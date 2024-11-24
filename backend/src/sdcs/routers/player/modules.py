@@ -3,6 +3,7 @@ from sqlalchemy import desc, func, text, case, and_, distinct, extract
 from sqlalchemy.orm import aliased
 
 from . import router
+from sdcs.config import settings
 from sdcs.schemas.player import PlayerSummary, PlayerKill, PlayerModule
 from sdcs.db import models, get_db, Session
 
@@ -23,7 +24,7 @@ def get_player_modules(player_id: int, campaign_id: int = None, db: Session = De
             .filter(
                 models.User.id == player_id,
                 models.UserFlights.end != None,
-                models.UserFlights.campaign_id > 48
+                models.UserFlights.campaign_id > settings.FIRST_CAMPAIGN
             )
     )
 

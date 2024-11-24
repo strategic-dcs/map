@@ -2,6 +2,7 @@ from fastapi import Depends
 
 from . import router
 
+from sdcs.config import settings
 from sdcs.schemas.player import PlayerFlight
 from sdcs.db import models, get_db, Session
 
@@ -13,7 +14,7 @@ def get_player_info(player_id: int, campaign_id: int = None, db: Session = Depen
             .filter(
                 models.UserFlights.user_id == player_id,
                 models.UserFlights.end != None,
-                models.UserFlights.campaign_id > 48)
+                models.UserFlights.campaign_id > settings.FIRST_CAMPAIGN)
     )
 
     if campaign_id is not None:

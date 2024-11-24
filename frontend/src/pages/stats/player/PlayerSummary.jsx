@@ -10,6 +10,14 @@ const columns = [
     {
       field: 'user_name',
       headerName: 'Player Name',
+      renderCell: ((params) => <Box sx={
+        (() => {
+          let vars = {}
+          if (params.row?.user_side === "BLUE") vars['color'] = '#00aaff'
+          else if (params.row?.user_side === "RED") vars['color'] = '#ff4444'
+          return vars
+        })()
+      }>{params.value}</Box>),
       flex: 1,
     },
     {

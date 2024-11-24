@@ -5,6 +5,7 @@ from fastapi import Depends
 from . import router
 
 from sdcs.schemas.unit import UnitSummary
+from sdcs.config import settings
 
 from sdcs.db import models, get_db, Session
 
@@ -148,7 +149,7 @@ def get_units_by_duration(campaign_id: int = None, db: Session = Depends(get_db)
                 models.UserFlightLegs.end_time != None,
                 models.UserFlightLegs.committed.is_(True),
                 models.WeaponKill.superceded.is_(False),
-                unitK.campaign_id > 48,
+                unitK.campaign_id > settings.FIRST_CAMPAIGN,
             ))
 
     if campaign_id is not None:

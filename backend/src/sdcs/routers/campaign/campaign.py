@@ -4,6 +4,7 @@ from fastapi import Depends
 from . import router
 
 from sdcs.schemas.campaign import Campaign
+from sdcs.config import settings
 
 from sdcs.db import models, get_db, Session
 
@@ -13,7 +14,7 @@ def get_campaigns(db: Session = Depends(get_db)):
     return (
         db.query(models.Campaign)
             .filter(
-                models.Campaign.id > 48
+                models.Campaign.id > settings.FIRST_CAMPAIGN
             )
             .order_by(desc(models.Campaign.id)).all()
     )

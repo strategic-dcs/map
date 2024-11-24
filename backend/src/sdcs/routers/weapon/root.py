@@ -5,6 +5,7 @@ from fastapi import Depends
 
 from . import router
 
+from sdcs.config import settings
 from sdcs.schemas.weapon import WeaponSummary
 
 from sdcs.db import models, get_db, Session
@@ -141,7 +142,7 @@ def get_weapon_information(db: Session, campaign_id: int = None, dcs_type_id: in
             .filter(
                 models.WeaponKill.kill_player_id.is_(None),
                 unitK.user_id.is_(None),
-                unitK.campaign_id > 48,
+                unitK.campaign_id > settings.FIRST_CAMPAIGN,
                 or_(
                     models.WeaponKill.target_unit_id.is_(None),
                     models.Weapon.unit_id != models.WeaponKill.target_unit_id

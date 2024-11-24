@@ -10,4 +10,5 @@ from .weapon_kill import WeaponKill
 from .user import User
 from .user_flights import UserFlights
 from .user_flight_legs import UserFlightLegs
+from .user_side import UserSide
 from .weapon_type import WeaponType

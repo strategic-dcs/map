@@ -5,7 +5,9 @@ from fastapi import Depends
 
 from . import router
 
+from sdcs.config import settings
 from sdcs.schemas.player import PlayerSummary
+from sdcs.utils import print_query
 
 from sdcs.db import models, get_db, Session
 
@@ -18,7 +20,7 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
     unitT = aliased(models.Unit)
     unitTypeT = aliased(models.UnitType)
 
-    rows = ['id', 'name', 'duration', 'aa', 'aa_tk', 'ag', 'ag_tk', 'ga', 'ga_tk', 'gg', 'gg_tk', 'suicide', 'is_pvp']
+    rows = ['id', 'name', 'duration', 'aa', 'aa_tk', 'ag', 'ag_tk', 'ga', 'ga_tk', 'gg', 'gg_tk', 'suicide', 'is_pvp', 'user_side']
 
     query = (
         db
@@ -136,6 +138,7 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
                         else_=0)
                     ).label('kills_suicide'),
                 models.WeaponKill.target_player_id.is_not(None).label('is_pvp'),
+                models.UserSide.coalition.label('user_side'),
             )
             .select_from(models.UserFlights)
             .join(models.User, models.UserFlights.user_id == models.User.id)
@@ -150,12 +153,28 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
                 models.UserFlightLegs.end_time != None,
                 models.UserFlightLegs.committed.is_(True),
                 models.WeaponKill.superceded.is_(False),
-                unitK.campaign_id > 48,
+                unitK.campaign_id > settings.FIRST_CAMPAIGN,
             ))
 
     if campaign_id is not None:
         query = query.filter(
             unitK.campaign_id == campaign_id,
+        )
+
+        # We join on player side
+        query = query.join(
+            models.UserSide,
+            models.UserSide.campaign_id == campaign_id,
+            isouter=True)
+    else:
+        # Select the most recent campaign
+        query = query.join(
+            models.UserSide,
+            and_(
+                models.UserSide.user_id == models.User.id,
+                models.UserSide.campaign_id == db.query(func.max(models.Campaign.id))
+            ),
+            isouter=True
         )
 
     query = (
@@ -164,9 +183,12 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
                 models.User.id,
                 models.UserFlightLegs.id,
                 'is_pvp',
+                'user_side',
             )
             .order_by(text('duration DESC'))
     )
+
+    # print_query(query)
 
     # Build into our summary
     merge = {}
@@ -177,6 +199,7 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
             merge[row['id']] = {
                 "user_id": row['id'],
                 "user_name": row['name'],
+                "user_side": row['user_side'],
                 "flights": 0,
                 "duration": 0,
                 "kills": {}

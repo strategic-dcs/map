@@ -12,6 +12,7 @@ from sdcs.db.models.weapon_kill import KillAssociationMethod
 class PlayerSummary(SDCSBaseModel):
     user_id: int = Field(description="user id")
     user_name: str = Field(description="Unit Type")
+    user_side: Optional[str]
     flights: int = Field(description="Number of Flights")
     kills: KillsByType
     duration: int = Field(description="Seconds Controlled")
