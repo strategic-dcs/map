@@ -6,6 +6,8 @@ from .core import SDCSBaseModel
 from .kills import KillsByType
 from .unit import Unit
 from .weapon import WeaponType
+from .coalition import Coalition
+
 from sdcs.db.models.weapon_kill import KillAssociationMethod
 
 
@@ -37,6 +39,7 @@ class PlayerModule(SDCSBaseModel):
 
 class PlayerInfo(SDCSBaseModel):
     name: str = Field(description="Current User Name")
+    coalition: Optional[Coalition] = Field(description="Coalition")
 
 
 class PlayerFlight(SDCSBaseModel):

@@ -47,11 +47,15 @@ export default function PlayerPortal() {
 
     // Reload data
     useEffect(() => {
-        axios.get(`/api/player/${params.user_id}`).then((res) => {
+        axios.get(`/api/player/${params.user_id}`, {
+            params: {
+                campaign_id: params.campaign_id === "all" ? undefined : params.campaign_id,
+            }
+        }).then((res) => {
             if (!res) return
             setPlayerInfo(res.data)
         })
-    }, [params.user_id])
+    }, [params.user_id, params.campaign_id])
 
     const handleChange = (event, newValue) => {
         navigate(newValue);
@@ -64,7 +68,7 @@ export default function PlayerPortal() {
                     <Box pl={2} pt={1} pr={2}>
                         <Button sx={{width: "100%"}} variant="contained" onClick={() => navigate("..") }>Back to Player List</Button>
                     </Box>
-                    <PlayerModuleTable name={playerInfo?.name} />
+                    <PlayerModuleTable coalition={playerInfo?.coalition} name={playerInfo?.name} />
                 </Grid>
                 <Grid item xs={9}>
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">

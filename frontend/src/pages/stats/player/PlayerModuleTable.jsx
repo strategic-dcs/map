@@ -23,7 +23,7 @@ const columns = [
     },
 ]
 
-export default function PlayerModuleTable({name}) {
+export default function PlayerModuleTable({coalition, name}) {
 
     const params = useParams()
     const axios = useContext(AxiosContext)
@@ -41,11 +41,17 @@ export default function PlayerModuleTable({name}) {
         })
     }, [params.campaign_id, params.user_id])
 
+    let color = (() => {
+        if (coalition === "BLUE") return '#00aaff'
+        if (coalition === "RED") return '#ff4444'
+        return '#eeeeee'
+    })()
+
 
     return (
         <Box m={2} mt={1.5} sx={{background: "#333"}}>
             <Box p={2}>
-                <Typography color='primary' sx={{paddingBottom: "10px"}} variant="h6">{name}</Typography>
+                <Typography color={{color}} sx={{paddingBottom: "10px"}} variant="h6">{name}</Typography>
                 <StripedDataGrid
                     columns={columns}
                     rows={rows}
