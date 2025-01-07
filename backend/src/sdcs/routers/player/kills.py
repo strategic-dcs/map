@@ -56,7 +56,7 @@ def get_player_kills(player_id: int, campaign_id: int = None, db: Session = Depe
             .join(unitT, models.WeaponKill.target_unit_id == unitT.id)
             .join(unitTypeT, unitT.unit_type_id == unitTypeT.id)
             .filter(
-                models.WeaponKill.kill_player_id == player_id,
+                models.UserFlights.user_id == player_id,
                 models.WeaponKill.target_unit_id != None,
                 models.WeaponKill.superceded.is_(False),
             ))

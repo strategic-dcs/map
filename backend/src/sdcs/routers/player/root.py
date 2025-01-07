@@ -164,7 +164,10 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
         # We join on player side
         query = query.join(
             models.UserSide,
-            models.UserSide.campaign_id == campaign_id,
+            and_(
+                models.UserSide.campaign_id == campaign_id,
+                models.UserSide.user_id == models.User.id,
+            ),
             isouter=True)
     else:
         # Select the most recent campaign
