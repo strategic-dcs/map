@@ -62,6 +62,8 @@ async def get_sitrep(request: Request):
         "airfields_enemy": airfields_enemy,
         "farps": farps,
         "online_users": data.get("players", []),
+        "blue_coalition": data["blue_coalition"],
+        "red_coalition": data["red_coalition"],
         "seconds_left_until_restart": data['seconds_left_until_restart'],
         "sha": sha,
     }

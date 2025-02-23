@@ -217,7 +217,9 @@ function Map() {
       </MapContainer>
       <ServerInfo
         online_users={sitRep.online_users}
-        seconds_left_until_restart={sitRep.seconds_left_until_restart}/>
+        seconds_left_until_restart={sitRep.seconds_left_until_restart}
+        red_minutes_played={sitRep.red_coalition.minutes_played_total}
+        blue_minutes_played={sitRep.blue_coalition.minutes_played_total}/>
     </div>)
 
 }

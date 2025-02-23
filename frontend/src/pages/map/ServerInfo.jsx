@@ -43,6 +43,11 @@ export default function ServerInfo(props) {
           </ul>
         </div>
         <div className="line"></div>
+        <div className="serverMinutes">
+          <div>Total <span className="blue">BLUE</span> minutes played: <span className="">{props.blue_minutes_played}</span></div>
+          <div>Total <span className="red">RED</span> minutes played: <span className="">{props.red_minutes_played}</span></div>
+        </div>
+
         <div className="serverStats">
           <div>Server Restart in: {convertSecondsToFormatedTime(seconds_left_until_restart)}</div>
         </div>

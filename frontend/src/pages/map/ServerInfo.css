@@ -80,6 +80,10 @@
   font-size: 12px;
 }
 
+.serverInfoContainer .serverMinutes {
+  padding-top: 10px;
+  font-size: 12px;
+}
 .serverInfoContainer .line {
   border-top: 1px solid #bbbbbb;
   margin-top: 10px;
