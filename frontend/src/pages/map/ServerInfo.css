@@ -84,6 +84,10 @@
   padding-top: 10px;
   font-size: 12px;
 }
+.insert {
+  display: inline-block;
+  min-width: 30px;
+}
 .serverInfoContainer .line {
   border-top: 1px solid #bbbbbb;
   margin-top: 10px;

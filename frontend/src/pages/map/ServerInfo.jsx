@@ -44,8 +44,8 @@ export default function ServerInfo(props) {
         </div>
         <div className="line"></div>
         <div className="serverMinutes">
-          <div>Total <span className="blue">BLUE</span> minutes played: <span className="">{props.blue_minutes_played}</span></div>
-          <div>Total <span className="red">RED</span> minutes played: <span className="">{props.red_minutes_played}</span></div>
+          <div>Total <div className="insert blue">BLUE</div> minutes played: <span className="">{props.blue_minutes_played}</span></div>
+          <div>Total <div className="insert red">RED</div> minutes played: <span className="">{props.red_minutes_played}</span></div>
         </div>
 
         <div className="serverStats">
