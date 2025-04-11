@@ -1,5 +1,5 @@
 from typing import Union
-from sqlalchemy import desc, func, text, case, and_, distinct
+from sqlalchemy import desc, func, text, case, and_, distinct, or_
 from sqlalchemy.orm import aliased
 from fastapi import Depends
 
@@ -20,7 +20,7 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
     unitT = aliased(models.Unit)
     unitTypeT = aliased(models.UnitType)
 
-    rows = ['id', 'name', 'duration', 'aa', 'aa_tk', 'ag', 'ag_tk', 'ga', 'ga_tk', 'gg', 'gg_tk', 'suicide', 'is_pvp', 'user_side']
+    rows = ['id', 'name', 'duration', 'aa', 'aa_tk', 'ag', 'ag_tk', 'ga', 'ga_tk', 'gg', 'gg_tk', 'suicide', 'is_pvp', 'user_side', 'vanity_points']
 
     query = (
         db
@@ -137,6 +137,19 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
                         ),
                         else_=0)
                     ).label('kills_suicide'),
+
+                func.sum(
+                    case(
+                        (
+                            or_(
+                                models.UserFlightLegs.end_airbase_id.is_not(None),
+                                models.UserFlightLegs.end_farp_id.is_not(None),
+                            ), models.WeaponKill.vanity_points
+                        ),
+                        else_=0)
+                    ).label('vanity_points'),
+
+
                 models.WeaponKill.target_player_id.is_not(None).label('is_pvp'),
                 models.UserSide.coalition.label('user_side'),
             )
@@ -205,12 +218,14 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
                 "user_side": row['user_side'],
                 "flights": 0,
                 "duration": 0,
-                "kills": {}
+                "kills": {},
+                "vanity_points": 0
             }
 
         target = merge[row['id']]
         target["flights"] += 1
         target["duration"] += row['duration'].total_seconds()
+        target["vanity_points"] += row['vanity_points']
 
         kill_target = 'player' if row['is_pvp'] else 'ai'
 

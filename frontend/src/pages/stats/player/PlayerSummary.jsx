@@ -124,6 +124,14 @@ const columns = [
       valueGetter: (params) => params.row?.kills?.suicide || ""
     },
     {
+      field: 'vanity_points',
+      headerName: 'VP',
+      align: 'right',
+      headerAlign: 'right',
+      width: 98,
+      valueGetter: (params) => params.row?.vanity_points / 100 ?? 0
+    },
+    {
       headerName: 'Duration',
       align: 'right',
       headerAlign: 'right',

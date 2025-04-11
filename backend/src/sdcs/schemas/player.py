@@ -18,6 +18,7 @@ class PlayerSummary(SDCSBaseModel):
     flights: int = Field(description="Number of Flights")
     kills: KillsByType
     duration: int = Field(description="Seconds Controlled")
+    vanity_points: int = Field(description="Vanity Points")
 
 
 class PlayerKill(SDCSBaseModel):
