@@ -138,7 +138,9 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
                         else_=0)
                     ).label('kills_suicide'),
 
-                func.sum(models.WeaponKill.vanity_points).label('vanity_points_total'),
+                func.sum(
+                    case((unitT.id != unitK.id, models.WeaponKill.vanity_points), else_=0)
+                ).label('vanity_points_total'),
 
                 func.sum(
                     case(
@@ -146,11 +148,16 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
                             # We only require banking for air assets, so if it's a ground unit
                             # we immediately give the VP, or if it was a team kill
                             # as those too need not be banked
-                            or_(
-                                models.UserFlightLegs.end_airbase_id.is_not(None),
-                                models.UserFlightLegs.end_farp_id.is_not(None),
-                                unitTypeK.unit_class.not_in(["AIR", "AIR_RW", "AIR_INTEL"]),
-                                models.WeaponKill.vanity_points < 0,
+                            and_(
+                                or_(
+                                    models.UserFlightLegs.end_airbase_id.is_not(None),
+                                    models.UserFlightLegs.end_farp_id.is_not(None),
+                                    unitTypeK.unit_class.not_in(["AIR", "AIR_RW", "AIR_INTEL"]),
+                                    models.WeaponKill.vanity_points < 0,
+                                ),
+
+                                # We exclude any VP calculations where we kill ourselves
+                                unitT.id != unitK.id,
                             ), models.WeaponKill.vanity_points
                         ),
                         else_=0)
