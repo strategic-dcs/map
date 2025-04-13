@@ -124,12 +124,20 @@ const columns = [
       valueGetter: (params) => params.row?.kills?.suicide || ""
     },
     {
-      field: 'vanity_points',
-      headerName: 'VP',
+      field: 'vanity_points_total',
+      headerName: 'VP (Total)',
       align: 'right',
       headerAlign: 'right',
-      width: 98,
-      valueGetter: (params) => params.row?.vanity_points / 100 ?? 0
+      width: 115,
+      valueGetter: (params) => params.row?.vanity_points?.total / 100 ?? 0
+    },
+    {
+      field: 'vanity_points_banked',
+      headerName: 'VP (Banked)',
+      align: 'right',
+      headerAlign: 'right',
+      width: 135,
+      valueGetter: (params) => params.row?.vanity_points?.banked / 100 ?? 0
     },
     {
       headerName: 'Duration',

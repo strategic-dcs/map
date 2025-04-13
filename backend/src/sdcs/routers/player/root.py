@@ -20,7 +20,7 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
     unitT = aliased(models.Unit)
     unitTypeT = aliased(models.UnitType)
 
-    rows = ['id', 'name', 'duration', 'aa', 'aa_tk', 'ag', 'ag_tk', 'ga', 'ga_tk', 'gg', 'gg_tk', 'suicide', 'is_pvp', 'user_side', 'vanity_points']
+    rows = ['id', 'name', 'duration', 'aa', 'aa_tk', 'ag', 'ag_tk', 'ga', 'ga_tk', 'gg', 'gg_tk', 'suicide', 'vanity_points_total', 'vanity_points_banked', 'is_pvp', 'user_side']
 
     query = (
         db
@@ -138,6 +138,8 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
                         else_=0)
                     ).label('kills_suicide'),
 
+                func.sum(models.WeaponKill.vanity_points).label('vanity_points_total'),
+
                 func.sum(
                     case(
                         (
@@ -147,7 +149,7 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
                             ), models.WeaponKill.vanity_points
                         ),
                         else_=0)
-                    ).label('vanity_points'),
+                    ).label('vanity_points_banked'),
 
 
                 models.WeaponKill.target_player_id.is_not(None).label('is_pvp'),
@@ -219,13 +221,18 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
                 "flights": 0,
                 "duration": 0,
                 "kills": {},
-                "vanity_points": 0
+                "vanity_points": {
+                    "banked": 0,
+                    "total": 0,
+                }
             }
 
         target = merge[row['id']]
         target["flights"] += 1
         target["duration"] += row['duration'].total_seconds()
-        target["vanity_points"] += row['vanity_points']
+
+        target["vanity_points"]["banked"] += row['vanity_points_banked']
+        target["vanity_points"]["total"] += row['vanity_points_total']
 
         kill_target = 'player' if row['is_pvp'] else 'ai'
 

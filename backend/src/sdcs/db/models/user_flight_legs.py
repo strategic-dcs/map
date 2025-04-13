@@ -14,4 +14,7 @@ class UserFlightLegs(SQLBase):
     start_time = Column(DateTimeUTC)
     end_time = Column(DateTimeUTC, nullable=True)
 
+    end_airbase_id = Column(Integer)
+    end_farp_id = Column(Integer)
+
     committed = Column(Boolean)

@@ -11,6 +11,10 @@ from .coalition import Coalition
 from sdcs.db.models.weapon_kill import KillAssociationMethod
 
 
+class VanityPoints(SDCSBaseModel):
+    total: int = Field(description='Total collected points')
+    banked: int = Field(description='Banked points')
+
 class PlayerSummary(SDCSBaseModel):
     user_id: int = Field(description="user id")
     user_name: str = Field(description="Unit Type")
@@ -18,7 +22,7 @@ class PlayerSummary(SDCSBaseModel):
     flights: int = Field(description="Number of Flights")
     kills: KillsByType
     duration: int = Field(description="Seconds Controlled")
-    vanity_points: int = Field(description="Vanity Points")
+    vanity_points: VanityPoints = Field(description="Vanity Points")
 
 
 class PlayerKill(SDCSBaseModel):

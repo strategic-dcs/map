@@ -28,3 +28,6 @@ class WeaponKill(SQLBase):
     superceded = Column(Boolean)
     assoc_method = Column(Enum(KillAssociationMethod), nullable=True)
     on_ground = Column(Boolean)
+
+
+    vanity_points = Column(Integer)
