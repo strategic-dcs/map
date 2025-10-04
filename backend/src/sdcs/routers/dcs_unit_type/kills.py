@@ -1,5 +1,5 @@
 
-from fastapi import Depends
+from fastapi import Depends, Query
 from sqlalchemy import desc, func, text, case, and_, or_, distinct, extract
 from sqlalchemy.orm import aliased
 
@@ -9,7 +9,7 @@ from sdcs.schemas.unit import AIUnitKill
 
 
 @router.get("/{dcs_unit_type_id}/kills", response_model=list[AIUnitKill], summary="Get unit type information by ID")
-def get_unit_type_kills(dcs_unit_type_id: int, campaign_id: int = None, weapon_id: int = None, db: Session = Depends(get_db)):
+def get_unit_type_kills(dcs_unit_type_id: int, from_campaign:int = Query(None, alias="from"), to:int = None, weapon_id: int = None, db: Session = Depends(get_db)):
 
     userT = aliased(models.User)
 
@@ -58,8 +58,22 @@ def get_unit_type_kills(dcs_unit_type_id: int, campaign_id: int = None, weapon_i
                 models.Weapon.unit_id != models.WeaponKill.target_unit_id
             ))
 
-    if campaign_id is not None:
-        query = query.filter(unitK.campaign_id == campaign_id)
+    # Undefined campaign, pick the last
+    if to is None:
+        to = db.query(func.max(models.Campaign.id))
+
+    if from_campaign is None:
+        from_campaign = to
+
+    if from_campaign == to:
+        query = query.filter(
+            unitK.campaign_id == to,
+        )
+    else:
+        query = query.filter(
+            unitK.campaign_id >= from_campaign,
+            unitK.campaign_id <= to,
+        )
 
     if weapon_id is not None:
         query = query.filter(models.Weapon.weapon_type_id == weapon_id)

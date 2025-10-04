@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material"
 import { useContext, useEffect, useMemo, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useSearchParams } from "react-router-dom"
 import { StripedDataGrid } from "../../../components/grid/StripedDataGrid"
 import { AxiosContext } from "../../../contexts/AxiosContext"
 
@@ -14,18 +14,20 @@ export default function KillsTable({
     const params = useParams()
     const axios = useContext(AxiosContext)
     const [rows, setRows] = useState([])
+    const [searchParams, setSearchParams] = useSearchParams()
 
     // Reload our kills table
     useEffect(() => {
         axios.get(target, {
             params: {
-                campaign_id: params.campaign_id === 'all' ? undefined : params.campaign_id
+                from: searchParams.get('from'),
+                to: searchParams.get('to'),
             }
         }).then((res) => {
             if (!res) return
             setRows(res.data.map((v, idx) => { return {"id": idx+1, ...v} }))
         })
-    }, [target, params.campaign_id])
+    }, [target, searchParams])
 
 
     const columns = useMemo(() => [

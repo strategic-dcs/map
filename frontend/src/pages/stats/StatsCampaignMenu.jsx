@@ -1,34 +1,72 @@
 
-import { MenuItem, Tab, Tabs } from '@mui/material';
+import { MenuItem, Tab, Tabs, Typography } from '@mui/material';
 import Select from '@mui/material/Select';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 export default function StatsCampaignMenu({campaignList}) {
 
-    const params = useParams()
-    const navigate = useNavigate()
     const location = useLocation()
+    const navigate = useNavigate()
+    let [searchParams, setSearchParams] = useSearchParams();
 
-    const handleChange = (evt) => {
-        // We replace our existing ID with thte new ID keepign us on the same tag
-        let elems = location.pathname.split("/")
-        elems[2] = evt.target.value
-        let new_path = elems.join("/")
-        navigate(new_path, {replace: true})
+    const handleChangeFrom = (evt) => {
+        setSearchParams((searchParams) => {
+            if (evt.target.value === 'one') {
+                searchParams.delete('from')
+            } else {
+                searchParams.set('from', evt.target.value)
+            }
+            return searchParams;
+        });
     }
+
+    const handleChangeTo = (evt) => {
+        setSearchParams((searchParams) => {
+            searchParams.set("to", evt.target.value);
+            return searchParams;
+        });
+    }
+
+    const handleClick = (evt, target) => {
+        console.log(searchParams)
+        navigate({
+            pathname: target,
+            search: searchParams.toString()
+        })
+    }
+
+    let from = searchParams.get('from')
+    let to = searchParams.get('to')
 
     return (
         <div style={{width: "100%", backgroundColor: "#666666", display: 'flex'}}>
+            <Typography pr={1} pl={1} alignContent='center' sx={{color: 'white'}}>Range:</Typography>
             <Select
-                label="Campaign"
-                value={campaignList ? params.campaign_id : "all"}
+                label="Campaign Start"
+                value={campaignList && from ? from : "one"}
                 sx={{
                     height: "32px",
                     width: "240px",
                 }}
-                onChange={handleChange}
+                onChange={handleChangeFrom}
             >
-                <MenuItem key="all" value="all">Campaign: All</MenuItem>
+                <MenuItem key="one" value="one">Campaign: One</MenuItem>
+                <MenuItem key="0" value="0">Campaign: All</MenuItem>
+                {campaignList && campaignList.map((x) => {
+                    let date = new Date(x.start)
+                    return <MenuItem key={x.id} value={x.id.toString()}>{date.toISOString().split("T")[0]}: {x.mission.display_name}</MenuItem>
+                })}
+            </Select>
+            <Typography pr={1} pl={1} alignContent='center' sx={{color: 'white'}}>-</Typography>
+            <Select
+                label="Campaign"
+                value={campaignList ? (to ? to : campaignList[0].id) : "" }
+                sx={{
+                    height: "32px",
+                    width: "240px",
+                }}
+                onChange={handleChangeTo}
+            >
                 {campaignList && campaignList.map((x) => {
                     let date = new Date(x.start)
                     return <MenuItem key={x.id} value={x.id.toString()}>{date.toISOString().split("T")[0]}: {x.mission.display_name}</MenuItem>
@@ -43,16 +81,17 @@ export default function StatsCampaignMenu({campaignList}) {
                         minHeight: '32px',
                     },
                 }}
-                value={location.pathname.split("/")[3]}
+                onChange={handleClick}
+                value={location.pathname.split("/")[2]}
                 TabIndicatorProps={{
                     sx: {
                         height: "3px",
                     }
                 }}
             >
-                <Tab LinkComponent={Link} to="overview" value="overview" label="Overview" />
-                <Tab LinkComponent={Link} to="ai" value="ai" label="AI Units" />
-                <Tab LinkComponent={Link} to="player" value="player" label="Player" />
+                <Tab LinkComponent={Link} value="overview" label="Overview" />
+                <Tab LinkComponent={Link} value="ai" label="AI Units" />
+                <Tab LinkComponent={Link} value="player" label="Player" />
             </Tabs>
         </div>
     )

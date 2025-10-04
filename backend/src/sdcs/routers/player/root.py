@@ -1,7 +1,7 @@
 from typing import Union
 from sqlalchemy import desc, func, text, case, and_, distinct, or_
 from sqlalchemy.orm import aliased
-from fastapi import Depends
+from fastapi import Depends, Query
 
 from . import router
 
@@ -13,7 +13,7 @@ from sdcs.db import models, get_db, Session
 
 
 @router.get("", response_model=list[PlayerSummary], summary="Returns player summary of all time")
-def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
+def get_player_summary(from_campaign:int = Query(None, alias="from"), to:int = None, db: Session = Depends(get_db)):
     unitK = aliased(models.Unit)
     unitTypeK = aliased(models.UnitType)
 
@@ -183,30 +183,48 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
                 unitK.campaign_id > settings.FIRST_CAMPAIGN,
             ))
 
-    if campaign_id is not None:
+    # Pick our latest campaign for coalition details
+    latest_campaign = db.query(func.max(models.Campaign.id))
+
+    # Undefined campaign, pick the last
+    if to is None:
+        to = latest_campaign
+
+    if from_campaign is None:
+        from_campaign = to
+
+    # Process
+    if to == from_campaign:
         query = query.filter(
-            unitK.campaign_id == campaign_id,
+            unitK.campaign_id == to,
         )
 
-        # We join on player side
+        # Join player color based on most recent campaign
         query = query.join(
             models.UserSide,
             and_(
-                models.UserSide.campaign_id == campaign_id,
                 models.UserSide.user_id == models.User.id,
+                models.UserSide.campaign_id == to
             ),
-            isouter=True)
+            isouter=True
+        )
     else:
-        # Select the most recent campaign
+        query = query.filter(
+            unitK.campaign_id >= from_campaign,
+            unitK.campaign_id <= to,
+        )
+
+        # Join player color based on most recent campaign
         query = query.join(
             models.UserSide,
             and_(
                 models.UserSide.user_id == models.User.id,
-                models.UserSide.campaign_id == db.query(func.max(models.Campaign.id))
+                models.UserSide.campaign_id == latest_campaign
             ),
             isouter=True
         )
 
+    # Add group bys
     query = (
         query
             .group_by(
@@ -218,7 +236,7 @@ def get_player_summary(campaign_id: int = None, db: Session = Depends(get_db)):
             .order_by(text('duration DESC'))
     )
 
-    # print_query(query)
+    print_query(query)
 
     # Build into our summary
     merge = {}

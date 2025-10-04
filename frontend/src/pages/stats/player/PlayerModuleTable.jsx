@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material"
 import { useContext, useEffect, useMemo, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useSearchParams } from "react-router-dom"
 import { StripedDataGrid } from "../../../components/grid/StripedDataGrid"
 import { AxiosContext } from "../../../contexts/AxiosContext"
 import { secondsToText } from "../../../utils"
@@ -28,18 +28,20 @@ export default function PlayerModuleTable({coalition, name}) {
     const params = useParams()
     const axios = useContext(AxiosContext)
     const [rows, setRows] = useState([])
+    const [searchParams, _] = useSearchParams()
 
     // Reload data
     useEffect(() => {
         axios.get(`/api/player/${params.user_id}/modules`, {
             params: {
-                campaign_id: params.campaign_id === "all" ? undefined: params.campaign_id
+                from: searchParams.get('from'),
+                to: searchParams.get('to'),
             }
         }).then((res) => {
             if (!res) return
             setRows(res.data.map((v, idx) => { return {"id": idx+1, ...v} }))
         })
-    }, [params.campaign_id, params.user_id])
+    }, [searchParams, params.user_id])
 
     let color = (() => {
         if (coalition === "BLUE") return '#00aaff'

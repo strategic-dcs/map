@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material"
 import { useContext, useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams, useSearchParams } from "react-router-dom"
 import { StripedDataGrid } from "../../../components/grid/StripedDataGrid"
 import { AxiosContext } from "../../../contexts/AxiosContext"
 import { secondsToText } from "../../../utils"
@@ -152,25 +152,29 @@ const columns = [
 
 export default function PlayerSummary() {
 
-    const params = useParams()
     const axios = useContext(AxiosContext)
     const [rows, setRows] = useState([])
     const navigate = useNavigate()
+    const [searchParams, _] = useSearchParams()
 
     // Reload our kills table
     useEffect(() => {
         axios.get('/api/player', {
           params: {
-            campaign_id: params.campaign_id === "all" ? undefined : params.campaign_id
+            from: searchParams.get('from'),
+            to: searchParams.get('to'),
           }
         }).then((res) => {
             if (!res) return
             setRows(res.data.map((v, idx) => { return {"id": idx+1, ...v} }))
         })
-    }, [params.campaign_id])
+    }, [searchParams ])
 
     const handleRowClick = (e) => {
-        navigate(e.row.user_id.toString())
+        navigate({
+          pathname: e.row.user_id.toString(),
+          search: searchParams.toString(),
+        })
     }
 
     return (

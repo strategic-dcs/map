@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material"
 import { useContext, useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams, useSearchParams } from "react-router-dom"
 import { StripedDataGrid } from "../../../components/grid/StripedDataGrid"
 import { AxiosContext } from "../../../contexts/AxiosContext"
 import { secondsToText } from "../../../utils"
@@ -102,24 +102,30 @@ const columns = [
 export default function WeaponSummary() {
 
     const navigate = useNavigate()
-    const params = useParams()
     const axios = useContext(AxiosContext)
     const [rows, setRows] = useState([])
+
+    const [searchParams, setSearchParams] = useSearchParams()
+    let params = {
+      from: searchParams.get('from'),
+      to: searchParams.get('to'),
+    }
 
     // Reload our kills table
     useEffect(() => {
         axios.get('/api/weapon', {
-          params: {
-            campaign_id: params.campaign_id === 'all' ? undefined : params.campaign_id
-          }
+          params: params
         }).then((res) => {
             if (!res) return
             setRows(res.data.map((v, idx) => { return {"id": idx+1, ...v} }))
         })
-    }, [params.campaign_id])
+    }, [searchParams])
 
     const handleRowClick = (e) => {
-      navigate(`by_unit/${e.row.unit_type.id}/weapon/${e.row.weapon_type.id}`)
+      navigate({
+        pathname: `by_unit/${e.row.unit_type.id}/weapon/${e.row.weapon_type.id}`,
+        search: searchParams.toString()
+      })
     }
 
     return (

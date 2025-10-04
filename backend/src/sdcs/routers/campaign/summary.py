@@ -1,6 +1,6 @@
 from sqlalchemy import func, text, case, and_
 from sqlalchemy.orm import aliased
-from fastapi import Depends
+from fastapi import Depends, Query
 
 from . import router
 
@@ -11,7 +11,7 @@ from sdcs.db import models, get_db, Session
 
 
 @router.get("/summary/units", response_model=list[UnitSummary], summary="Returns top 10 GA kills of all time")
-def get_units_by_duration(campaign_id: int = None, db: Session = Depends(get_db)):
+def get_units_by_duration(from_campaign:int = Query(None, alias="from"), to:int = None, db:Session = Depends(get_db)):
 
     unitK = aliased(models.Unit)
     unitTypeK = aliased(models.UnitType)
@@ -152,9 +152,24 @@ def get_units_by_duration(campaign_id: int = None, db: Session = Depends(get_db)
                 unitK.campaign_id > settings.FIRST_CAMPAIGN,
             ))
 
-    if campaign_id is not None:
+
+    # Pick our latest campaign for coalition details
+    latest_campaign = db.query(func.max(models.Campaign.id))
+
+    if to is None:
+        to = latest_campaign
+
+    if from_campaign is None:
+        from_campaign = to
+
+    if from_campaign == to:
         query = query.filter(
-            unitK.campaign_id == campaign_id,
+            unitK.campaign_id == to,
+        )
+    else:
+        query = query.filter(
+            unitK.campaign_id >= from_campaign,
+            unitK.campaign_id <= to,
         )
 
     query = (

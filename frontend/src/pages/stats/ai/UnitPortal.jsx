@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Tab, Tabs, Typography } from "@mui/material"
 import { useContext, useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams, useSearchParams } from "react-router-dom"
 import { AxiosContext } from "../../../contexts/AxiosContext"
 import UnitKills from "./UnitKills"
 
@@ -63,12 +63,19 @@ export default function UnitPortal() {
         navigate(newValue);
     };
 
+    const [searchParams, _] = useSearchParams()
+
     return (
         <Box sx={{padding: 0}}>
             <Grid container>
                 <Grid item xs={3}>
                     <Box pl={2} pt={1} pr={2}>
-                        <Button sx={{width: "100%"}} variant="contained" onClick={() => navigate("..") }>Back to AI Weapon</Button>
+                        <Button sx={{width: "100%"}} variant="contained" onClick={
+                            () => navigate({
+                                pathname: "..",
+                                search: searchParams.toString(),
+                            })
+                        }>Back to AI Weapon</Button>
                         <Box m={2} mt={1.5} sx={{background: "#333"}}>
                             <Box p={2}>
                                 <Typography color='primary' sx={{paddingBottom: "10px"}} variant="h6">{unitInfo?.name}: {weaponInfo?.name}</Typography>

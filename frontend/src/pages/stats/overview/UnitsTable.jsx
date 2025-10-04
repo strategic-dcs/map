@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material"
 import { useContext, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useSearchParams } from "react-router-dom"
 import { StripedDataGrid } from "../../../components/grid/StripedDataGrid"
 import { AxiosContext } from "../../../contexts/AxiosContext"
 import { secondsToText } from "../../../utils"
@@ -127,21 +127,22 @@ const columns = [
 
 export default function UnitsTable() {
 
-    const params = useParams()
     const axios = useContext(AxiosContext)
     const [rows, setRows] = useState([])
+    const [searchParams, setSearchParams] = useSearchParams()
 
     // Reload our kills table
     useEffect(() => {
         axios.get('/api/campaign/summary/units', {
           params: {
-            campaign_id: params.campaign_id === 'all' ? undefined : params.campaign_id
+            from: searchParams.get('from'),
+            to: searchParams.get('to'),
           }
         }).then((res) => {
             if (!res) return
             setRows(res.data.map((v, idx) => { return {"id": idx+1, ...v} }))
         })
-    }, [params.campaign_id])
+    }, [searchParams])
 
     return (
         <Box m={2} sx={{background: "#333"}}>

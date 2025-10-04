@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Tab, Tabs } from "@mui/material"
 import { useContext, useEffect, useState } from "react"
-import { useLocation, useNavigate, useParams } from "react-router-dom"
+import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom"
 import { AxiosContext } from "../../../contexts/AxiosContext"
 import PlayerModuleTable from "./PlayerModuleTable"
 import PlayerKills from "./PlayerKills"
@@ -41,6 +41,7 @@ export default function PlayerPortal() {
     const axios = useContext(AxiosContext)
     const navigate = useNavigate()
     const value = params?.["*"] || "flights"
+    const [searchParams, _] = useSearchParams()
 
     // const [value, setValue] = useState("flights");
     const [playerInfo, setPlayerInfo] = useState(null)
@@ -49,16 +50,20 @@ export default function PlayerPortal() {
     useEffect(() => {
         axios.get(`/api/player/${params.user_id}`, {
             params: {
-                campaign_id: params.campaign_id === "all" ? undefined : params.campaign_id,
+                from: searchParams.get('from'),
+                to: searchParams.get('to'),
             }
         }).then((res) => {
             if (!res) return
             setPlayerInfo(res.data)
         })
-    }, [params.user_id, params.campaign_id])
+    }, [params.user_id, searchParams])
 
     const handleChange = (event, newValue) => {
-        navigate(newValue);
+        navigate({
+            pathname: newValue,
+            search: searchParams.toString(),
+        });
     };
 
     return (
@@ -66,7 +71,7 @@ export default function PlayerPortal() {
             <Grid container>
                 <Grid item xs={3}>
                     <Box pl={2} pt={1} pr={2}>
-                        <Button sx={{width: "100%"}} variant="contained" onClick={() => navigate("..") }>Back to Player List</Button>
+                        <Button sx={{width: "100%"}} variant="contained" onClick={() => navigate({pathname: "..", search: searchParams.toString()}) }>Back to Player List</Button>
                     </Box>
                     <PlayerModuleTable coalition={playerInfo?.coalition} name={playerInfo?.name} />
                 </Grid>

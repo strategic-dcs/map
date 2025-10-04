@@ -1,7 +1,7 @@
 
 import { Box, Grid, Typography } from "@mui/material"
 import { useContext, useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams, useSearchParams } from "react-router-dom"
 import { StripedDataGrid } from "../../../components/grid/StripedDataGrid"
 import { AxiosContext } from "../../../contexts/AxiosContext"
 import { secondsToText } from "../../../utils"
@@ -59,18 +59,20 @@ export default function PlayerFlights() {
     const params = useParams()
     const axios = useContext(AxiosContext)
     const [rows, setRows] = useState([])
+    const [searchParams, _] = useSearchParams()
 
     // Reload our kills table
     useEffect(() => {
         axios.get(`/api/player/${params.user_id}/flights`, {
             params: {
-                campaign_id: params.campaign_id !== "all" ? params.campaign_id : null
+                from: searchParams.get('from'),
+                to: searchParams.get('to'),
             }
         }).then((res) => {
             if (!res) return
             setRows(res.data.map((v, idx) => { return {"id": idx+1, ...v} }))
         })
-    }, [params.campaign_id, params.user_id])
+    }, [searchParams, params.user_id])
 
     return (
         <Box m={0} sx={{background: "#333"}}>

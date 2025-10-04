@@ -1,7 +1,7 @@
 from typing import Union
 from sqlalchemy import desc, func, text, case, and_, or_, distinct
 from sqlalchemy.orm import aliased
-from fastapi import Depends
+from fastapi import Depends, Query
 
 from . import router
 
@@ -11,7 +11,7 @@ from sdcs.schemas.weapon import WeaponSummary
 from sdcs.db import models, get_db, Session
 
 
-def get_weapon_information(db: Session, campaign_id: int = None, dcs_type_id: int = None, weapon_type_id: int = None):
+def get_weapon_information(db: Session, from_campaign:int, to:int, dcs_type_id: int = None, weapon_type_id: int = None):
     unitK = aliased(models.Unit)
     unitTypeK = aliased(models.UnitType)
     dcsTypeK = aliased(models.DcsUnitType)
@@ -149,8 +149,15 @@ def get_weapon_information(db: Session, campaign_id: int = None, dcs_type_id: in
                 )
             ))
 
-    if campaign_id is not None:
-        query = query.filter(unitK.campaign_id == campaign_id)
+    if from_campaign == to:
+        query = query.filter(
+            unitK.campaign_id == to,
+        )
+    else:
+        query = query.filter(
+            unitK.campaign_id >= from_campaign,
+            unitK.campaign_id <= to,
+        )
 
     if weapon_type_id is not None:
         query = query.filter(models.Weapon.weapon_type_id == weapon_type_id)
@@ -212,8 +219,17 @@ def get_weapon_information(db: Session, campaign_id: int = None, dcs_type_id: in
 
 
 @router.get("", response_model=list[WeaponSummary], summary="Returns ai unit summary")
-def get_weapon_information_response(campaign_id: int = None, db: Session = Depends(get_db)):
+def get_weapon_information_response(
+    from_campaign:int = Query(None, alias="from"),
+    to:int = None, db: Session = Depends(get_db)):
+
+    # Undefined campaign, pick the last
+    if to is None:
+        to = db.query(func.max(models.Campaign.id))
+
+    if from_campaign is None:
+        from_campaign = to
 
     return sorted(
-        get_weapon_information(db, campaign_id),
+        get_weapon_information(db, from_campaign, to),
         key=lambda a: a["shots"], reverse=True)

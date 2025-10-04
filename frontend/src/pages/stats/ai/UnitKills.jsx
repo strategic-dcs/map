@@ -1,7 +1,7 @@
 
 import { Box, Grid, Typography } from "@mui/material"
 import { useContext, useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams, useSearchParams } from "react-router-dom"
 import { StripedDataGrid } from "../../../components/grid/StripedDataGrid"
 import { AxiosContext } from "../../../contexts/AxiosContext"
 import { secondsToText } from "../../../utils"
@@ -60,18 +60,21 @@ export default function UnitKills() {
     const axios = useContext(AxiosContext)
     const [rows, setRows] = useState([])
 
+    const [searchParams, setSearchParams] = useSearchParams()
+
     // Reload our kills table
     useEffect(() => {
         axios.get(`/api/dcs_unit_type/${params.unit_id}/kills`, {
             params: {
-                campaign_id: params.campaign_id === "all" ? undefined : params.campaign_id,
+                from: searchParams.get('from'),
+                to: searchParams.get('to'),
                 weapon_id: params.weapon_id,
             }
         }).then((res) => {
             if (!res) return
             setRows(res.data.map((v, idx) => { return {"id": idx+1, ...v} }))
         })
-    }, [params.campaign_id, params.user_id])
+    }, [params.weapon_id, searchParams])
 
     return (
         <Box m={0} sx={{background: "#333"}}>

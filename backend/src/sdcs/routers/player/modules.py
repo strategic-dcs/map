@@ -1,4 +1,4 @@
-from fastapi import Depends
+from fastapi import Depends, Query
 from sqlalchemy import desc, func, text, case, and_, distinct, extract
 from sqlalchemy.orm import aliased
 
@@ -9,7 +9,7 @@ from sdcs.db import models, get_db, Session
 
 
 @router.get("/{player_id}/modules", response_model=list[PlayerModule], summary="Returns player module information")
-def get_player_modules(player_id: int, campaign_id: int = None, db: Session = Depends(get_db)):
+def get_player_modules(player_id:int, from_campaign:int = Query(None, alias="from"), to:int = None, db: Session = Depends(get_db)):
 
     query = (
         db
@@ -28,9 +28,20 @@ def get_player_modules(player_id: int, campaign_id: int = None, db: Session = De
             )
     )
 
-    if campaign_id is not None:
+    if to is None:
+        to = db.query(func.max(models.Campaign.id))
+
+    if from_campaign is None:
+        from_campaign = to
+
+    if from_campaign == to:
         query = query.filter(
-            models.Unit.campaign_id == campaign_id,
+            models.Unit.campaign_id == to,
+        )
+    else:
+        query = query.filter(
+            models.Unit.campaign_id >= from_campaign,
+            models.Unit.campaign_id <= to,
         )
 
     query = (
