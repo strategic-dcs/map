@@ -219,7 +219,13 @@ function Map() {
         online_users={sitRep.online_users}
         seconds_left_until_restart={sitRep.seconds_left_until_restart}
         red_minutes_played={sitRep.red_coalition.minutes_played_total}
-        blue_minutes_played={sitRep.blue_coalition.minutes_played_total}/>
+        blue_minutes_played={sitRep.blue_coalition.minutes_played_total}
+        red_minutes_4h={sitRep.red_coalition.minutes_played_4h}
+        blue_minutes_4h={sitRep.blue_coalition.minutes_played_4h}
+        red_registered={sitRep.red_coalition.registered}
+        blue_registered={sitRep.blue_coalition.registered}
+				dcs_time={sitRep.dcs_time}
+			/>
     </div>)
 
 }

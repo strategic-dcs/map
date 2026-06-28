@@ -83,6 +83,9 @@
 .serverInfoContainer .serverMinutes {
   padding-top: 10px;
   font-size: 12px;
+	display: grid;
+	column-gap: 10px;
+	grid-template-columns: 3fr 1fr 1fr;
 }
 .insert {
   display: inline-block;
@@ -91,4 +94,7 @@
 .serverInfoContainer .line {
   border-top: 1px solid #bbbbbb;
   margin-top: 10px;
+}
+.flex {
+	display: flex;
 }

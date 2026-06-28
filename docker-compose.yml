@@ -30,8 +30,6 @@ services:
       - "./backend/dev_data/development_data.sql:/docker-entrypoint-initdb.d/development_data.sql"
     networks:
       - database
-#   ports:
-#     - "5432:5432/tcp"
 
   frontend:
     build:

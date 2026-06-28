@@ -53,6 +53,7 @@ async def get_sitrep(request: Request):
 
     response = {
         "time": data['time'],
+        "dcs_time": data['dcs_time'],
         "center": data['center'],
         "bounds": data['bounds'],
         "current_coalition": coalition.lower(),

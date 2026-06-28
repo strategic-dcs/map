@@ -1,0 +1,16 @@
+#!/bin/bash
+
+DIR="$(dirname "$0")"
+LAST_FILE="$DIR/last_load"
+
+FILE="$(ls -tr /data/sdcs/backups/hourly-sdcs-* | tail -n 1)"
+LAST=
+
+# Do nothing if already imported
+[[ -f "$LAST_FILE" ]] && LAST="$(<"$LAST_FILE")"
+[[ -n "$LAST" && "$FILE" = "$LAST" ]] && exit
+
+export PGPASSWORD=sdcs
+docker exec -i map-database-1 psql -Usdcs -c "drop schema public cascade; create schema public;"
+zcat "$FILE" | docker exec -i map-database-1 psql -Usdcs
+echo "$FILE"  > "$LAST_FILE"

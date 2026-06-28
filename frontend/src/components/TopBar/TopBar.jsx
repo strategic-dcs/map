@@ -28,9 +28,12 @@ function TopBar() {
                 >
                     <Tab LinkComponent={Link} to="map" value="map" label="Map" />
                     <Tab LinkComponent={Link} to="stats" value="stats" label="Stats" />
+                    <Tab LinkComponent={Link} to="https://replay.strategic-dcs.com" value="replay" label="Replay" />
                     <Tab LinkComponent={Link} to="https://wiki.strategic-dcs.com" value="wiki" label="Wiki" />
                     <Tab LinkComponent={Link} to="https://strategic-dcs.com/tacview" value="tacview" label="Tacviews" />
                     <Tab LinkComponent={Link} to="https://strategic-dcs.com/discord" value="discord" label="Discord" />
+                    <Tab LinkComponent={Link} to="https://patreon.com/c/StrategicDCS" value="patreon" label="Patreon" />
+                    <Tab LinkComponent={Link} to="https://paypal.me/mfchl88" value="paypal" label="PayPal" />
                 </Tabs>
             </div>
             <div style={{width: "100%", height:"2px", backgroundColor: "#a4a4a4"}} />

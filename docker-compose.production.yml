@@ -8,8 +8,6 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - "./pgdata:/var/lib/postgresql/data:rw"
-    ports:
-      - "5432:5432/tcp"
     networks:
       - database
 
@@ -25,9 +23,13 @@ services:
     env_file:
       - .env
     command: uvicorn sdcs.main:app --host 0.0.0.0 --port 8000 --app-dir src
+    dns: 127.0.0.10
     networks:
       - backend
       - database
+    depends_on:
+      database:
+        condition: service_started
 
   varnish:
     image: varnish
@@ -52,6 +54,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.prod
     restart: always
+    dns: 127.0.0.12
     environment:
       VIRTUAL_PATH: /
     networks:

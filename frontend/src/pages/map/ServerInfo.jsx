@@ -8,6 +8,30 @@ function convertSecondsToFormatedTime(seconds) {
   return formattedTime;
 }
 
+function formatDate(date) {
+    var d = new Date(date)
+
+		let month = '' + (d.getMonth() + 1);
+    let day = '' + d.getDate();
+		let year = d.getFullYear();
+
+		let hour = '' + d.getHours();
+		let minutes = '' + d.getMinutes();
+
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+    if (hour.length < 2)
+        hour = '0' + hour;
+    if (minutes.length < 2)
+        minutes = '0' + minutes;
+
+
+    return [year, month, day].join('-') + ' ' + [hour,minutes].join(':');
+}
+
+
 export default function ServerInfo(props) {
   const online_users = props.online_users
   const seconds_left_until_restart = props.seconds_left_until_restart
@@ -44,8 +68,25 @@ export default function ServerInfo(props) {
         </div>
         <div className="line"></div>
         <div className="serverMinutes">
-          <div>Total <div className="insert blue">BLUE</div> minutes played: <span className="">{props.blue_minutes_played}</span></div>
-          <div>Total <div className="insert red">RED</div> minutes played: <span className="">{props.red_minutes_played}</span></div>
+					<div></div>
+					<div className="insert blue flex">BLUE</div>
+					<div className="insert red flex">RED</div>
+
+					<div className="flex">minutes played</div>
+					<div className="flex"><span>{props.blue_minutes_played}</span></div>
+					<div className="flex"><span>{props.red_minutes_played}</span></div>
+
+					<div className="flex">minutes four hours</div>
+					<div className="flex"><span>{props.blue_minutes_4h}</span></div>
+					<div className="flex"><span>{props.red_minutes_4h}</span></div>
+
+					<div className="flex">registered</div>
+					<div className="flex"><span>{props.blue_registered}</span></div>
+					<div className="flex"><span>{props.red_registered}</span></div>
+        </div>
+
+        <div className="serverStats">
+          <div>Server Time: {formatDate(props.dcs_time)}</div>
         </div>
 
         <div className="serverStats">

@@ -19,12 +19,13 @@ def get_units_by_duration(from_campaign:int = Query(None, alias="from"), to:int 
     unitT = aliased(models.Unit)
     unitTypeT = aliased(models.UnitType)
 
-    rows = ['type_name', 'duration', 'aa', 'aa_tk', 'ag', 'ag_tk', 'ga', 'ga_tk', 'gg', 'gg_tk', 'suicide', 'is_pvp']
+    rows = ['type_name', 'coalition', 'duration', 'aa', 'aa_tk', 'ag', 'ag_tk', 'ga', 'ga_tk', 'gg', 'gg_tk', 'suicide', 'is_pvp']
 
     query = (
         db
             .query(
                 unitTypeK.type_name,
+                unitK.coalition.label('coalition'),
                 (models.UserFlightLegs.end_time - models.UserFlightLegs.start_time).label('duration'),
                 func.sum(
                     case(
@@ -176,6 +177,7 @@ def get_units_by_duration(from_campaign:int = Query(None, alias="from"), to:int 
         query
             .group_by(
                 unitTypeK.type_name,
+                unitK.coalition,
                 models.UserFlightLegs.id,
                 'is_pvp',
             )
@@ -190,16 +192,18 @@ def get_units_by_duration(from_campaign:int = Query(None, alias="from"), to:int 
     for row in query.all():
         row = dict(zip(rows, row))
 
-        if row['type_name'] not in merge:
-            merge[row['type_name']] = {
-                "unit_type": row['type_name'],
+        mark_as = f"{row['type_name']} ({row['coalition'].title()})"
+
+        if mark_as not in merge:
+            merge[mark_as] = {
+                "unit_type": mark_as,
                 "flights": 0,
                 "duration": 0,
                 "kills": {}
             }
 
         # Add up
-        target = merge[row['type_name']]
+        target = merge[mark_as]
         target["flights"] += 1
         target["duration"] += row['duration'].total_seconds()
 
